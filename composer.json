@@ -1,5 +1,5 @@
 {
-    "name": "UthandoCMS/uthando",
+    "name": "uthando-cms/uthando",
     "description": "Base App for Uthando CMS",
     "license": "BSD-3-Clause",
     "keywords": [ "framework", "zf2","CMS"],
