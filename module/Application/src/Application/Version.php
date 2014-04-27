@@ -6,7 +6,7 @@ use Zend\Json\Json;
 
 class Version
 {
-	const VERSION = '2.0.0dev';
+	const VERSION = 'dev-master';
 	
 	protected static $latestVersion;
 	
@@ -22,7 +22,7 @@ class Version
 		if (null === static::$latestVersion) {
 			static::$latestVersion = 'not available';
 			
-			$url  = 'https://api.github.com/repos/charisma-beads/charisma-beads/git/refs/tags/release-';
+			$url  = 'https://api.github.com/repos/uthando-cms/uthando/git/refs/tags/release-';
 
 			$apiResponse = Json::decode(file_get_contents($url), Json::TYPE_ARRAY);
 

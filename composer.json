@@ -4,6 +4,16 @@
     "license": "BSD-3-Clause",
     "keywords": [ "framework", "zf2","CMS"],
     "homepage": "http://shaunfreeman.name/",
+    
+    "authors": [
+        {
+            "name": "Shaun Freeman",
+            "email": "shaun@shaunfreeman.co.uk",
+            "homepage": "https://github.com/shaunfreeman",
+            "role": "Developer"
+        }
+    ],
+    
     "require" : {
 	    "php" : ">=5.4",
 	    "composer/installers" : "~1.0",
