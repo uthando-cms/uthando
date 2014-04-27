@@ -1,0 +1,14 @@
+/data/*
+!data/do_not_remove
+!data/sessions
+/data/sessions/*
+!data/sessions/do_not_remove
+/vendor/
+.buildpath
+.DS_Store
+.project
+.settings
+local.php
+*.local.php
+composer.lock
+composer.phar
