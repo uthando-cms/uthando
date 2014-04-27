@@ -1,12 +1,12 @@
 {
-	"name": "UthandoCMS/uthando",
+    "name": "UthandoCMS/uthando",
     "description": "Base App for Uthando CMS",
     "license": "BSD-3-Clause",
     "keywords": [ "framework", "zf2","CMS"],
     "homepage": "http://shaunfreeman.name/",
-	"require" : {
-		"php" : ">=5.4",
-		"composer/installers" : "~1.0",
-		"zendframework/zendframework" : "2.*"
-	}
+    "require" : {
+	    "php" : ">=5.4",
+	    "composer/installers" : "~1.0",
+	    "zendframework/zendframework" : "2.*"
+    }
 }
