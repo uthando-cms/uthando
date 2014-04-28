@@ -2,7 +2,7 @@
     "name": "uthando-cms/uthando",
     "description": "Base App for Uthando CMS",
     "license": "BSD-3-Clause",
-    "keywords": [ "framework", "zf2","CMS"],
+    "keywords": [ "framework", "zf2","cms", "uthando"],
     "homepage": "http://shaunfreeman.name/",
     
     "authors": [
@@ -17,7 +17,10 @@
     "require" : {
 	    "php" : ">=5.4",
 	    "composer/installers" : "~1.0",
-	    "zendframework/zendframework" : "2.*"
+	    "zendframework/zendframework" : "2.*",
+	    "uthando-admin" : "dev-master",
+	    "uthando-cms/uthando-navigation" : "dev-master",
+	    "uthando-cms/uthando-user" : "dev-master"
     },
     
     "require-dev" : {
