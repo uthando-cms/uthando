@@ -55,7 +55,7 @@ return array(
                     ),
                 ),
             ),
-            /*'admin' => array(
+            'admin' => array(
             	'child_routes' => array(
             		'application' => array(
             			'type'    => 'Segment',
@@ -135,7 +135,7 @@ return array(
             ),*/
         ),
     ),
-    /*'navigation' => array(
+    'navigation' => array(
     	'admin' => array(
     		'dashboard' => array(
     			'label' => 'Dashboard',
@@ -155,7 +155,7 @@ return array(
     			),
     		),
     	),
-    ),*/
+    ),
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
