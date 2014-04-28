@@ -1,0 +1,96 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <?=$this->headTitle('Control Panel')->setSeparator(' - ')->setAutoEscape(false);?>
+
+        <?=$this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendName('rating', 'general');?> 
+        
+        <!-- Styles -->
+        <?=$this->headLink(array(
+                'rel'  => 'shortcut icon', 
+                'type' => 'img/vnd.microsoft.icon', 
+                'href' => $this->basePath() . '/img/favicon.ico')
+            )
+            ->prependStylesheet($this->basePath() . '/css/adminstyle.css')
+            ->prependStylesheet('//fonts.googleapis.com/css?family=Share')
+            ->prependStylesheet($this->basepath() . '/css/glyphicons.css')
+            ->prependStylesheet($this->basePath() . '/css/bootstrap-extend.css')
+            ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.css')
+            ->prependStylesheet($this->basePath() . '/css/bootstrap.css');?>
+
+        <!-- Scripts -->
+        <?=$this->headScript()
+            ->prependFile($this->basePath() . '/js/admin.js')
+        	->prependFile($this->basePath() . '/js/bootstrap.js')
+        	->prependFile($this->basePath() . '/js/LiveEditor/scripts/common/webfont.js')
+        	->prependFile('//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js')
+        	->prependFile($this->basePath() . '/js/LiveEditor/scripts/innovamanager.js')
+        	->prependFile($this->basePath() . '/js/LiveEditor/scripts/innovaeditor.js')
+        	->prependFile($this->basePath() . '/js/jquery.datatable.js')
+            ->prependFile('//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js');?>
+       
+    </head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div id="top-bar-nav" class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="<?=$this->url('home');?>">&nbsp;</a>
+                    <div class="nav-collapse collapse">
+                    	<?=$this->aclMenu('Admin\Navigation')->setUlClass('nav');?>
+                    </div><!--/.nav-collapse -->
+                    <div class="dropdown">
+	                    <ul class="nav pull-right">
+	                	    <li>
+	                	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	    					        <?=$this->ztbIcon()->user();?> <?=$this->identity()->getFullName();?> 
+	    					        <b class="caret"></b>
+	    				        </a>
+	    				        
+	                            <ul class="dropdown-menu">
+	                                <li>
+	                                    <a href="<?=$this->url('admin/user/edit', array(
+	                                    	'action' => 'edit',
+	                	                    'id'     => $this->identity()->getUserId()
+	            	                    ));?>">Edit Profile
+	    				                </a>
+	                                </li>
+	                                <li>
+	                                    <a href="<?=$this->url('user/logout');?>">Logout</a>
+	                                </li>
+	                            </ul>
+	                	    </li>
+	                	</ul>
+                	</div>
+                </div>
+            </div>
+        </div>
+        <div id="main-content" class="container-fluid">
+        	<div class="row-fluid">
+        		<div class="span12">
+        			<?=$this->content;?>
+        		</div>
+        	</div>
+            
+            <hr>
+            <footer class="container-fluid">
+                <div class="row-fluid">
+                    <p class="span3">Zend Framework <?=\Zend\Version\Version::VERSION;?></p>
+                    <p class="span3">Icons from <a href="http://glyphicons.com">Glyphicons</a></p>
+                </div>
+            </footer>
+        </div> <!-- /container -->
+        <div class="loading admin-loading"><!-- Place at bottom of page --></div>
+        <?=$this->inlineScript();?>
+    </body>
+</html>
+

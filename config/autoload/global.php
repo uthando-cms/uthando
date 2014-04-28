@@ -5,9 +5,9 @@ return [
 		'config' => [
 			'class' => 'Zend\Session\Config\SessionConfig',
 			'options' => [
-				'name' 		=> 'uthando-cms',
-				'save_handler' => 'files',
-				'save_path' => APPLICATION_PATH . '/data/sessions',
+				'name'          => 'uthando-cms',
+				'save_handler'  => 'files',
+				'save_path'     => APPLICATION_PATH . '/data/sessions',
 			],
 		],
 		'storage' => 'Zend\Session\Storage\SessionArrayStorage',
@@ -17,10 +17,10 @@ return [
 		],
 	],
 	'php_settings' => [
-		'display_startup_errors' => false,
-		'display_errors' => true,
-		'error_reporting' => E_ALL,
-		'max_execution_time' => 60,
-		'date.timezone' => 'Europe/London',
+		'display_startup_errors'  => false,
+		'display_errors'          => true,
+		'error_reporting'         => E_ALL,
+		'max_execution_time'      => 60,
+		'date.timezone'           => 'Europe/London',
 	],
 ];

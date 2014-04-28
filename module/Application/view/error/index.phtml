@@ -1,4 +1,4 @@
-<?php /*if ($this->request()->isXmlHttpRequest()) $this->layout()->setTemplate('common/xml-http-request-error');*/ ?>
+<?php if ($this->request()->isXmlHttpRequest()) $this->layout()->setTemplate('layout/xml-http-request-error'); ?>
 <h1><?php echo $this->translate('An error occurred') ?></h1>
 <h2><?php echo $this->message ?></h2>
 

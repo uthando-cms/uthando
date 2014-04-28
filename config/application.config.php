@@ -3,6 +3,7 @@
 return [
 	'modules' => [
 		'Application',
+		'UthandoAdmin',
 	],
 	'module_listener_options' => [
 		'module_paths' => [
