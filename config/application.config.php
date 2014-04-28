@@ -20,4 +20,9 @@ return [
 		'cache_dir' => './data/cache',
 		'check_dependencies' => false,
 	],
+	'service_manager' => [
+        'factories' => [
+            'Navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+        ],
+	],
 ];

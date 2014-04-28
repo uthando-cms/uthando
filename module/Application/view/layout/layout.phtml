@@ -35,9 +35,7 @@
           </a>
           <a class="brand" href="<?=$this->url('home'); ?>">Uthando CMS</a>
           <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="<?=$this->url('home'); ?>">Home</a></li>
-            </ul>
+            <?=$this->navigation('Navigation')->menu()->setUlClass('nav'); ?>
           </div><!--/.nav-collapse -->
         </div>
       </div>
