@@ -132,7 +132,7 @@ return array(
 	            		),
             		),
             	),
-            ),*/
+            ),
         ),
     ),
     'navigation' => array(
