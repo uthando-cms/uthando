@@ -16,11 +16,9 @@
     
     "require" : {
 	    "php" : ">=5.4",
-	    "composer/installers" : "~1.0",
 	    "zendframework/zendframework" : "2.*",
-	    "uthando-cms/uthando-admin" : "dev-master",
-	    "uthando-cms/uthando-navigation" : "dev-master",
-	    "uthando-cms/uthando-user" : "dev-master"
+	    "uthando-cms/uthando-common" : "dev-master",
+	    "uthando-cms/uthando-admin" : "dev-master"
     },
     
     "require-dev" : {
