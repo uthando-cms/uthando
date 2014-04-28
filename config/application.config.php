@@ -7,7 +7,7 @@ return [
 	'module_listener_options' => [
 		'module_paths' => [
 			'./module',
-			'./devmodule',
+			'./devmodules',
 			'./vendor',
 		],
 		'config_glob_paths' => [

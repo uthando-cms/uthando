@@ -18,5 +18,11 @@
 	    "php" : ">=5.4",
 	    "composer/installers" : "~1.0",
 	    "zendframework/zendframework" : "2.*"
-    }
+    },
+    
+    "require-dev" : {
+		"firephp/firephp-core" : "0.4.0",
+		"zendframework/zend-developer-tools" : "dev-master",
+		"bjyoungblood/bjy-profiler" : "dev-master"
+	}
 }
