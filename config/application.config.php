@@ -5,6 +5,9 @@ return [
 		'Application',
 		'UthandoCommon',
 		'UthandoAdmin',
+		'UthandoNavigation',
+		'UthandoUser',
+		'ZfcTwitterBootstrap',
 	],
 	'module_listener_options' => [
 		'module_paths' => [
