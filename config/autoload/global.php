@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'db' => [
+        'driver'	=> 'PDO_SQLITE',
+        'database'  => './data/sample.db',
+    ],
 	'session' => [
 		'config' => [
 			'class' => 'Zend\Session\Config\SessionConfig',

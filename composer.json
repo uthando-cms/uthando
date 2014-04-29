@@ -6,6 +6,8 @@
     "zendframework/zendframework" : "2.*",
     "uthando-cms/uthando-admin" : "dev-master",
     "uthando-cms/uthando-common" : "dev-master",
+    "uthando-cms/uthando-navigation" : "dev-master",
+    "uthando-cms/uthando-user" : "dev-master",
     "mwillbanks/zfc-twitter-bootstrap" : "dev-master"
   },
   "require-dev" : {
