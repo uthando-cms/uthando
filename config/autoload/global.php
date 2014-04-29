@@ -2,8 +2,9 @@
 
 return [
     'db' => [
-        'driver'	=> 'PDO_SQLITE',
-        'database'  => './data/sample.db',
+        'driver'            => 'PDO_SQLITE',
+        'database'          => './data/sample.db',
+        'sqlite_contraints' => true,
     ],
 	'session' => [
 		'config' => [
