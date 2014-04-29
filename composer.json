@@ -1,29 +1,25 @@
 {
-    "name": "uthando-cms/uthando",
-    "description": "Base App for Uthando CMS",
-    "license": "BSD-3-Clause",
-    "keywords": [ "framework", "zf2","cms", "uthando"],
-    "homepage": "http://shaunfreeman.name/",
-    
-    "authors": [
-        {
-            "name": "Shaun Freeman",
-            "email": "shaun@shaunfreeman.co.uk",
-            "homepage": "https://github.com/shaunfreeman",
-            "role": "Developer"
-        }
-    ],
-    
-    "require" : {
-	    "php" : ">=5.4",
-	    "zendframework/zendframework" : "2.*",
-	    "uthando-cms/uthando-admin" : "dev-master",
-	    "uthando-cms/uthando-common" : "dev-master"
-    },
-    
-    "require-dev" : {
-		"firephp/firephp-core" : "0.4.0",
-		"zendframework/zend-developer-tools" : "dev-master",
-		"bjyoungblood/bjy-profiler" : "dev-master"
-	}
+  "name" : "uthando-cms/uthando",
+  "description" : "Base App for Uthando CMS",
+  "require" : {
+    "php" : ">=5.4",
+    "zendframework/zendframework" : "2.*",
+    "uthando-cms/uthando-admin" : "dev-master",
+    "uthando-cms/uthando-common" : "dev-master",
+    "mwillbanks/zfc-twitter-bootstrap" : "dev-master"
+  },
+  "require-dev" : {
+    "firephp/firephp-core" : "0.4.0",
+    "zendframework/zend-developer-tools" : "dev-master",
+    "bjyoungblood/bjy-profiler" : "dev-master"
+  },
+  "authors" : [ {
+    "name" : "Shaun Freeman",
+    "email" : "shaun@shaunfreeman.co.uk",
+    "homepage" : "https://github.com/shaunfreeman",
+    "role" : "Developer"
+  } ],
+  "keywords" : [ "framework", "zf2", "cms", "uthando" ],
+  "license" : "BSD-3-Clause",
+  "homepage" : "http://shaunfreeman.name/"
 }

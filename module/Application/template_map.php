@@ -7,4 +7,7 @@ return [
     'error/index'                       => __DIR__ . '/view/error/index.phtml',
     
     'application/index/index'           => __DIR__ . '/view/application/index/index.phtml',
+    
+    'application/partial/pager'         => __DIR__ . '/view/partial/pager.phtml',
+    'application/partial/paginate'      => __DIR__ . '/view/partial/paginate.phtml',
 ];

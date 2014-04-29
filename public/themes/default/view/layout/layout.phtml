@@ -1,32 +1,24 @@
-<?php echo $this->doctype(); ?>
-
+<?=$this->doctype(); ?>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <?=$this->headTitle('Control Panel')->setSeparator(' - ')->setAutoEscape(false);?>
+    <?=$this->headTitle('Uthando CMS')->setSeparator(' - ')->setAutoEscape(false);?>
 
-        <?=$this->headMeta()
-        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-        ->appendName('rating', 'general');?> 
-        
-        <!-- Styles -->
-        <?=$this->headLink([
-            'rel' => 'shortcut icon',
-            'type' => 'img/vnd.microsoft.icon',
-            'href' => $this->basePath() . '/img/favicon.ico'])
-        ->appendStylesheet($this->basePath() . '/css/bootstrap.css')
-        ->appendStylesheet($this->basePath() . '/css/bootstrap-responsive.css')
-        ->appendStylesheet($this->basePath() . '/themes/admin/assets/css/styles.css');?>
+    <?=$this->headMeta()
+    ->appendName('viewport', 'width=device-width, initial-scale=1.0'); ?>
 
-        <!-- Scripts -->
-        <?=$this->headScript()
-        ->appendFile('//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
-        ->appendFile($this->basePath() . '/themes/admin/assets/js/jquery.datatable.js')
-        ->appendFile($this->basePath() . '/js/bootstrap.js')
-        ->appendFile($this->basePath() . '/themes/admin/assets/js/admin.js');?>
-       
-    </head>
+    <!-- styles -->
+    <?=$this->headLink()
+    ->appendStylesheet($this->basePath() . '/css/bootstrap.css')
+    ->appendStylesheet($this->basePath() . '/css/styles.css')
+    ->appendStylesheet($this->basePath() . '/css/bootstrap-responsive.css');?>
+    
+    <!-- Scripts -->
+    <?=$this->headScript()
+    ->appendFile($this->basePath() . '/js/html5.js', 'text/javascript', ['conditional' => 'lt IE 9']);?>
+
+  </head>
+
 <body>
 
 	<div class="navbar navbar-fixed-top">
@@ -37,10 +29,10 @@
 					class="icon-bar"></span> <span class="icon-bar"></span>
 				</a> <a class="brand" href="<?=$this->url('home'); ?>">Uthando CMS</a>
 				<div class="nav-collapse">
-                    <?=$this->aclMenu('UthandoAdmin\Navigation')->setUlClass('nav');?>
+                    <?=$this->aclMenu('Navigation')->setUlClass('nav'); ?>
                 </div><!--/.nav-collapse -->
                 <?php if ($this->identity()):?>
-				<div class="dropdown">
+                <div class="dropdown">
 					<ul class="nav pull-right">
 						<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i
 								class="icon-user"></i> <?=$this->identity()->getFullName();?> 
@@ -49,7 +41,7 @@
                             
 						<ul class="dropdown-menu">
 							<li><a
-								href="<?=$this->url('admin/user/edit', [
+								href="<?=$this->url('user/default', [
 								    'action' => 'edit',
 								    'id' => $this->identity()->getUserId()
                                 ]);?>">Edit Profile </a></li>
@@ -83,10 +75,5 @@
 	</div>
 	<!-- /container -->
 
-	<div class="loading admin-loading">
-		<!-- Place at bottom of page -->
-	</div>
-        <?=$this->inlineScript();?>
-    </body>
+</body>
 </html>
-

@@ -39,7 +39,6 @@ return [
             'home' => [
                 'label'     => 'Home',
                 'route'     => 'home',
-                'resource'  => 'menu:user',
             ],
         ],
     ],

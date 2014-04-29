@@ -1,57 +1,57 @@
 <?=$this->doctype(); ?>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <?=$this->headTitle('Uthando CMS')
-        ->setSeparator(' - ')
-        ->setAutoEscape(false); ?>
+<head>
+<meta charset="utf-8">
+    <?=$this->headTitle('Uthando CMS')->setSeparator(' - ')->setAutoEscape(false);?>
 
-    <?=$this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0'); ?>
+    <?=$this->headMeta()
+    ->appendName('viewport', 'width=device-width, initial-scale=1.0'); ?>
 
     <!-- styles -->
     <?=$this->headLink()
-        ->appendStylesheet($this->basePath() . '/themes/default/assets/css/bootstrap.css')
-        ->appendStylesheet($this->basePath() . '/themes/default/assets/css/styles.css')
-        ->appendStylesheet($this->basePath() . '/themes/default/assets/css/bootstrap-responsive.css'); ?>
+    ->appendStylesheet($this->basePath() . '/css/bootstrap.css')
+    ->appendStylesheet($this->basePath() . '/css/styles.css')
+    ->appendStylesheet($this->basePath() . '/css/bootstrap-responsive.css');?>
     
     <!-- Scripts -->
     <?=$this->headScript()
-        ->appendFile($this->basePath() . '/themes/default/assets/js/html5.js', 'text/javascript', [
-            'conditional' => 'lt IE 9',
-        ]); ?>
+    ->appendFile('//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    ->appendFile($this->basePath() . '/js/bootstrap.js')
+    ->appendFile($this->basePath() . '/js/js/html5.js', 'text/javascript', ['conditional' => 'lt IE 9']);?>
 
   </head>
 
-  <body>
+<body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+				</a> <a class="brand" href="<?=$this->url('home'); ?>">Uthando CMS</a>
+				<div class="nav-collapse">
+                    <?=$this->navigation('Navigation')->menu()->setUlClass('nav'); ?>
+                </div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
 
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="<?=$this->url('home'); ?>">Uthando CMS</a>
-          <div class="nav-collapse">
-            <?=$this->navigation('Navigation')->menu()->setUlClass('nav'); ?>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
+	<div class="container">
 
       <?=$this->content; ?>
 
       <hr>
 
-      <footer>
-        <p>&copy; 2013 - <?=date('Y'); ?> by <a href="http://www.shaunfreeman.name">Shaun Freeman</a>. All rights reserved.</p>
-      </footer>
+		<footer>
+			<p>&copy; 2013 - <?=date('Y'); ?> by <a
+					href="http://www.shaunfreeman.name">Shaun Freeman</a>. All rights
+				reserved.
+			</p>
+		</footer>
 
-    </div> <!-- /container -->
-
-  </body>
+	</div>
+	<!-- /container -->
+</body>
 </html>
