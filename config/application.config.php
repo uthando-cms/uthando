@@ -6,6 +6,7 @@ return [
 		'UthandoCommon',
 		'UthandoAdmin',
 		'UthandoSessionManager',
+		'UthandoThemeManager',
 		'UthandoArticle',
 		'UthandoNavigation',
 		'UthandoUser',

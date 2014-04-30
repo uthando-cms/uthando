@@ -9,6 +9,7 @@
     "uthando-cms/uthando-navigation" : "dev-master",
     "uthando-cms/uthando-user" : "dev-master",
     "uthando-cms/uthando-session-manager" : "dev-master",
+    "uthando-cms/uthando-theme-manager" : "dev-master",
     "uthando-cms/uthando-article" : "dev-master"
   },
   "require-dev" : {
