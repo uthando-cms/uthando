@@ -5,6 +5,8 @@ return [
 		'Application',
 		'UthandoCommon',
 		'UthandoAdmin',
+		'UthandoSessionManager',
+		'UthandoArticle',
 		'UthandoNavigation',
 		'UthandoUser',
 		'ZfcTwitterBootstrap',
