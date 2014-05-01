@@ -10,6 +10,7 @@ return [
 		'UthandoArticle',
 		'UthandoNavigation',
 		'UthandoUser',
+		'UthandoContact',
 		'ZfcTwitterBootstrap',
 	],
 	'module_listener_options' => [

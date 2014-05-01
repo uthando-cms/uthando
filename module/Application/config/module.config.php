@@ -34,11 +34,11 @@ return [
             ],
         ],
     ],
-    'navigation'    => [
+    'navigation' => [
         'default' => [
             'home' => [
-                'label'     => 'Home',
-                'route'     => 'home',
+                'label' => 'Home',
+                'route' => 'home'
             ],
         ],
     ],
