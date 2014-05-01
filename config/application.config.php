@@ -31,7 +31,8 @@ return [
 	],
 	'service_manager' => [
         'factories' => [
-            'Navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+            'Zend\Db\Adapter\Adapter'   => 'Zend\Db\Adapter\AdapterServiceFactory',
+            'Navigation'                => 'Zend\Navigation\Service\DefaultNavigationFactory',
         ],
 	],
 ];
