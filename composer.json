@@ -12,12 +12,16 @@
     "uthando-cms/uthando-theme-manager" : "dev-master",
     "uthando-cms/uthando-article" : "dev-master",
     "uthando-cms/uthando-contact" : "dev-master"
+    
   },
+  "repositories" : [ {
+    "type" : "vcs",
+    "url" : "https://github.com/shaun-freeman/ZfcTwitterBootstrap.git"
+  } ],
   "require-dev" : {
     "firephp/firephp-core" : "0.4.0",
     "zendframework/zend-developer-tools" : "dev-master",
-    "bjyoungblood/bjy-profiler" : "dev-master",
-    "mwillbanks/zfc-twitter-bootstrap" : "dev-master"
+    "bjyoungblood/bjy-profiler" : "dev-master"
   },
   "authors" : [ {
     "name" : "Shaun Freeman",
@@ -27,11 +31,5 @@
   } ],
   "keywords" : [ "framework", "zf2", "cms", "uthando" ],
   "license" : "BSD-3-Clause",
-  "homepage" : "http://shaunfreeman.name/",
-  "repositories": [
-        {
-            "type": "vcs",
-            "url":  "https://github.com/shaun-freeman/ZfcTwitterBootstrap.git"
-        }
-    ]
+  "homepage" : "http://shaunfreeman.name/"
 }

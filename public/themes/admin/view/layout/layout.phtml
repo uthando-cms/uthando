@@ -46,15 +46,8 @@
 								class="icon-user"></i> <?=$this->identity()->getFullName();?> 
     					        <b class="caret"></b>
 						</a>
-                            
-						<ul class="dropdown-menu">
-							<li><a
-								href="<?=$this->url('admin/user/edit', [
-								    'action' => 'edit',
-								    'id' => $this->identity()->getUserId()
-                                ]);?>">Edit Profile </a></li>
-							<li><a href="<?=$this->url('user/logout');?>">Logout</a></li>
-						</ul></li>
+                        <?=$this->aclMenu('UthandoUser\Navigation')->setUlClass('dropdown-menu');?>
+						</li>
 					</ul>
 				</div>
 				<?php endif; ?>
