@@ -14,9 +14,11 @@
     "uthando-cms/uthando-contact" : "dev-master"
   },
   "require-dev" : {
+  	
     "firephp/firephp-core" : "0.4.0",
     "zendframework/zend-developer-tools" : "dev-master",
-    "bjyoungblood/bjy-profiler" : "dev-master"
+    "bjyoungblood/bjy-profiler" : "dev-master",
+    "mwillbanks/zfc-twitter-bootstrap" : "dev-master"
   },
   "authors" : [ {
     "name" : "Shaun Freeman",
