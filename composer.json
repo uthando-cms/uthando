@@ -11,7 +11,7 @@
     "uthando-cms/uthando-session-manager" : "dev-master",
     "uthando-cms/uthando-theme-manager" : "dev-master",
     "uthando-cms/uthando-article" : "dev-master",
-    "uthando-cms/uthando-contact" : "dev-master",
+    "uthando-cms/uthando-contact" : "dev-master"
   },
   "require-dev" : {
     "firephp/firephp-core" : "0.4.0",
