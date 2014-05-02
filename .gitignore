@@ -1,5 +1,6 @@
 /data/*
 !data/do_not_remove
+!data/fonts
 !data/sample.db
 !data/cache
 !data/sessions
