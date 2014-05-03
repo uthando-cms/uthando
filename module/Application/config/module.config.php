@@ -5,12 +5,16 @@ return [
         'userRoles' => [
             'guest' => [
                 'privileges' => [
-                    ['controller' => 'Application\Controller\Index', 'action' => ['index']],
+                    'allow' => [
+                        ['controller' => 'Application\Controller\Index', 'action' => ['index']],
+                    ]
                 ],
             ],
             'registered' => [
                 'privileges' => [
-                    ['controller' => 'Application\Controller\Index', 'action' => ['index']],
+                    'allow' => [
+                        ['controller' => 'Application\Controller\Index', 'action' => ['index']],
+                    ],
                 ],
             ],
         ],
