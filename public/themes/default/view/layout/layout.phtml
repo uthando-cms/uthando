@@ -32,7 +32,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span>
 				</a> <a class="brand" href="<?=$this->url('home'); ?>">Uthando CMS</a>
 				<div class="nav-collapse">
-                    <?=$this->aclMenu('Navigation')->setUlClass('nav'); ?>
+                    <?=$this->uthandoNavigation('Navigation')->uthandoTbMenu(); ?>
                 </div><!--/.nav-collapse -->
                 <?php if ($this->identity()):?>
                 <div class="dropdown">
@@ -41,7 +41,7 @@
 								class="icon-user"></i> <?=$this->identity()->getFullName();?> 
     					        <b class="caret"></b>
 						</a>
-                        <?=$this->aclMenu('UthandoUser\Navigation')->setUlClass('dropdown-menu');?> 
+                        <?=$this->uthandoNavigation('UthandoUser\Navigation')->uthandoTbMenu()->setUlClass('dropdown-menu');?> 
 						</li>
 					</ul>
 				</div>
