@@ -30,7 +30,7 @@ return [
 	],
 	'service_manager' => [
         'factories' => [
-            //'Zend\Db\Adapter\Adapter'   => 'Zend\Db\Adapter\AdapterServiceFactory',
+            'Zend\Db\Adapter\Adapter'   => 'Zend\Db\Adapter\AdapterServiceFactory',
             'Navigation'                => 'Zend\Navigation\Service\DefaultNavigationFactory',
         ],
 	],
