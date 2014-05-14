@@ -1,65 +1,63 @@
-<?php echo $this->doctype(); ?>
-
+<?php $this->bootstrap()->enable();?>
+<?=$this->doctype(); ?>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <?=$this->headTitle('Control Panel')->setSeparator(' - ')->setAutoEscape(false);?>
 
         <?=$this->headMeta()
-        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-        ->appendName('rating', 'general');?> 
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendName('rating', 'general');?> 
         
         <!-- Styles -->
-        <?=$this->headLink([
-            'rel' => 'shortcut icon',
-            'type' => 'img/vnd.microsoft.icon',
-            'href' => $this->basePath() . '/img/favicon.ico'])
-        ->appendStylesheet($this->basePath() . '/css/bootstrap.css')
-        ->appendStylesheet($this->basePath() . '/css/bootstrap-responsive.css')
-        ->appendStylesheet($this->basePath() . '/themes/admin/assets/css/styles.css');?>
+        <?=$this->headLink()
+            ->appendStylesheet($this->basePath('/themes/admin/assets/css/styles.css'));?>
 
         <!-- Scripts -->
         <?=$this->headScript()
-        ->appendFile('//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
-        ->appendFile($this->basePath() . '/themes/admin/assets/js/jquery.datatable.js')
-        ->appendFile($this->basePath() . '/js/bootstrap.js')
-        ->appendFile($this->basePath() . '/themes/admin/assets/js/admin.js');?>
+            ->appendFile($this->basePath('/themes/admin/assets/js/jquery.datatable.js'))
+            ->appendFile($this->basePath('/themes/admin/assets/js/admin.js'));?>
        
     </head>
 <body>
-
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="<?=$this->url('home'); ?>">Uthando CMS</a>
-				<div class="nav-collapse">
-                    <?=$this->uthandoNavigation('UthandoAdmin\Navigation')->uthandoTbMenu();?>
-                </div><!--/.nav-collapse -->
+    
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="<?=$this->url('home'); ?>"><img src="<?=$this->basePath('/img/zf2-logo.png');?>"><span>Uthando CMS</span></a>
+            </div>
+            
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <?=$this->uthandoNavigation('UthandoAdmin\Navigation')->uthandoTbMenu()->setUlClass('nav navbar-nav');?>
+                
                 <?php if ($this->identity()):?>
 				<div class="dropdown">
-					<ul class="nav pull-right">
+					<ul class="nav navbar-nav navbar-right">
 						<li><a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i
-								class="icon-user"></i> <?=$this->identity()->getFullName();?> 
+								class="glyphicon glyphicon-user"></i> <?=$this->identity()->getFullName();?> 
     					        <b class="caret"></b>
 						</a>
                         <?=$this->uthandoNavigation('UthandoUser\Navigation')->uthandoTbMenu()->setUlClass('dropdown-menu');?>
 						</li>
 					</ul>
 				</div>
-				<?php endif; ?>
-			</div>
+			<?php endif; ?>
+			</div><!--/.nav-collapse -->
 		</div>
-	</div>
+	</nav>
 
 	<div class="container">
         <div class="row">
             <?=$this->tbFlashMessenger()->render(); ?>
         </div>
-	   
+        
         <div class="row">
             <?=$this->content; ?>
             <hr>

@@ -9,6 +9,9 @@
 /data/sessions/*
 !data/sessions/do_not_remove
 /vendor/
+/public/themes/*
+!public/themes/default/*
+!public/themes/admin/*
 .buildpath
 .DS_Store
 .project

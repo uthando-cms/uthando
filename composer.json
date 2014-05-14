@@ -12,7 +12,6 @@
     "uthando-cms/uthando-theme-manager" : "dev-master",
     "uthando-cms/uthando-article" : "dev-master",
     "uthando-cms/uthando-contact" : "dev-master"
-    
   },
   "repositories" : [ {
     "type" : "vcs",

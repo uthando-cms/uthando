@@ -177,8 +177,8 @@
     $.fn.dataGrid.defaults = {
     	url : '',
     	searchForm : null,
-    	arrowUp: '<i class="icon-arrow-up">&nbsp;</i>',
-    	arrowDown : '<i class="icon-arrow-down">&nbsp;</i>',
+    	arrowUp: '<i class="glyphicon glyphicon-arrow-up">&nbsp;</i>',
+    	arrowDown : '<i class="glyphicon glyphicon-arrow-down">&nbsp;</i>',
     	query: {
     		sort : '',
         	count : 25,
