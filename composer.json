@@ -20,7 +20,8 @@
   "require-dev" : {
     "firephp/firephp-core" : "0.4.0",
     "zendframework/zend-developer-tools" : "dev-master",
-    "bjyoungblood/bjy-profiler" : "dev-master"
+    "bjyoungblood/bjy-profiler" : "dev-master",
+    "paypal/rest-api-sdk-php" : "0.7.*"
   },
   "authors" : [ {
     "name" : "Shaun Freeman",
