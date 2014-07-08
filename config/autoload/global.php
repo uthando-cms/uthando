@@ -28,9 +28,4 @@ return [
 		'max_execution_time'      => 60,
 		'date.timezone'           => 'Europe/London',
 	],
-	'theme_manager' => [
-        'default_theme' => 'default',
-        'admin_theme'   => 'admin',
-        'theme_path'    => APPLICATION_PATH . '/public/themes/',
-	],
 ];
