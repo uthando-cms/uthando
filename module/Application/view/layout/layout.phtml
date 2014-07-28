@@ -5,19 +5,19 @@
     <?=$this->headTitle('Uthando CMS')->setSeparator(' - ')->setAutoEscape(false);?>
 
     <?=$this->headMeta()
-    ->appendName('viewport', 'width=device-width, initial-scale=1.0'); ?>
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0'); ?>
 
     <!-- styles -->
     <?=$this->headLink()
-    ->appendStylesheet($this->basePath() . '/css/bootstrap.css')
-    ->appendStylesheet($this->basePath() . '/css/styles.css')
-    ->appendStylesheet($this->basePath() . '/css/bootstrap-responsive.css');?>
+        ->appendStylesheet($this->basePath() . '/css/bootstrap.css')
+        ->appendStylesheet($this->basePath() . '/css/styles.css')
+        ->appendStylesheet($this->basePath() . '/css/bootstrap-responsive.css');?>
     
     <!-- Scripts -->
     <?=$this->headScript()
-    ->appendFile('//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
-    ->appendFile($this->basePath() . '/js/bootstrap.js')
-    ->appendFile($this->basePath() . '/js/js/html5.js', 'text/javascript', ['conditional' => 'lt IE 9']);?>
+        ->appendFile('//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+        ->appendFile($this->basePath() . '/js/bootstrap.js')
+        ->appendFile($this->basePath() . '/js/js/html5.js', 'text/javascript', ['conditional' => 'lt IE 9']);?>
 
   </head>
 

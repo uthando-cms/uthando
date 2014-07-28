@@ -21,6 +21,20 @@ return [
 			'Zend\Session\Validator\HttpUserAgent',
 		],
 	],
+	'cache' => [
+	   'adapter' => [
+            'name' => 'filesystem',
+            'options' => [
+                'ttl' => 60*60, // one hour
+                'dirLevel' => 0,
+                'cacheDir' => 'data/cache/db',
+                'dirPermission' => 0700,
+                'filePermission' => 0600,
+                'namespaceSeparator' => '-db-'
+            ],
+        ],
+        'plugins' => ['Serializer'],
+    ],
 	'php_settings' => [
 		'display_startup_errors'  => false,
 		'display_errors'          => true,
