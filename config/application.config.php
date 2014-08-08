@@ -10,7 +10,7 @@ return [
         'UthandoArticle',
         'UthandoNavigation',
         'UthandoUser',
-        'UthandoContact'
+        'UthandoContact',
     ],
     'module_listener_options' => [
         'module_paths' => [
