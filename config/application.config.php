@@ -3,14 +3,6 @@
 return [
     'modules' => [
         'Application',
-        'UthandoCommon',
-        'UthandoAdmin',
-        'UthandoSessionManager',
-        'UthandoThemeManager',
-        'UthandoArticle',
-        'UthandoNavigation',
-        'UthandoUser',
-        'UthandoContact',
     ],
     'module_listener_options' => [
         'module_paths' => [
@@ -33,9 +25,7 @@ return [
             'ModuleRouteListener' => 'Zend\Mvc\ModuleRouteListener',
         ],
         'factories' => [
-            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
             'Navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
-            'Zend\Cache\Service\StorageCacheFactory' => 'Zend\Cache\Service\StorageCacheFactory',
         ],
     ],
 ];
