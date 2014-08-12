@@ -3,25 +3,15 @@
   "description" : "Base App for Uthando CMS",
   "require" : {
     "php" : ">=5.4",
-    "zendframework/zendframework" : "2.*",
-    "uthando-cms/uthando-admin" : "dev-master",
-    "uthando-cms/uthando-common" : "dev-master",
-    "uthando-cms/uthando-navigation" : "dev-master",
-    "uthando-cms/uthando-user" : "dev-master",
-    "uthando-cms/uthando-session-manager" : "dev-master",
-    "uthando-cms/uthando-theme-manager" : "dev-master",
-    "uthando-cms/uthando-article" : "dev-master",
-    "uthando-cms/uthando-contact" : "dev-master"
+    "zendframework/zendframework" : "2.*"
   },
-  "repositories" : [ {
-    "type" : "vcs",
-    "url" : "https://github.com/shaun-freeman/ZfcTwitterBootstrap.git"
-  } ],
   "require-dev" : {
     "firephp/firephp-core" : "0.4.0",
     "zendframework/zend-developer-tools" : "dev-master",
     "bjyoungblood/bjy-profiler" : "dev-master",
-    "paypal/rest-api-sdk-php" : "0.7.*"
+    "paypal/rest-api-sdk-php" : "0.7.*",
+    "zendframework/zendoauth" : "dev-master",
+    "zendframework/zendservice-twitter" : "2.*"
   },
   "authors" : [ {
     "name" : "Shaun Freeman",
