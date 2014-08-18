@@ -1,25 +1,31 @@
 <?php
 
 return [
-    'userAcl' => [
-        'userRoles' => [
-            'guest' => [
-                'privileges' => [
-                    'allow' => [
-                        ['controller' => 'Application\Controller\Index', 'action' => ['index']],
-                    ]
+    'uthando_user' => [
+        'acl' => [
+            'roles' => [
+                'guest' => [
+                    'privileges' => [
+                        'allow' => [
+                            'controllers' => [
+                                'Application\Controller\Index' => ['action' => ['index']],
+                            ],
+                        ]
+                    ],
                 ],
-            ],
-            'registered' => [
-                'privileges' => [
-                    'allow' => [
-                        ['controller' => 'Application\Controller\Index', 'action' => ['index']],
+                'registered' => [
+                    'privileges' => [
+                        'allow' => [
+                            'controllers' => [
+                                'Application\Controller\Index' => ['action' => ['index']],
+                            ],
+                        ],
                     ],
                 ],
             ],
-        ],
-        'userResources' => [
-            'Application\Controller\Index',
+            'resources' => [
+                'Application\Controller\Index',
+            ],
         ],
     ],
     'router'    => [
