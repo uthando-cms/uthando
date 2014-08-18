@@ -1,7 +1,6 @@
 {
   "name" : "uthando-cms/uthando",
   "description" : "Base App for Uthando CMS",
-  "version" : "1.0",
   "require" : {
     "php" : ">=5.4",
     "zendframework/zend-modulemanager" : "2.*",
