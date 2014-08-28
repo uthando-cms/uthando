@@ -1,11 +1,13 @@
 /data/*
 !data/do_not_remove
-!data/fonts
-!data/sample.db
 !data/cache
-!data/sessions
 /data/cache/*
-!data/cache/do_not_remove
+/data/cache/do_not_remove
+!data/cache/db
+data/cache/db/*
+!data/cache/db/do_not_remove
+!data/fonts
+!data/sessions
 /data/sessions/*
 !data/sessions/do_not_remove
 /vendor/
