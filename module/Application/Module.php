@@ -11,8 +11,8 @@ class Module
     public function init(ModuleManager $moduleManager)
     {
         $eventManager = $moduleManager->getEventManager();
-        
-        $eventManager->attach(ModuleEvent::EVENT_MERGE_CONFIG, [$this, 'setPhpSettings']);
+
+        $eventManager->attach(ModuleEvent::EVENT_LOAD_MODULES_POST, [$this, 'setPhpSettings']);
     }
     
     public function onBootstrap(MvcEvent $event)
@@ -34,7 +34,7 @@ class Module
         $phpSettings = $event->getConfigListener()
             ->getMergedConfig(true)
             ->get('php_settings');
-        
+
         if ($phpSettings) {
             foreach ($phpSettings as $key => $value) {
                 ini_set($key, $value);
