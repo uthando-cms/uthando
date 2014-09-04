@@ -44,7 +44,24 @@ var admin = {
     		$(this).parent().parent().remove();
     		this.tabs[id]('show');
     	});
-	}
+	},
+
+    widgetPanelLoad : function($element, url, query) {
+        $element.load(url, query, function (responseText, textStatus, req) {
+            if (textStatus == "error") {
+                $element.css('padding', '10px');
+                $element.html(responseText);
+            }
+        });
+    },
+
+    addAlert : function(message, type) {
+        $('#alerts').append(
+            '<div class="alert alert-' + type + '">' +
+            '<button type="button" class="close" data-dismiss="alert">' +
+            '&times;</button>' + message + '</div>'
+        );
+    }
 };
 
 $(document).ready(function(){

@@ -113,3 +113,8 @@ body.loading .admin-loading {
 .indent3 {
 	text-indent: 3em;
 }
+
+.panel-widget {
+    max-height: 200px;
+    overflow: auto;
+}

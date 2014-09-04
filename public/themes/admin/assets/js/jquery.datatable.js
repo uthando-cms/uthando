@@ -149,10 +149,10 @@
         	}.bind(this));
         },
         
-        ajaxCall : function(data)
+        ajaxCall : function()
         {
         	this.$element.load(this.options.url, this.options.query,
-        		function (responseText, textStatus, req) {
+        		function (responseText, textStatus) {
         			//if (this.options.searchForm) this.options.searchForm.unbind('submit');
                     if (textStatus == "error") {
                         this.$element.html(responseText);
