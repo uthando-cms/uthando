@@ -66,7 +66,7 @@ var admin = {
 
 $(document).ready(function(){
 
-    $(document).on({
+    /*$(document).on({
         ajaxStart: function() { 
             $('body').addClass("loading"); 
         },
@@ -74,7 +74,7 @@ $(document).ready(function(){
         	$('button[type=submit]').button('reset');
             $('body').removeClass("loading");
         }    
-    });
+    });*/
     
     $('button[type=submit]').click(function(){
         $(this).button('loading');
