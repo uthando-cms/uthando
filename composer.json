@@ -1,45 +1,53 @@
 {
-  "name" : "uthando-cms/uthando",
-  "description" : "Base App for Uthando CMS",
-  "require" : {
-    "php" : ">=5.4",
-    "zendframework/zend-modulemanager" : "2.*",
-    "zendframework/zend-mvc" : "2.*",
-    "zendframework/zend-view" : "2.*",
-    "zendframework/zend-config" : "2.*",
-    "zendframework/zend-form" : "2.*",
-    "zendframework/zend-serializer" : "2.*",
-    "zendframework/zend-log" : "2.*",
-    "zendframework/zend-console" : "2.*",
-    "zendframework/zend-http" : "2.*",
-    "zendframework/zend-i18n" : "2.*",
-    "zendframework/zend-navigation" : "2.*"
-  },
-  "require-dev" : {
-    "firephp/firephp-core" : "0.4.0",
-    "zendframework/zend-developer-tools" : "dev-master",
-    "bjyoungblood/bjy-profiler" : "dev-master",
-    "paypal/rest-api-sdk-php" : "0.7.*",
-    "zendframework/zendframework" : "2.*",
-    "zendframework/zendoauth" : "dev-master",
-    "zendframework/zendservice-twitter" : ">=2.1.0",
-    "dino/dompdf-module" : "dev-master"
-  },
-  "authors" : [ {
-    "name" : "Shaun Freeman",
-    "email" : "shaun@shaunfreeman.co.uk",
-    "homepage" : "https://github.com/shaunfreeman",
-    "role" : "Developer"
-  } ],
-  "keywords" : [ "framework", "zf2", "cms", "uthando" ],
-  "suggest" : {
-    "uthando-cms/uthando-common" : "For abstract classes.",
-    "uthando-cms/uthando-user" : "User management",
-    "uthando-cms/uthando-navigation" : "Navigation management.",
-    "uthando-cms/uthando-theme-manager" : "Simple theme changer.",
-    "uthando-cms/uthando-admin" : "Admin operation.s",
-    "uthando-cms/uthando-session-manager" : "Session management."
-  },
-  "license" : "BSD-3-Clause",
-  "homepage" : "http://shaunfreeman.name/"
+    "name": "uthando-cms/uthando",
+    "description": "Base App for Uthando CMS",
+    "require": {
+        "php": ">=5.4",
+        "zendframework/zend-modulemanager": "2.*",
+        "zendframework/zend-mvc": "2.*",
+        "zendframework/zend-view": "2.*",
+        "zendframework/zend-config": "2.*",
+        "zendframework/zend-form": "2.*",
+        "zendframework/zend-serializer": "2.*",
+        "zendframework/zend-log": "2.*",
+        "zendframework/zend-console": "2.*",
+        "zendframework/zend-http": "2.*",
+        "zendframework/zend-i18n": "2.*",
+        "zendframework/zend-navigation": "2.*"
+    },
+    "require-dev": {
+        "firephp/firephp-core": "0.4.0",
+        "zendframework/zend-developer-tools": "dev-master",
+        "bjyoungblood/bjy-profiler": "dev-master",
+        "paypal/rest-api-sdk-php": "0.7.*",
+        "zendframework/zendframework": "2.*",
+        "zendframework/zendoauth": "dev-master",
+        "zendframework/zendservice-twitter": ">=2.1.0",
+        "dino/dompdf-module": "dev-master",
+        "rwoverdijk/assetmanager": "1.4.1"
+    },
+    "authors": [
+        {
+            "name": "Shaun Freeman",
+            "email": "shaun@shaunfreeman.co.uk",
+            "homepage": "https://github.com/shaunfreeman",
+            "role": "Developer"
+        }
+    ],
+    "keywords": [
+        "framework",
+        "zf2",
+        "cms",
+        "uthando"
+    ],
+    "suggest": {
+        "uthando-cms/uthando-common": "For abstract classes.",
+        "uthando-cms/uthando-user": "User management",
+        "uthando-cms/uthando-navigation": "Navigation management.",
+        "uthando-cms/uthando-theme-manager": "Simple theme changer.",
+        "uthando-cms/uthando-admin": "Admin operation.s",
+        "uthando-cms/uthando-session-manager": "Session management."
+    },
+    "license": "BSD-3-Clause",
+    "homepage": "http://shaunfreeman.name/"
 }

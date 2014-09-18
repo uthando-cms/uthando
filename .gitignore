@@ -11,7 +11,5 @@ public/userfiles/*
 .idea
 .project
 .settings
-local.php
 *.local.php
 composer.lock
-composer.phar
