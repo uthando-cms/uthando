@@ -18,29 +18,29 @@ div.container a.navbar-brand img {
     height: 500px;
 }
 
-.admin-loading {
-    display:    none;
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading .loading-overlay {
     position:   absolute;
     z-index:    1000;
     top:        0;
     left:       0;
     height:     100%;
     width:      100%;
-    background: rgba( 255, 255, 255, .8 ) 
-                url('../../../../img/spinner.gif') 
-                50% 50% 
+    background: rgba( 255, 255, 255, .8 )
+                url('../../../../img/spinner.gif')
+                50% 50%
                 no-repeat;
-}
-
-/* When the body has the loading class, we turn
-   the scrollbar off with overflow:hidden */
-body.loading {
-    overflow: hidden;   
 }
 
 /* Anytime the body has the loading class, our
    modal element will be visible */
-body.loading .admin-loading {
+.loading .admin-loading {
     display: block;
 }
 
@@ -55,8 +55,8 @@ body.loading .admin-loading {
     margin-top: -6px;
     margin-left: -1px;
     -webkit-border-radius: 0 6px 6px 6px;
-    -moz-border-radius: 0 6px 6px;
-    border-radius: 0 6px 6px 6px;
+       -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px 6px;
 }
 
 .dropdown-submenu:hover>.dropdown-menu {
@@ -89,8 +89,8 @@ body.loading .admin-loading {
     left: -100%;
     margin-left: 10px;
     -webkit-border-radius: 6px 0 6px 6px;
-    -moz-border-radius: 6px 0 6px 6px;
-    border-radius: 6px 0 6px 6px;
+       -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
 }
 /* End menu */
 

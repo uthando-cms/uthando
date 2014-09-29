@@ -20,16 +20,7 @@
 	SearchForm.prototype = {
         init : function()
         {
-        	if (this.options.paging && typeof this.options.paging == 'string') {
-        		switch(this.options.paging){
-        			case 'links':
-        				this.setupPagingLinks();
-        				break;
-        			case 'vertical':
-        				this.setupVerticalPaging();
-        				break;
-        		}
-        	}
+        	this.setupPagingLinks();
         },
         
         setSearchParams : function(searchForm)
@@ -66,53 +57,6 @@
         	}.bind(this));
         },
         
-        setupVerticalPaging : function()
-        {
-        	this.$element.css({
-        		'height' : '400px',
-        		'overflow' : 'auto'
-        	});
-        	
-        	//this.options.query.page++;
-        	var lastPage = this.$element.find('#last-in-range a').html();
-        	$('#pagination').css('display', 'none');
-        	//var height = this.$element[0].scrollHeight - 200;
-        	
-        	scrollHeight = this.$element[0].scrollHeight;
-        	maxScroll = scrollHeight - this.$element.height();
-        	
-        	console.log('scrollHeight : '+scrollHeight);
-        	console.log('maxScroll : '+maxScroll);
-        	
-        	this.$element.on('scroll', function(e){
-        		e.preventDefault();
-        		
-        		scrollTop = this.$element.scrollTop() + scrollHeight; //offset
-
-        		//if (height == $(e.target).scrollTop()) {
-        		if (scrollTop >= maxScroll) {
-        			maxScroll = maxScroll + scrollHeight;
-        			if(this.options.query.page <= lastPage) {
-        				this.options.query.page++;
-        				console.log(this.options.query.page);
-	        			$.ajax({
-	        				url : this.options.url,
-	        				data : this.options.query,
-	        				type : 'POST'
-	        			}).done(function(data){
-	        				$('#pagination').css('display', 'none');
-	        				var content = $( data ).find( 'tbody tr' );
-	      		          	this.tbody.append( content );
-	      		          	
-	      		          	scrollHeight = this.$element[0].scrollHeight;
-	      		          	maxScroll = scrollHeight - this.$element.height();
-	      		          	//this.options.query.page++;
-	        			}.bind(this));
-        			}
-        		}
-        	}.bind(this));
-        },
-        
         ajaxCall : function(data)
         {
         	this.$element.load(this.options.url, this.options.query,
@@ -144,8 +88,7 @@
     	query: {
         	count : 25,
         	page : 1
-    	},
-    	paging : 'links',
+    	}
     };
     
     $.fn.searchForm.Constructor = SearchForm;

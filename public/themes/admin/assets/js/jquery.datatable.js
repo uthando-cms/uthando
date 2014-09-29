@@ -16,19 +16,11 @@
 
 	DataGrid.prototype = {
         init : function(){
+
         	this.thead = $('#'+this.id+' table thead tr:first-child');
         	this.tbody = $('#'+this.id+' table tbody');
-        	
-        	if (this.options.paging && typeof this.options.paging == 'string') {
-        		switch(this.options.paging){
-        			case 'links':
-        				this.setupPagingLinks();
-        				break;
-        			case 'vertical':
-        				this.setupVerticalPaging();
-        				break;
-        		}
-        	}
+
+            this.setupPagingLinks();
         	
         	if (this.options.columnSort) {
         		this.sortDirection = (this.options.query.sort.substring(0, 1) == '-') ? 'down' : 'up';
@@ -102,67 +94,30 @@
         	}.bind(this));
         },
         
-        setupVerticalPaging : function()
-        {
-        	this.$element.css({
-        		'height' : '400px',
-        		'overflow' : 'auto'
-        	});
-        	
-        	//this.options.query.page++;
-        	var lastPage = this.$element.find('#last-in-range a').html();
-        	$('#pagination').css('display', 'none');
-        	//var height = this.$element[0].scrollHeight - 200;
-        	
-        	scrollHeight = this.$element[0].scrollHeight;
-        	maxScroll = scrollHeight - this.$element.height();
-        	
-        	console.log('scrollHeight : '+scrollHeight);
-        	console.log('maxScroll : '+maxScroll);
-        	
-        	this.$element.on('scroll', function(e){
-        		e.preventDefault();
-        		
-        		scrollTop = this.$element.scrollTop() + scrollHeight; //offset
-
-        		//if (height == $(e.target).scrollTop()) {
-        		if (scrollTop >= maxScroll) {
-        			maxScroll = maxScroll + scrollHeight;
-        			if(this.options.query.page <= lastPage) {
-        				this.options.query.page++;
-        				console.log(this.options.query.page);
-	        			$.ajax({
-	        				url : this.options.url,
-	        				data : this.options.query,
-	        				type : 'POST'
-	        			}).done(function(data){
-	        				$('#pagination').css('display', 'none');
-	        				var content = $( data ).find( 'tbody tr' );
-	      		          	this.tbody.append( content );
-	      		          	
-	      		          	scrollHeight = this.$element[0].scrollHeight;
-	      		          	maxScroll = scrollHeight - this.$element.height();
-	      		          	//this.options.query.page++;
-	        			}.bind(this));
-        			}
-        		}
-        	}.bind(this));
-        },
-        
         ajaxCall : function()
         {
-        	this.$element.load(this.options.url, this.options.query,
-        		function (responseText, textStatus) {
-        			//if (this.options.searchForm) this.options.searchForm.unbind('submit');
-                    if (textStatus == "error") {
-                        this.$element.html(responseText);
-                    } else {
-                    	this.init();
-                    	$('html, body').animate({
-                            scrollTop: $("body").offset().top
-                        }, 1000);
-                    }
-            }.bind(this));
+            $.ajax({
+                url : this.options.url,
+                data : this.options.query,
+                type : 'POST',
+                beforeSend : function() {
+                    this.$element.loadingOverlay();
+                }.bind(this),
+                success : function(responseText) {
+                    this.$element.html(responseText);
+                }.bind(this),
+                error : function(response) {
+                    admin.addAlert(response.responseText, 'danger');
+                }.bind(this),
+                complete : function() {
+                    this.init();
+                    $('button[type=submit]').button('reset');
+                    $('html, body').animate({
+                        scrollTop: $("body").offset().top
+                    }, 1000);
+                    this.$element.loadingOverlay('remove');
+                }.bind(this)
+            });
         }
     };
     
@@ -185,7 +140,6 @@
         	offset : 0,
         	page : 1
     	},
-    	paging : 'links',
     	rowClick : null,
     	columnSort : false
     };
