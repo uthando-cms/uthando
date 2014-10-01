@@ -118,3 +118,12 @@ div.container a.navbar-brand img {
     max-height: 200px;
     overflow: auto;
 }
+
+.modal-body {
+    overflow-y: auto;
+}
+
+#customer-addresses .panel-body {
+    max-height: 275px;
+    overflow: auto;
+}
