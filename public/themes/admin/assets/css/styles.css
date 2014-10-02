@@ -123,7 +123,7 @@ div.container a.navbar-brand img {
     overflow-y: auto;
 }
 
-#customer-addresses .panel-body {
+.panel-body, .panel-table {
     max-height: 275px;
     overflow: auto;
 }
