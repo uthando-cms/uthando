@@ -47,16 +47,6 @@ var admin = {
     	});
 	},
 
-    widgetPanelLoad : function(element, url, query)
-    {
-        element.load(url, query, function (responseText, textStatus, req) {
-            if (textStatus == "error") {
-                element.css('padding', '10px');
-                element.html(responseText);
-            }
-        });
-    },
-
     addAlert : function(message, type)
     {
         $('#alerts').append(

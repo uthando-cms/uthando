@@ -1,7 +1,8 @@
 
 (function($){
 	
-	var DataGrid = function (element, options) {
+	var DataGrid = function (element, options)
+    {
 	    this.$element = $(element);
 	    this.id = this.$element.attr('id');
 	    this.options = options;
@@ -15,8 +16,8 @@
 	};
 
 	DataGrid.prototype = {
-        init : function(){
-
+        init : function()
+        {
         	this.thead = $('#'+this.id+' table thead tr:first-child');
         	this.tbody = $('#'+this.id+' table tbody');
 
@@ -39,7 +40,8 @@
         	}
         },
         
-        setupColumnSort : function() {
+        setupColumnSort : function()
+        {
             this.thead.on('click', 'th', function(e){
             	this.options.query.page = 1;
             	var cell = $(e.target);
@@ -59,7 +61,8 @@
             }.bind(this));
         },
         
-        rowClick : function() {
+        rowClick : function()
+        {
             this.tbody.on('click', 'tr', this.options.rowClick);
         },
         

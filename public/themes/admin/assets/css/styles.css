@@ -124,6 +124,6 @@ div.container a.navbar-brand img {
 }
 
 .panel-body, .panel-table {
-    max-height: 275px;
+    max-height: 300px;
     overflow: auto;
 }
