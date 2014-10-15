@@ -50,10 +50,12 @@ var admin = {
     addAlert : function(message, type)
     {
         $('#alerts').append(
-            '<div class="alert alert-' + type + '">' +
+            '<div class="alert alert-' + type + ' fade in">' +
             '<button type="button" class="close" data-dismiss="alert">' +
             '&times;</button>' + message + '</div>'
         );
+        $(".alert").alert();
+        setTimeout('$(".alert").alert("close")',5000);
     },
 
     ajaxModalForm : function(el, url)
@@ -74,6 +76,16 @@ var admin = {
             error: function (response) {
                 admin.addAlert(response.error, 'danger');
                 $(el).modal('hide');
+            }
+        });
+    },
+
+    ajaxWidgetPanel : function(el, url, data)
+    {
+        $(el).load(url, data, function(responseText, textStatus) {
+            if (textStatus == "error") {
+                $(el).css('padding', '10px');
+                $(el).html(responseText);
             }
         });
     }
