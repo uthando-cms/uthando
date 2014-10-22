@@ -6,6 +6,6 @@ return [
         'display_errors'            => true,
         'error_reporting'           => E_ALL,
         'max_execution_time'        => 60,
-        'date.timezone'             => 'Europe/London'
+        'date.timezone'             => 'Europe/London',
     ],
 ];
