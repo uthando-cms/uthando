@@ -13,11 +13,6 @@ div.container a.navbar-brand img {
 	margin-right: 10px;
 }
 
-.editable-textarea {
-    width: 100%;
-    height: 500px;
-}
-
 /* When the body has the loading class, we turn
    the scrollbar off with overflow:hidden */
 .loading {
