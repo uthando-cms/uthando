@@ -1,0 +1,80 @@
+@CHARSET "UTF-8";
+
+#twitter-feed h5 {
+	margin-left: 10px;
+}
+
+#twitter-feed .media {
+	border-top: 1px solid #eee;
+	margin: 0px;
+}
+
+#twitter-feed .media-body,
+#twitter-feed .p-image {
+	margin: 10px;
+}
+
+#twitter-feed .media-heading {
+	height: 16px;
+}
+
+#twitter-feed .entry-title,
+#twitter-feed .media-heading {
+	margin: 0px;
+}
+
+#twitter-feed .footer {
+	padding-top: 10px;
+	margin-top: 10px;
+}
+
+#twitter-feed a {
+	text-decoration: none;
+}
+
+#twitter-feed .p-name {
+	font-weight: bold;
+	font-size: 12px;
+}
+
+#twitter-feed .p-nickname,
+#twitter-feed .screen-name,
+#twitter-feed .permalink,
+#twitter-feed .retweet-credit,
+#twitter-feed .retweet-credit .glyphicons i:before {
+	font-size: 10px;
+}
+
+#twitter-feed .p-name:hover,
+#twitter-feed .permalink:hover {
+	text-decoration: underline;
+}
+
+#twitter-feed .verified img {
+	width: 18px;
+}
+
+#twitter-feed .retweet-credit .glyphicons {
+	padding: 5px 0px 5px 15px;
+	margin-left: 2px;
+}
+
+#twitter-feed ul li {
+	display: inline-block;
+	width: 18px;
+	padding-left: 5px;
+}
+
+#twitter-feed .tweet-actions .glyphicons i:before {
+	font-size: 18px;
+	left: 0;
+  	top: -5px;
+}
+
+#twitter-feed .tweet-actions a:hover i:before  {
+	color: #000;
+}
+
+#twitter-feed .stats-narrow {
+	font-variant:small-caps;
+}

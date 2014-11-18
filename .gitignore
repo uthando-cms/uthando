@@ -2,8 +2,11 @@ data/*
 !data/fonts
 vendor/
 public/themes/*
-!public/themes/default/*
-!public/themes/admin/*
+!public/themes/default
+!public/themes/admin
+public/themes/admin/assets/js/LiveEditor/*
+public/themes/admin/assets/js/ContentBuilder/*
+public/themes/admin/assets/js/flot/*
 public/userfiles/*
 !do_not_remove
 .buildpath
