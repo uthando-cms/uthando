@@ -1,5 +1,6 @@
 <?php
 //ini_set('display_errors', true);
+//ini_set('opcache.enable', false);
 // If we're running under `php -S` with PHP 5.4.0+
 // Thanks to Stephan Sokolow
 if (php_sapi_name() == 'cli-server') {
