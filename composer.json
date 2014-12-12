@@ -26,7 +26,8 @@
         "dino/dompdf-module": "dev-master",
         "rwoverdijk/assetmanager": "1.*",
         "twitter/typeahead.js": "*",
-        "twbs/bootstrap": "*"
+        "twbs/bootstrap": "*",
+        "giggsey/libphonenumber-for-php": "7.*"
     },
     "authors": [
         {
