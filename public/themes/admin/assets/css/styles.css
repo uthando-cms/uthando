@@ -97,18 +97,6 @@ div.container a.navbar-brand img {
 	font-weight: bold;
 }
 
-.indent1 {
-	text-indent: 1em;
-}
-
-.indent2 {
-	text-indent: 2em;
-}
-
-.indent3 {
-	text-indent: 3em;
-}
-
 .panel-widget {
     max-height: 200px;
     overflow: auto;
