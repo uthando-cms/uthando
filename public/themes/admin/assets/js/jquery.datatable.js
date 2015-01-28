@@ -9,7 +9,8 @@
 	    if (this.options.searchForm) {
     		this.options.searchForm.submit(function(e){
     			e.preventDefault();
-    			this.search(e);
+    			this.getFormData();
+				this.ajaxCall();
     		}.bind(this));
     	}
 	    this.init();
@@ -65,25 +66,24 @@
         {
             this.tbody.on('click', 'tr', this.options.rowClick);
         },
-        
-        search : function(search)
-        {
-            this.options.query.page = 1;
-        	id = $(search.target).attr('id');
-        	params = $(search.target).serializeArray();
-        	
-        	data = {};
-        	
-        	for(var i=0; i<params.length; i++){
-        		data[params[i].name] = params[i].value;
-        	}
-        	
-        	$.extend(this.options.query, data);
-        	
-        	this.ajaxCall();
-        	
-        	return false;
-        },
+
+		getFormData : function()
+		{
+			search = this.options.searchForm;
+
+			this.options.query.page = 1;
+			id = $(search).attr('id');
+			params = $(search).serializeArray();
+
+			data = {};
+
+			for(var i=0; i<params.length; i++){
+				data[params[i].name] = params[i].value;
+			}
+
+			$.extend(this.options.query, data);
+
+		},
         
         setupPagingLinks : function()
         {
@@ -99,6 +99,8 @@
         
         ajaxCall : function()
         {
+			this.getFormData();
+
             $.ajax({
                 url : this.options.url,
                 data : this.options.query,
