@@ -9,8 +9,7 @@
 	    if (this.options.searchForm) {
     		this.options.searchForm.submit(function(e){
     			e.preventDefault();
-    			this.getFormData();
-				this.ajaxCall();
+    			this.doSearch();
     		}.bind(this));
     	}
 	    this.init();
@@ -71,7 +70,6 @@
 		{
 			search = this.options.searchForm;
 
-			this.options.query.page = 1;
 			id = $(search).attr('id');
 			params = $(search).serializeArray();
 
@@ -83,6 +81,13 @@
 
 			$.extend(this.options.query, data);
 
+		},
+
+		doSearch : function()
+		{
+			this.options.query.page = 1;
+			this.getFormData();
+			this.ajaxCall();
 		},
         
         setupPagingLinks : function()
