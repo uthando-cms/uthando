@@ -2,13 +2,13 @@
 
 return [
     'modules' => [
-        'Application',
+        'Application','Test',
     ],
     'module_listener_options' => [
         'module_paths' => [
             './vendor',
             './devmodules',
-            './module'
+            './module','./module'
         ],
         'config_glob_paths' => [
             'config/autoload/{,*.}{global,local}.php'
