@@ -13,7 +13,8 @@
         "zendframework/zend-console": "2.*",
         "zendframework/zend-http": "2.*",
         "zendframework/zend-i18n": "2.*",
-        "zendframework/zend-navigation": "2.*"
+        "zendframework/zend-navigation": "2.*",
+        "uthando-cms/uthando-common": "1.*"
     },
     "require-dev": {
         "firephp/firephp-core": "0.4.*",
@@ -25,8 +26,7 @@
         "zendframework/zendservice-twitter": ">=2.1.0",
         "dino/dompdf-module": "dev-master",
         "twitter/typeahead.js": "*",
-        "twbs/bootstrap": "*",
-        "giggsey/libphonenumber-for-php": "7.*"
+        "twbs/bootstrap": "*"
     },
     "authors": [
         {

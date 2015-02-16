@@ -11,6 +11,7 @@ public/userfiles/*
 !do_not_remove
 .buildpath
 .DS_Store
+deployment.properties
 .idea
 .project
 .settings
