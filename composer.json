@@ -27,7 +27,8 @@
         "dino/dompdf-module": "dev-master",
         "twitter/typeahead.js": "*",
         "twbs/bootstrap": "*",
-        "giggsey/libphonenumber-for-php": "7.*"
+        "giggsey/libphonenumber-for-php": "7.*",
+        "phpoffice/phpexcel": "1.*"
     },
     "authors": [
         {
