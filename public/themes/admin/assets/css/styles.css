@@ -4,6 +4,10 @@ body {
 	padding-top: 60px;
 }
 
+.navbar-brand > img {
+  display: inline;
+}
+
 div.container a.navbar-brand img,
 div.container a.navbar-brand span  {
 	vertical-align: middle;
