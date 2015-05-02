@@ -135,8 +135,9 @@
     	var $this = $(this);
         var data = $this.data('dataGrid');
         var options = $.extend(true, {}, $.fn.dataGrid.defaults, typeof option == 'object' && option);
+        if (!data && /doSearch/.test(option)) return;
     	if (!data) $this.data('dataGrid', (data = new DataGrid(this, options)));
-    	return this;
+    	if (typeof option == 'string') data[option]();
     };
     
     $.fn.dataGrid.defaults = {
