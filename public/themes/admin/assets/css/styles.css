@@ -17,30 +17,59 @@ div.container a.navbar-brand img {
 	margin-right: 10px;
 }
 
-/* When the body has the loading class, we turn
-   the scrollbar off with overflow:hidden */
+/* Loading ajax styles */
 .loading {
     position: relative;
     pointer-events: none;
 }
 
 .loading .loading-overlay {
-    position:   absolute;
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-    background: rgba( 255, 255, 255, .8 )
-                url('../../../../img/spinner.gif')
-                50% 50%
-                no-repeat;
+    position: absolute;
+	z-index: 10000;
+    top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    background: rgba( 255, 255, 255, .8 );
+	text-align: center;
 }
 
-/* Anytime the body has the loading class, our
-   modal element will be visible */
-.loading .admin-loading {
-    display: block;
+.loading .loading-text {
+	font-size: 1.5rem;
+	line-height: 2.3125rem;
+	text-shadow: white 0 0 1em, white 0 0 0.5em, white 0 0 0.25em;
+	position: relative;
+	display: block;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.loading .loading-text:after {
+	content: "...";
+}
+
+.loading .loading-spinner {
+	position: absolute;
+	top: 50%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: -3.9375rem auto 0;
+	color: #1a1d1d;
+	text-align: center;
+}
+
+.loading .loading-icon {
+	position: relative;
+	width: 50px;
+	height: 50px;
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+	vertical-align: middle;
+	background: url('../../../../img/spinner.gif')
+                50% 50%
+                no-repeat;
 }
 
 /* Menu hack for bootstrap 3 */
