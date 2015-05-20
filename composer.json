@@ -18,6 +18,7 @@
         "neilime/zf2-twb-bundle": "2.*@stable"
     },
     "require-dev": {
+        "rwoverdijk/assetmanager": "1.*",
         "firephp/firephp-core": "0.4.*",
         "zendframework/zend-developer-tools": "dev-master",
         "bjyoungblood/bjy-profiler": "dev-master",

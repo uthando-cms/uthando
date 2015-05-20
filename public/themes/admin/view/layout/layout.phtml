@@ -12,15 +12,11 @@
         
         <!-- Styles -->
         <?=$this->headLink()
-            ->appendStylesheet($this->basePath('/themes/admin/assets/css/styles.css'));?>
+            ->appendStylesheet($this->basePath('css/uthando-admin.css'));?>
 
         <!-- Scripts -->
         <?=$this->headScript()
-            ->appendFile($this->basePath('/themes/admin/assets/js/loading-overlay.min.js'))
-            ->appendFile($this->basePath('/themes/admin/assets/js/jquery.datatable.js'))
-            ->appendFile($this->basePath('/themes/admin/assets/js/admin.js'))
-            ->appendFile($this->basePath('/themes/admin/assets/js/jquery.ajaxWidgetPanel.js'))
-            ->appendFile($this->basePath('/themes/admin/assets/js/bootbox.min.js'));?>
+            ->appendFile($this->basePath('js/uthando-admin.js'));?>
        
     </head>
     <body>
