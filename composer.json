@@ -15,7 +15,8 @@
         "zendframework/zend-http": "2.*",
         "zendframework/zend-i18n": "2.*",
         "zendframework/zend-navigation": "2.*",
-        "neilime/zf2-twb-bundle": "2.*@stable"
+        "uthando-cms/uthando-article": "1.*",
+        "uthando-cms/uthando-contact": "1.*"
     },
     "require-dev": {
         "rwoverdijk/assetmanager": "1.*",
