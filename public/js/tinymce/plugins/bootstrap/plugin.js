@@ -536,12 +536,14 @@ tinymce.PluginManager.add("bootstrap", function(editor, url) {
     function toggleEditorButton(editorBtnName, onOff)
     {
         var editorBtns = editor.buttons.bootstrap.items;
+
         for (var i = editorBtns.length - 1; i >= 0; i--) {
+
             if(editorBtnName == 'allBtns' || editorBtns[i]._name == editorBtnName) {
                 if(onOff == 'on') {
-                    editorBtns[i].addClass('active');
+                    $(editorBtns[i]).addClass('active');
                 } else {
-                    editorBtns[i].removeClass('active');
+                    $(editorBtns[i]).removeClass('active');
                 }
             }
         }
