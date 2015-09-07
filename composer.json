@@ -62,12 +62,12 @@
         "zendframework/zendoauth": "dev-master",
         "zendframework/zendservice-twitter": "2.*",
         "zendframework/zendservice-akismet": "2.*",
-        "dino/dompdf-module": "dev-master",
         "twitter/typeahead.js": "*",
         "twbs/bootstrap": "*",
         "giggsey/libphonenumber-for-php": "7.*",
         "phpoffice/phpexcel": "1.*",
-        "neilime/zf2-twb-bundle": "2.*@stable"
+        "neilime/zf2-twb-bundle": "2.*@stable",
+        "dompdf/dompdf": "0.6.*"
     },
     "authors": [
         {
