@@ -2,7 +2,7 @@ Uthando Cms
 =======================
 
 [![Dependency Status](https://www.versioneye.com/user/projects/55ed944e211c6b001f001670/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55ed944e211c6b001f001670)
-[![Packagist](https://img.shields.io/packagist/v/uthando-cms/uthando.svg?link=https://packagist.org/packages/uthando-cms/uthando)]()
+[![Packagist](https://img.shields.io/packagist/v/uthando-cms/uthando.svg?link=https://packagist.org/packages/uthando-cms/uthando&link=https://packagist.org/packages/uthando-cms/uthando)]()
 
 Introduction
 ------------
