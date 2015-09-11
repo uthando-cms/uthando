@@ -2,7 +2,7 @@
 
 return [
     'modules' => [
-        'Application','Test',
+        'Application',
     ],
     'module_listener_options' => [
         'module_paths' => [

@@ -1,6 +1,9 @@
 Uthando Cms
 =======================
 
+[![Build Status](https://travis-ci.org/uthando-cms/uthando.svg?branch=master)](https://travis-ci.org/uthando-cms/uthando)
+[![Test Coverage](https://codeclimate.com/github/uthando-cms/uthando/badges/coverage.svg)](https://codeclimate.com/github/uthando-cms/uthando/coverage)
+[![Code Climate](https://codeclimate.com/github/uthando-cms/uthando/badges/gpa.svg)](https://codeclimate.com/github/uthando-cms/uthando)
 [![Dependency Status](https://www.versioneye.com/user/projects/55ed944e211c6b001f001670/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55ed944e211c6b001f001670)
 [![Packagist](https://img.shields.io/packagist/v/uthando-cms/uthando.svg)]()
 
@@ -17,7 +20,10 @@ The easiest way to install Uthando CMS is to use [Composer](https://getcomposer.
 
 Install Uthando CMS:
 
-    composer create-project -n -sdev uthando-cms/uthando path/to/install
+    composer create-project uthando-cms/uthando path/to/install
+    
+    // if you are installing on a production server you may wish install only the required dependencies
+    composer create-project --no-dev uthando-cms/uthando path/to/install
 
 
 

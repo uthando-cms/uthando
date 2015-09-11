@@ -1,0 +1,13 @@
+# Save as .codeclimate.yml (note leading .) in project root directory
+languages:
+  PHP: true
+exclude_paths:
+  - config/*
+  - data/*
+  - devmodules/*
+  - module/Application/config/*
+  - module/Application/test/*
+  - module/Application/view/*
+  - public/*
+  - vendor/*
+
