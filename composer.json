@@ -68,8 +68,7 @@
         "phpoffice/phpexcel": "1.*",
         "neilime/zf2-twb-bundle": "2.*@stable",
         "dompdf/dompdf": "0.6.*",
-        "codeclimate/php-test-reporter": "dev-master",
-        "phpunit/phpunit": "dev-master"
+        "codeclimate/php-test-reporter": "dev-master"
     },
     "authors": [
         {
