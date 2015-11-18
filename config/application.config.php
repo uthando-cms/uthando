@@ -3,12 +3,24 @@
 return [
     'modules' => [
         'Application',
+        'UthandoCommon',
+        'UthandoUser',
+        'AssetManager',
+        'UthandoAdmin',
+        'UthandoSessionManager',
+        'UthandoThemeManager',
+        'UthandoArticle',
+        'UthandoNavigation',
+        'UthandoContact',
+        'UthandoFileManager',
+        'UthandoMail',
+        'TwbBundle',
     ],
     'module_listener_options' => [
         'module_paths' => [
             './vendor',
             './devmodules',
-            './module','./module'
+            './module',
         ],
         'config_glob_paths' => [
             'config/autoload/{,*.}{global,local}.php'

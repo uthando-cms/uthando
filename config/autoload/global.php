@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'load_uthando_configs'          => true,
     'php_settings' => [
         'display_startup_errors'    => false,
         'display_errors'            => true,

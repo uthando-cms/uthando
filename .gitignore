@@ -17,4 +17,3 @@ deployment.properties
 .project
 .settings
 *.local.php
-composer.lock
