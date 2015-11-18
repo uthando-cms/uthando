@@ -2,7 +2,7 @@
   "name": "uthando-cms/uthando",
   "description": "Base App for Uthando CMS",
   "require": {
-    "php": ">=5.5",
+    "php": ">=7.0",
     "zendframework/zend-modulemanager": "2.*",
     "zendframework/zend-mvc": "2.*",
     "zendframework/zend-view": "2.*",
