@@ -37,18 +37,18 @@ if (file_exists('langs/' . $_GET['language'] . '.php')) {
                 <span><?php echo COLS; ?></span>
             </div>
                 <div class="row col-sm-12"><p class="alert alert-info text-center col-sm-6 col-sm-offset-3"><?php echo DRAG_DROP_ELEMENTS_TO_PREVIEW; ?></p></div>
-            <div class="col-xs-1"><span>1/12<sup>e</sup></span></div>
-            <div class="col-xs-2"><span>2/12<sup>e</sup></span></div>
-            <div class="col-xs-3"><span>3/12<sup>e</sup></span></div>
-            <div class="col-xs-4"><span>4/12<sup>e</sup></span></div>
-            <div class="col-xs-5"><span>5/12<sup>e</sup></span></div>
-            <div class="col-xs-6"><span>6/12<sup>e</sup></span></div>
-            <div class="col-xs-7"><span>7/12<sup>e</sup></span></div>
-            <div class="col-xs-8"><span>8/12<sup>e</sup></span></div>
-            <div class="col-xs-9"><span>9/12<sup>e</sup></span></div>
-            <div class="col-xs-10"><span>10/12<sup>e</sup></span></div>
-            <div class="col-xs-11"><span>11/12<sup>e</sup></span></div>
-            <div class="col-xs-12"><span>12/12<sup>e</sup></span></div>
+            <div class="col-xs-1"><p>1/12</p></div>
+            <div class="col-xs-2"><p>2/12</p></div>
+            <div class="col-xs-3"><p>3/12</p></div>
+            <div class="col-xs-4"><p>4/12</p></div>
+            <div class="col-xs-5"><p>5/12</p></div>
+            <div class="col-xs-6"><p>6/12</p></div>
+            <div class="col-xs-7"><p>7/12</p></div>
+            <div class="col-xs-8"><p>8/12</p></div>
+            <div class="col-xs-9"><p>9/12</p></div>
+            <div class="col-xs-10"><p>10/12</p></div>
+            <div class="col-xs-11"><p>11/12</p></div>
+            <div class="col-xs-12"><p>12/12</p></div>
         </div>
         <div class="row" id="preview">
             <div id="preview-title" class="margin-bottom-md">
@@ -58,9 +58,17 @@ if (file_exists('langs/' . $_GET['language'] . '.php')) {
             <div class="row"><h2><?php echo DROP_ELEMENTS_HERE; ?></h2></div>
             </div>
         </div>
+        <div class="row margin-bottom-md">
+        	<div class="choice-title margin-bottom-md">
+				<span><?php echo TIPS_TEMPLATE; ?></span>
+        	</div>
+        	<div class="col-xs-12">
+        		<span><?php echo TIPS_TEMPLATE_CONTENT; ?></span>
+        	</div>
+        </div>
         <div class="row">
             <div id="code-title">
-                <a href="#"><?php echo CODE; ?> <i class="glyphicon glyphicon-arrow-up"></i></a>
+                <a href="#" id="code-slide-link"><?php echo CODE; ?> <i class="glyphicon glyphicon-arrow-up"></i></a>
             </div>
             <div class="col-sm-12" id="code-wrapper">
                 <pre></pre>

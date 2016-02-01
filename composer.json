@@ -15,17 +15,7 @@
     "zendframework/zend-http": "2.*",
     "zendframework/zend-i18n": "2.*",
     "zendframework/zend-i18n-resources": "2.*",
-    "zendframework/zend-navigation": "2.*",
-    "uthando-cms/uthando-common": "2.*",
-    "uthando-cms/uthando-admin": "2.*",
-    "uthando-cms/uthando-session-manager": "2.*",
-    "uthando-cms/uthando-user": "2.*",
-    "uthando-cms/uthando-navigation": "2.*",
-    "uthando-cms/uthando-theme-manager": "2.*",
-    "uthando-cms/uthando-file-manager": "2.*",
-    "uthando-cms/uthando-article": "2.*",
-    "uthando-cms/uthando-contact": "2.*",
-    "uthando-cms/uthando-mail": "2.*"
+    "zendframework/zend-navigation": "2.*"
   },
   "require-dev": {
     "zendframework/zend-authentication": "2.*",
@@ -43,6 +33,7 @@
     "zendframework/zend-feed": "2.*",
     "zendframework/zend-file": "2.*",
     "zendframework/zend-filter": "2.*",
+    "zendframework/zend-hydrator": "1.*",
     "zendframework/zend-inputfilter": "2.*",
     "zendframework/zend-json": "2.*",
     "zendframework/zend-loader": "2.*",
@@ -78,7 +69,7 @@
     "neilime/zf2-twb-bundle": "2.*@stable",
     "dompdf/dompdf": "0.6.*",
     "codeclimate/php-test-reporter": "dev-master",
-    "squizlabs/php_codesniffer": "^2.0@dev"
+    "squizlabs/php_codesniffer": "2.0"
   },
   "authors": [
     {
@@ -100,8 +91,23 @@
     "uthando-cms/uthando-navigation": "Navigation management.",
     "uthando-cms/uthando-theme-manager": "Simple theme changer.",
     "uthando-cms/uthando-admin": "Admin operations",
-    "uthando-cms/uthando-session-manager": "Session management."
+    "uthando-cms/uthando-session-manager": "Session management.",
+
+    "uthando-cms/uthando-common": "2.*",
+    "uthando-cms/uthando-admin": "2.*",
+    "uthando-cms/uthando-session-manager": "2.*",
+    "uthando-cms/uthando-user": "2.*",
+    "uthando-cms/uthando-navigation": "2.*",
+    "uthando-cms/uthando-theme-manager": "2.*",
+    "uthando-cms/uthando-file-manager": "2.*",
+    "uthando-cms/uthando-article": "2.*",
+    "uthando-cms/uthando-contact": "2.*",
+    "uthando-cms/uthando-mail": "2.*"
   },
   "license": "BSD-3-Clause",
-  "homepage": "http://shaunfreeman.name/"
+  "homepage": "http://shaunfreeman.name/",
+  "scripts": {
+    "pre-install-cmd": "UthandoInstaller\\OptionalPackages::install",
+    "pre-update-cmd": "UthandoInstaller\\OptionalPackages::install"
+  }
 }

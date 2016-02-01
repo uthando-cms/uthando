@@ -87,7 +87,7 @@ if (isset($_GET['edit'])) {
         </div>
         <div class="row">
             <div id="code-title">
-                <a href="#"><?php echo CODE; ?> <i class="glyphicon glyphicon-arrow-up"></i></a>
+                <a href="#" id="code-slide-link"><?php echo CODE; ?> <i class="glyphicon glyphicon-arrow-up"></i></a>
             </div>
             <div class="col-sm-12" id="code-wrapper">
                 <pre></pre>

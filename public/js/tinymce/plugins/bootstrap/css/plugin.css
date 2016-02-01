@@ -47,6 +47,7 @@ body > .container {
             border-radius: 0 0 3px 0;
     margin-top: 1px;
     margin-bottom: -1px;
+    white-space: normal;
 }
 
 .choice-title span, #code-title a {
@@ -93,6 +94,10 @@ body > .container {
 .choice, .selector {
     display: inline-block;
     cursor: pointer;
+}
+
+.selector.select-snippet p {
+	margin-bottom: 0;
 }
 
 .selector:hover, .selector.active {
@@ -276,7 +281,7 @@ pre {
     margin-bottom: 5px;
 }
 
-#cols div[class^="col-"][draggable=true] span, #preview div[class^="col-"][draggable=true] span {
+#cols div[class^="col-"][draggable=true] p, #preview div[class^="col-"][draggable=true] p {
     display: block;
     width: 100%;
     border: 1px solid #ccc;
@@ -368,7 +373,7 @@ a.breakpoint-tooltip {
     font-style: normal;
     font-weight: normal;
     src: url('../fonts/icomoon-tbp.eot?-tu63u2');
-    src: url('../fonts/icomoon-tbp.eot?#iefix-tu63u2') format('embedded-opentype'), url('../fonts/icomoon-tbp.woff?-tu63u2') format('woff'), url('../fonts/icomoon-tbp.ttf?-tu63u2') format('truetype'), url('../fonts/icomoon-tbp.svg?-tu63u2#icomoon-tbp') format('svg');
+    src: url('../fonts/icomoon-tbp.eot?#iefix-tu63u2') format('embedded-opentype'), url('../fonts/icomoon-tbp.woff?-tu63u2') format('woff'), url('../fonts/icomoon-tbp.ttf?-tu63u2') format('truetype'), url('../fonts/icomoon-tbp.svg?-tu63u2#icomoon') format('svg');
 }
 
 [class^='bootstrap-'], [class*=' bootstrap-'], .selector:before {

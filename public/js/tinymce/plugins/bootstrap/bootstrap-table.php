@@ -101,7 +101,7 @@ if (isset($_GET['tableStriped'])) {
         </div>
         <div class="row">
             <div id="code-title">
-                <a href="#"><?php echo CODE; ?> <i class="glyphicon glyphicon-arrow-down"></i></a>
+                <a href="#" id="code-slide-link"><?php echo CODE; ?> <i class="glyphicon glyphicon-arrow-down"></i></a>
             </div>
             <div class="col-sm-9 col-sm-offset-3" id="code-wrapper">
                 <pre></pre>

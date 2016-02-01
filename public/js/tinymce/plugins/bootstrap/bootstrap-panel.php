@@ -138,7 +138,7 @@ if (isset($_GET['edit'])) {
         </div>
         <div class="row">
             <div id="code-title">
-                <a href="#"><?php echo CODE; ?> <i class="glyphicon glyphicon-arrow-up"></i></a>
+                <a href="#" id="code-slide-link"><?php echo CODE; ?> <i class="glyphicon glyphicon-arrow-up"></i></a>
             </div>
             <div class="col-sm-12" id="code-wrapper">
                 <pre></pre>
@@ -169,21 +169,16 @@ if (isset($_GET['edit'])) {
         /* if newPanel === false, we get code from tinymce */
 
         if (!newPanel) {
-            if ($(window.parent.document.body).find('.mce-tinymce-inline')) {
-                panelCode = $(window.parent.document.body).find('.mce-edit-focus').find(".panel.active").clone();
-            } else {
-                panelCode = $(window.parent.document.body).find("iframe").contents().find(".panel.active").clone();
-            }
-            if (panelCode.find('.panel-heading').length > 0) {
+            panelCode = getCode('.panel.active');
+            if ($(panelCode).find('.panel-heading').length > 0) {
                 panelHeading = true;
-                panelHeadingContent = panelCode.find('.panel-heading').html();
+                panelHeadingContent = $(panelCode).find('.panel-heading').html();
             }
-            panelBodyContent = panelCode.find('.panel-body').html();
-            if (panelCode.find('.panel-footer').length > 0) {
+            panelBodyContent = $(panelCode).find('.panel-body').html();
+            if ($(panelCode).find('.panel-footer').length > 0) {
                 panelFooter = true;
-                panelFooterContent = panelCode.find('.panel-footer').html();
+                panelFooterContent = $(panelCode).find('.panel-footer').html();
             }
-            panelCode = panelCode.wrap('<div>').parent().html();
             var find = new Array(/\s?data-mce-[a-z]+="[^"]+"/g, / active/);
             var replace = new Array('', '');
 
@@ -245,6 +240,15 @@ if (isset($_GET['edit'])) {
         $('input[name="panel-heading-content"]').on('click, focus', function () {
             $(this).on('keyup', function () {
                 changeText(this, '.panel-heading');
+                if ($(this).prop('value').length > 0) {
+                    if ($('#test-wrapper .panel-heading').length < 1) {
+                        $('.btn-toggle-panel-heading').trigger('click');
+                    }
+                } else {
+                    if ($('#test-wrapper .panel-heading').length > 0) {
+                        $('.btn-toggle-panel-heading').trigger('click');
+                    }
+                }
             });
         });
         $('input[name="panel-body-content"]').on('click, focus', function () {
@@ -255,6 +259,15 @@ if (isset($_GET['edit'])) {
         $('input[name="panel-footer-content"]').on('click, focus', function () {
             $(this).on('keyup', function () {
                 changeText(this, '.panel-footer');
+                if ($(this).prop('value').length > 0) {
+                    if ($('#test-wrapper .panel-footer').length < 1) {
+                        $('.btn-toggle-panel-footer').trigger('click');
+                    }
+                } else {
+                    if ($('#test-wrapper .panel-footer').length > 0) {
+                        $('.btn-toggle-panel-footer').trigger('click');
+                    }
+                }
             });
         });
 

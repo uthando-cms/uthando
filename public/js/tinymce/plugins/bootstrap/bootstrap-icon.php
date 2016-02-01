@@ -100,7 +100,7 @@ if (isset($_GET['glyphicon'])) {
         </div>
         <div class="row">
             <div id="code-title">
-                <a href="#">code <i class="glyphicon glyphicon-arrow-up"></i></a>
+                <a href="#" id="code-slide-link">code <i class="glyphicon glyphicon-arrow-up"></i></a>
             </div>
             <div class="col-sm-12 text-center" id="code-wrapper">
                 <pre><?php
