@@ -91,7 +91,7 @@
     "uthando-cms/uthando-navigation": "Navigation management.",
     "uthando-cms/uthando-theme-manager": "Simple theme changer.",
     "uthando-cms/uthando-admin": "Admin operations",
-    "uthando-cms/uthando-session-manager": "Session management.",
+    "uthando-cms/uthando-session-manager": "Session management."
   },
   "license": "BSD-3-Clause",
   "homepage": "http://shaunfreeman.name/"
