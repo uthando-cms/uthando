@@ -7,7 +7,8 @@ php:
   - hhvm
 
 before_script:
-  - composer install
+  - echo ${TRAVIS_PHP_VERSION:0:3}
+  - composer install --no-interaction --ignore-platform-reqs --prefer-source --no-scripts
   - cd module/Application/test
 
 script:
@@ -16,3 +17,6 @@ script:
 after_script:
   - cd ../../../
   - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" ]]; then php vendor/bin/test-reporter --coverage-report=build/logs/clover.xml; fi
+
+before_install:
+  - composer self-update
