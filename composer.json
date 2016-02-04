@@ -92,22 +92,7 @@
     "uthando-cms/uthando-theme-manager": "Simple theme changer.",
     "uthando-cms/uthando-admin": "Admin operations",
     "uthando-cms/uthando-session-manager": "Session management.",
-
-    "uthando-cms/uthando-common": "2.*",
-    "uthando-cms/uthando-admin": "2.*",
-    "uthando-cms/uthando-session-manager": "2.*",
-    "uthando-cms/uthando-user": "2.*",
-    "uthando-cms/uthando-navigation": "2.*",
-    "uthando-cms/uthando-theme-manager": "2.*",
-    "uthando-cms/uthando-file-manager": "2.*",
-    "uthando-cms/uthando-article": "2.*",
-    "uthando-cms/uthando-contact": "2.*",
-    "uthando-cms/uthando-mail": "2.*"
   },
   "license": "BSD-3-Clause",
-  "homepage": "http://shaunfreeman.name/",
-  "scripts": {
-    "pre-install-cmd": "UthandoInstaller\\OptionalPackages::install",
-    "pre-update-cmd": "UthandoInstaller\\OptionalPackages::install"
-  }
+  "homepage": "http://shaunfreeman.name/"
 }
