@@ -1,5 +1,4 @@
 <?php
-ob_start();
 ini_set('display_errors', true);
 //ini_set('opcache.enable', false);
 // If we're running under `php -S` with PHP 5.4.0+
@@ -47,12 +46,3 @@ if (file_exists('config/application.config.local.php')) {
 
 // Run the application!
 Zend\Mvc\Application::init($config)->run();
-
-if (class_exists('FB')) {
-    $time = microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"];
-
-    \FB::info($time, 'Process Time');
-    \FB::info((memory_get_usage(true) / 1024 / 1024) . " MB", 'Memory');
-    \FB::info((memory_get_peak_usage(true) / 1024 / 1024) . " MB", 'Peak');
-}
-ob_end_flush();
