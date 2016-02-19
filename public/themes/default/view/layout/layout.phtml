@@ -38,7 +38,7 @@
             </div>
             
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <?=$this->uthandoNavigation('UthandoAdmin\Navigation')->uthandoDbMenu('main')->setUlClass('nav navbar-nav');?>
+                <?=$this->uthandoNavigation()->uthandoTbDbMenu('main')->setUlClass('nav navbar-nav');?>
                 
                 <?php if ($this->identity()):?>
 				<div class="dropdown">

@@ -20,7 +20,9 @@
   "require-dev": {
     "zendframework/zend-authentication": "2.*",
     "zendframework/zend-cache": "2.*",
+    "Zendframework/zend-captcha": "2.*",
     "zendframework/zend-db": "2.*",
+    "zendframework/zend-debug": "2.*",
     "zendframework/zend-file": "2.*",
     "zendframework/zend-mail": "2.*",
     "zendframework/zend-paginator": "2.*",
