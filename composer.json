@@ -28,6 +28,7 @@
     "zendframework/zend-paginator": "2.*",
     "zendframework/zend-permissions-acl": "2.*",
     "zendframework/zend-session": "2.*",
+    "zendframework/zend-test": "2.*",
     "zendframework/zendoauth": "dev-master",
     "zendframework/zendservice-twitter": "2.*",
     "zendframework/zendservice-akismet": "2.*",
