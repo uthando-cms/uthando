@@ -34,7 +34,8 @@ class Module
         /*$phpSettings = $event->getConfigListener()
             ->getMergedConfig(true)
             ->get('php_settings');*/
-        $phpSettings = $event->getApplication()->getServiceManager()->get('Config')['php_settings'];
+        $config = $event->getApplication()->getServiceManager()->get('Config');
+        $phpSettings = (isset($config['php_settings'])) ? $config['php_settings'] : null;
 
         if ($phpSettings) {
             foreach ($phpSettings as $key => $value) {

@@ -23,6 +23,7 @@
     "Zendframework/zend-captcha": "2.*",
     "zendframework/zend-db": "2.*",
     "zendframework/zend-debug": "2.*",
+    "zendframework/zend-eventmanager": "2.*",
     "zendframework/zend-file": "2.*",
     "zendframework/zend-mail": "2.*",
     "zendframework/zend-paginator": "2.*",
@@ -40,7 +41,7 @@
     "giggsey/libphonenumber-for-php": "7.*",
     "phpoffice/phpexcel": "1.*",
     "neilime/zf2-twb-bundle": "2.*@stable",
-    "dompdf/dompdf": "0.6.*",
+    "dompdf/dompdf": "0.7.*",
     "codeclimate/php-test-reporter": "dev-master",
     "squizlabs/php_codesniffer": "2.0",
     "summernote/summernote": "*"
