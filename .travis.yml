@@ -10,7 +10,7 @@ before_script:
   - cd module/Application/test
 
 script:
-  - phpdbg -qrr ../../../vendor/bin/phpunit -v; fi
+  - phpdbg -qrr ../../../vendor/bin/phpunit -v
 
 after_script:
   - cd ../../../
