@@ -55,10 +55,13 @@ The official Uthando CMS modules are:
 - Uthando Common
 - Uthando Contact
 - Uthando DomPdf
+- Uthando Events
 - Uthando File Manager
 - Uthando Mail
 - Uthando Navigation
 - Uthando News
+- Uthando Newsletter
+- Uthando Portfolio
 - Uthando Session Manager
 - Uthando Testimonial
 - Uthando Theme Manager

@@ -1,10 +1,8 @@
 language: php
 
 php:
-  - 5.5
-  - 5.6
   - 7.0
-  - hhvm
+  - 7.1
 
 before_script:
   - echo ${TRAVIS_PHP_VERSION:0:3}
@@ -12,11 +10,11 @@ before_script:
   - cd module/Application/test
 
 script:
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" ]]; then phpdbg -qrr ../../../vendor/bin/phpunit -v; fi
+  - phpdbg -qrr ../../../vendor/bin/phpunit -v; fi
 
 after_script:
   - cd ../../../
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.0" ]]; then php vendor/bin/test-reporter --coverage-report=build/logs/clover.xml; fi
+  - php vendor/bin/test-reporter --coverage-report=build/logs/clover.xml
 
 before_install:
   - composer self-update
