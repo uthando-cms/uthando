@@ -39,9 +39,10 @@ if (!class_exists('Zend\Loader\AutoloaderFactory')) {
 
 $config = require 'config/application.config.php';
 
-// Use local config if availible
+// merge local config if availible
 if (file_exists('config/application.config.local.php')) {
-    $config = require 'config/application.config.local.php';
+    $localConfig = require 'config/application.config.local.php';
+    $config = array_merge_recursive($config, $localConfig);
 }
 
 // Run the application!

@@ -2,18 +2,14 @@
 
 return [
     'modules' => [
+        'AssetManager',
         'Application',
         'UthandoCommon',
         'UthandoUser',
-        'AssetManager',
+        'UthandoNavigation',
         'UthandoAdmin',
         'UthandoSessionManager',
         'UthandoThemeManager',
-        'UthandoArticle',
-        'UthandoNavigation',
-        'UthandoContact',
-        'UthandoFileManager',
-        'UthandoMail',
         'TwbBundle',
     ],
     'module_listener_options' => [
