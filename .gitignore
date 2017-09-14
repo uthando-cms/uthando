@@ -13,3 +13,8 @@ deployment.properties
 *.local.php
 devmodules/.gitignore
 /assets/
+/public/img/
+/public/css/
+/public/default/
+/public/el-finder/
+/public/js/
