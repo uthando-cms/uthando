@@ -1,6 +1,36 @@
 <?php
 
 return [
+    'asset_manager' => [
+        'resolver_configs' => [
+            'collections' => [
+                'js/uthando.js' => [
+                    'site.js'
+                ],
+                'css/uthando.css' => [
+                    'css/styles.css',
+                    'css/uthando-styles.css',
+                    'css/print.css',
+                ],
+            ],
+            'paths' => [
+                'Application' => __DIR__ . '/../public',
+            ],
+        ],
+        'filters' => [
+            'js' => [
+                ['filter' => \Assetic\Filter\JSMinFilter::class],
+            ],
+        ],
+        'caching' => [
+            'default' => [
+                'cache' => \AssetManager\Cache\FilePathCache::class,
+                'options' => [
+                    'dir' => 'public',
+                ],
+            ],
+        ],
+    ],
     'uthando_user' => [
         'acl' => [
             'roles' => [

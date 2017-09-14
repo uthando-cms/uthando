@@ -9,15 +9,12 @@
 
     <!-- styles -->
     <?=$this->headLink()
-        ->appendStylesheet($this->basePath() . '/css/bootstrap.css')
-        ->appendStylesheet($this->basePath() . '/css/styles.css')
-        ->appendStylesheet($this->basePath() . '/css/bootstrap-responsive.css');?>
+        ->appendStylesheet($this->basePath('/css/bootstrap.css'))
+        ->appendStylesheet($this->basePath('/css/styles.css'));?>
     
     <!-- Scripts -->
     <?=$this->headScript()
-        ->appendFile('//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
-        ->appendFile($this->basePath() . '/js/bootstrap.js')
-        ->appendFile($this->basePath() . '/js/js/html5.js', 'text/javascript', ['conditional' => 'lt IE 9']);?>
+        ->appendFile($this->basePath('/js/bootstrap.js'));?>
 
   </head>
 
@@ -33,7 +30,6 @@
 				<div class="nav-collapse">
                     <?=$this->navigation('Navigation')->menu()->setUlClass('nav'); ?>
                 </div>
-				<!--/.nav-collapse -->
 			</div>
 		</div>
 	</div>
