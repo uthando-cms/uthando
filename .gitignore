@@ -2,9 +2,14 @@ build/*
 data/*
 !data/fonts
 vendor/
-public/userfiles/.quarantine
-public/userfiles/.tmb
-public/userfiles/.trash/.tmb
+/public/userfiles/.quarantine
+/public/userfiles/.tmb
+/public/userfiles/.trash/.tmb
+/public/userfiles/*.jpg
+/public/userfiles/*.JPG
+/public/userfiles/*.jpeg
+/public/userfiles/*.png
+/public/userfiles/*.gif
 !do_not_remove
 composer.lock
 composer.phar
