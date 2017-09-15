@@ -21,6 +21,9 @@ return [
             'js' => [
                 ['filter' => \Assetic\Filter\JSMinFilter::class],
             ],
+            'css' => [
+                ['filter' => \Assetic\Filter\CssMinFilter::class],
+            ],
         ],
         'caching' => [
             'default' => [
