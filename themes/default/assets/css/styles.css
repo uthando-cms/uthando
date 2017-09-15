@@ -16,3 +16,7 @@ div.container a.navbar-brand img {
     padding-left: 55px;
     background: url('../img/uthando-cms.png') 20px center no-repeat;
 }
+
+.no-underline:hover {
+    text-decoration: none;
+}
