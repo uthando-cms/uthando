@@ -1,3 +1,15 @@
+body {
+    padding-top: 60px;
+}
+
+div.container a.navbar-brand img {
+    margin-right: 10px;
+}
+
+.navbar-brand  {
+    padding-left: 55px;
+    background: url('../img/uthando-cms.png') 20px center no-repeat;
+}
 
 /* Loading ajax styles */
 .loading {
@@ -49,7 +61,11 @@
     margin-left: auto;
     display: block;
     vertical-align: middle;
-    background: url('../../../../public/img/spinner.gif')
+    background: url('../img/spinner.gif')
     50% 50%
     no-repeat;
+}
+
+.linenums li {
+    list-style-type: decimal;
 }

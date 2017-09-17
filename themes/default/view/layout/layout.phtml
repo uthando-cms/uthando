@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <?=$this->headTitle('Uthando CMS')->setSeparator(' - ')->setAutoEscape(false);?>
+    <?=$this->headTitle($this->escapeHtml($this->themeOptions('site_name')))
+        ->setSeparator(' - ')
+        ->setAutoEscape(false);?>
 
     <?=$this->headMeta()
         ->appendName('viewport', 'width=device-width, initial-scale=1.0'); ?>
@@ -13,11 +15,11 @@
     <?=$this->headLink([
         'rel'  => 'shortcut icon',
         'href' => $this->basePath('/img/favicon.ico')
-    ])->appendStylesheet($this->basePath('/default/assets/css/styles.css'));?>
+    ])->appendStylesheet($this->basePath('css/uthando.css'));?>
 
     <!-- Scripts -->
     <?=$this->headScript()
-        ->appendFile($this->basePath('/js/site.js'));?>
+        ->appendFile($this->basePath('/js/uthando.js'));?>
   </head>
 
 <body>
@@ -74,7 +76,9 @@
             <div class="col-md-12">
                 <footer>
                     <p>&copy; 2013 - <?=date('Y'); ?> by <a
-                            href="http://www.shaunfreeman.name">Shaun Freeman</a>. All rights
+                            href="http://www.shaunfreeman.name">
+                            <?=$this->escapeHtml($this->themeOptions('site_name'));?>
+                        </a>. All rights
                         reserved.
                     </p>
                 </footer>

@@ -5,13 +5,18 @@ return [
         'resolver_configs' => [
             'collections' => [
                 'js/uthando.js' => [
-                    'site.js'
+                    'js/prettify.js',
+                    'js/site.js',
                 ],
                 'css/uthando.css' => [
-                    'css/styles.css',
+                    'css/prettify.css',
                     'css/uthando-styles.css',
                     'css/print.css',
                 ],
+            ],
+            'map' => [
+                'css/prettify.css' => 'https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.css',
+                'js/prettify.js' => 'https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js',
             ],
             'paths' => [
                 'Application' => __DIR__ . '/../public',
@@ -19,20 +24,20 @@ return [
         ],
         'filters' => [
             'js' => [
-                ['filter' => \Assetic\Filter\JSMinFilter::class],
+                //['filter' => \Assetic\Filter\JSMinFilter::class],
             ],
             'css' => [
-                ['filter' => \Assetic\Filter\CssMinFilter::class],
+                //['filter' => \Assetic\Filter\CssMinFilter::class],
             ],
         ],
-        'caching' => [
+        /*'caching' => [
             'default' => [
                 'cache' => \AssetManager\Cache\FilePathCache::class,
                 'options' => [
                     'dir' => 'public',
                 ],
             ],
-        ],
+        ],*/
     ],
     'uthando_user' => [
         'acl' => [

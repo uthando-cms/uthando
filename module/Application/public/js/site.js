@@ -22,4 +22,8 @@ $(document).ready(function(){
 		var change = $(this).is(":checked") ? "text" : "password";
 		document.getElementById('password').type = change;
 	});
+
+    if (prettyPrint) {
+        prettyPrint();
+    }
 });
