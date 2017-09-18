@@ -22,10 +22,11 @@
     "uthando-cms/uthando-session-manager": "2.*",
     "uthando-cms/uthando-theme-manager": "2.*",
     "uthando-cms/uthando-user": "2.*",
-    "neilime/zf2-twb-bundle": "2.*@stable",
-    "twbs/bootstrap": "*"
+    "neilime/zf2-twb-bundle": "2.*@stable"
   },
   "require-dev": {
+    "zendframework/zend-developer-tools": "^1.1",
+    "bjyoungblood/bjy-profiler" : "dev-master",
     "zendframework/zend-authentication": "2.*",
     "zendframework/zend-cache": "2.*",
     "Zendframework/zend-captcha": "2.*",
@@ -44,13 +45,15 @@
     "zendframework/zendservice-akismet": "2.*",
     "paypal/rest-api-sdk-php": "*",
     "twitter/typeahead.js": "*",
+    "twbs/bootstrap": "*",
     "giggsey/libphonenumber-for-php": "*",
     "phpoffice/phpexcel": "1.*",
     "dompdf/dompdf": "0.7.*",
     "codeclimate/php-test-reporter": "dev-master",
     "squizlabs/php_codesniffer": "2.0",
+    "summernote/summernote": "*",
     "ccampbell/chromephp": "4.*",
-    "summernote/summernote": "*"
+    "studio-42/elfinder": "2.*"
   },
   "extra": {
     "zend-skeleton-installer": [
