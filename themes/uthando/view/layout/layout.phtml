@@ -15,7 +15,8 @@
     <?=$this->headLink([
         'rel'  => 'shortcut icon',
         'href' => $this->basePath('/img/favicon.ico')
-    ])->appendStylesheet($this->basePath('css/uthando.css'));?>
+    ])->appendStylesheet($this->basePath('css/uthando.css'))
+        ->appendStylesheet($this->themePath('assets/css/styles.css'));?>
 
     <!-- Scripts -->
     <?=$this->headScript()
