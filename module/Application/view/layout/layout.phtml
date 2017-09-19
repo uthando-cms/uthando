@@ -1,4 +1,5 @@
 <?=$this->doctype(); ?>
+<?=$this->bootstrap()->enable();?>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -9,8 +10,8 @@
 
     <!-- styles -->
     <?=$this->headLink()
-        ->appendStylesheet($this->basePath('/css/bootstrap.css'))
-        ->appendStylesheet($this->basePath('/css/styles.css'));?>
+        ->appendStylesheet($this->basePath('css/uthando-admin.css'))
+        ->appendStylesheet($this->basePath('css/uthando.css'));?>
     
     <!-- Scripts -->
     <?=$this->headScript()
@@ -19,25 +20,61 @@
 
 <body>
 
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="<?=$this->url('home'); ?>">Uthando CMS</a>
-				<div class="nav-collapse">
-                    <?=$this->navigation('Navigation')->menu()->setUlClass('nav'); ?>
-                </div>
-			</div>
-		</div>
-	</div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="<?=$this->url('home'); ?>">
+                    Uthando CMS
+                </a>
+            </div>
+            <?php if ($this->identity()):?>
+            <ul class="nav pull-right">
+                <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user"></i> <?= $this->identity()->getFullName(); ?>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+
+                    <?= $this->uthandoNavigation('UthandoUser\Navigation')
+                        ->uthandoTbMenu()
+                        ->setUlClass('dropdown-menu dropdown-menu-right'); ?>
+                </li>
+            </ul>
+            <?php endif;?>
+        </div>
+    </nav>
+
+    <nav id="column-left">
+        <?=$this->navigation('navigation')->menu()->setPartial('uthando-admin/partial/side-bar');?>
+        <?= $this->navigation('UthandoAdmin\Navigation')
+            ->menu()
+            ->setPartial('uthando-admin/partial/side-bar'); ?>
+    </nav>
 
 	<div class="container">
+        <div class="page-header">
+            <div class="container-fluid">
+                <div class="pull-right">
+                    <?=$this->placeholder('header-buttons');?>
+                </div>
+                <h1><?=$this->pageTitle;?></h1>
+                <nav class="breadcrumb">
+                    <?=$this->navigation('UthandoAdmin\Navigation')
+                        ->breadcrumbs()
+                        ->setRenderInvisible(true)
+                        ->setSeparator(' / ');
+                    ?>
+                </nav>
+            </div>
+        </div>
 
-      <?=$this->content; ?>
+        <div id="alerts" class="container-fluid">
+            <?=$this->tbFlashMessenger()->render(); ?>
+        </div>
 
-      <hr>
+        <div class="container-fluid">
+            <?=$this->content; ?>
+        </div>
+        <hr>
 
 		<footer>
 			<p>&copy; 2013 - <?=date('Y'); ?> by <a
@@ -48,5 +85,12 @@
 
 	</div>
 	<!-- /container -->
+    <?= $this->inlineScript()
+        ->appendFile($this->basePath('js/uthando.js'))
+        ->appendFile($this->basePath('js/uthando-admin.js')); ?>
+
+    <script>
+        admin.basePath = '<?=$this->basePath();?>';
+    </script>
 </body>
 </html>
