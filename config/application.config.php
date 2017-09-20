@@ -30,10 +30,10 @@ return [
     ],
     'service_manager' => [
         'invokables' => [
-            'ModuleRouteListener' => 'Zend\Mvc\ModuleRouteListener',
+            'ModuleRouteListener' => \Zend\Mvc\ModuleRouteListener::class,
         ],
         'factories' => [
-            'Navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+            'Navigation' => \Zend\Navigation\Service\DefaultNavigationFactory::class,
         ],
     ],
 ];
