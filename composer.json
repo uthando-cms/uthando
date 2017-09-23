@@ -1,6 +1,22 @@
 {
   "name": "uthando-cms/uthando",
   "description": "Base App for Uthando CMS",
+  "authors": [
+    {
+      "name": "Shaun Freeman",
+      "email": "shaun@shaunfreeman.co.uk",
+      "homepage": "https://github.com/shaunfreeman",
+      "role": "Developer"
+    }
+  ],
+  "keywords": [
+    "framework",
+    "zf2",
+    "cms",
+    "uthando"
+  ],
+  "license": "BSD-3-Clause",
+  "homepage": "http://shaunfreeman.name/",
   "require": {
     "php": ">=7.0",
     "zendframework/zend-modulemanager": "2.*",
@@ -17,12 +33,7 @@
     "zendframework/zend-i18n-resources": "2.*",
     "zendframework/zend-navigation": "2.*",
     "rwoverdijk/assetmanager": "1.*",
-    "uthando-cms/uthando-common": "2.*",
-    "uthando-cms/uthando-admin": "2.*",
-    "uthando-cms/uthando-session-manager": "2.*",
-    "uthando-cms/uthando-theme-manager": "2.*",
-    "uthando-cms/uthando-user": "2.*",
-    "neilime/zf2-twb-bundle": "2.*@stable"
+    "neilime/zf2-twb-bundle": "2.*"
   },
   "require-dev": {
     "zendframework/zend-developer-tools": "^1.1",
@@ -58,6 +69,37 @@
   "extra": {
     "zend-skeleton-installer": [
       {
+
+        "name": "uthando-cms/uthando-common",
+        "constraint": "^2.0.0",
+        "module": true
+      },
+      {
+
+        "name": "uthando-cms/uthando-admin",
+        "constraint": "^2.0.0",
+        "module": true
+      },
+      {
+
+        "name": "uthando-cms/uthando-session-manager",
+        "constraint": "^2.0.0",
+        "module": true
+      },
+      {
+
+        "name": "uthando-cms/uthando-theme-manager",
+        "constraint": "^2.0.0",
+        "module": true
+      },
+      {
+
+        "name": "uthando-cms/uthando-user",
+        "constraint": "^2.0.0",
+        "module": true
+      },
+      {
+
         "name": "uthando-cms/uthando-article",
         "constraint": "^2.0.0",
         "prompt": "Would you like to install Uthando Article?",
@@ -131,20 +173,8 @@
       }
     ]
   },
-  "authors": [
-    {
-      "name": "Shaun Freeman",
-      "email": "shaun@shaunfreeman.co.uk",
-      "homepage": "https://github.com/shaunfreeman",
-      "role": "Developer"
-    }
-  ],
-  "keywords": [
-    "framework",
-    "zf2",
-    "cms",
-    "uthando"
-  ],
-  "license": "BSD-3-Clause",
-  "homepage": "http://shaunfreeman.name/"
+  "scripts": {
+    "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
+    "test": "phpdbg -qrr ./vendor/bin/phpunit -v"
+  }
 }
