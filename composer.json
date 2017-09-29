@@ -64,7 +64,8 @@
     "squizlabs/php_codesniffer": "2.0",
     "summernote/summernote": "*",
     "ccampbell/chromephp": "4.*",
-    "studio-42/elfinder": "2.*"
+    "studio-42/elfinder": "2.*",
+    "ezyang/htmlpurifier": "^4.9"
   },
   "extra": {
     "zend-skeleton-installer": [

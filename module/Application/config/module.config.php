@@ -22,22 +22,6 @@ return [
                 'Application' => __DIR__ . '/../public',
             ],
         ],
-        'filters' => [
-            'js' => [
-                //['filter' => \Assetic\Filter\JSMinFilter::class],
-            ],
-            'css' => [
-                //['filter' => \Assetic\Filter\CssMinFilter::class],
-            ],
-        ],
-        /*'caching' => [
-            'default' => [
-                'cache' => \AssetManager\Cache\FilePathCache::class,
-                'options' => [
-                    'dir' => 'public',
-                ],
-            ],
-        ],*/
     ],
     'uthando_user' => [
         'acl' => [
