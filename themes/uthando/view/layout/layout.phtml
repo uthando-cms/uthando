@@ -59,17 +59,22 @@
 	</nav>
 
 	<div class="container">
+        <?=$this->widgetGroup('layout-top');?>
+
         <div class="row">
             <div class="col-md-12">
-                <?=$this->tbFlashMessenger()->render(); ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <?=$this->tbFlashMessenger()->render(); ?>
+                    </div>
+                </div>
+
+                <?=$this->widgetGroup('content');?>
+
             </div>
         </div>
-	   
-        <div class="row">
-            <div class="col-md-12">
-                <?=$this->content; ?>
-            </div>
-        </div>
+
+        <?=$this->widgetGroup('layout-bottom');?>
 
         <hr>
 
