@@ -1,0 +1,13 @@
+<?php
+/** @var \UthandoThemeManager\Model\WidgetModel $widget */
+$widget = $this->widget
+;?>
+
+<div class="panel panel-default">
+    <?php if ($widget->isShowTitle()):?>
+        <div class="panel-heading"><?=$this->escapeHtml($widget->getTitle());?></div>
+    <?php endif; ?>
+    <div class="panel-body">
+        <?=$this->tagHelper()->tagCloud();?>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<?php
+/** @var \UthandoThemeManager\Model\WidgetModel $widget */
+$widget = $this->widget;
+$dateFormat = $this->params['date_format'] ?? 'F Y';
+?>
+<div class="panel panel-default">
+    <?php if ($widget->isShowTitle()):?>
+        <div class="panel-heading"><?=$this->escapeHtml($widget->getTitle());?></div>
+    <?php endif; ?>
+    <!-- List group -->
+    <div class="list-group">
+        <?php foreach($this->postHelper()->getArchiveList() as $item):?>
+            <a href="<?=$this->url('post-list/archive', [
+                'month' => $item->month,
+                'year'  => $item->year,
+            ]);?>" class="list-group-item">
+                <span class="text-primary"><?=$this->formatDate($item->date, $dateFormat);?></span>
+                <span class="badge"><?=$item->count;?></span>
+            </a>
+        <?php endforeach;?>
+    </div>
+</div>

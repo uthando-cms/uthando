@@ -1,0 +1,19 @@
+<?php
+/** @var \UthandoThemeManager\Model\WidgetModel $widget */
+$widget = $this->widget
+;?>
+
+<div class="panel panel-default">
+    <?php if ($widget->isShowTitle()):?>
+        <div class="panel-heading"><?=$this->escapeHtml($widget->getTitle());?></div>
+    <?php endif; ?>
+    <div class="list-group">
+        <?php foreach($this->postHelper()->getRecent() as $postItem):?>
+            <a href="<?=$this->url('blog', [
+                'post-item' => $this->escapeHtml($postItem->getSlug()),
+            ]);?>" class="list-group-item">
+                <span class="text-primary"><?=$this->escapeHtml($postItem->getTitle());?></span>
+            </a>
+        <?php endforeach;?>
+    </div>
+</div>
