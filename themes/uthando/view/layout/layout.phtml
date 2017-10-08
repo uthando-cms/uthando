@@ -18,9 +18,6 @@
     ])->appendStylesheet($this->basePath('css/uthando.css'))
         ->appendStylesheet($this->themePath('assets/css/styles.css'));?>
 
-    <!-- Scripts -->
-    <?=$this->headScript()
-        ->appendFile($this->basePath('/js/uthando.js'));?>
   </head>
 
 <body>
@@ -91,6 +88,7 @@
             </div>
     	</div>
 	</div>
-    <?=$this->inlineScript();?>
+    <?=$this->inlineScript()
+        ->appendFile($this->basePath('/js/uthando.js'));?>
 </body>
 </html>
