@@ -35,7 +35,7 @@
     <nav id="column-left">
         <?= $this->navigation('UthandoAdmin\Navigation')
             ->menu()
-            ->setPartial('uthando-admin/partial/side-bar');; ?>
+            ->setPartial('uthando-admin/partial/side-bar'); ?>
     </nav>
 
     <div id="content">
@@ -72,12 +72,14 @@
     </footer>
 </div>
 
-<?= $this->inlineScript()
+<?=$this->inlineScript()
     ->appendFile($this->basePath('js/uthando-admin.js')); ?>
 
 <script>
     admin.basePath = '<?=$this->basePath();?>';
 </script>
+
+<?=$this->placeholder('js-scripts');?>
 
 </body>
 </html>

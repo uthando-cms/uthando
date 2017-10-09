@@ -17,7 +17,6 @@
         'href' => $this->basePath('/img/favicon.ico')
     ])->appendStylesheet($this->basePath('css/uthando.css'))
         ->appendStylesheet($this->themePath('assets/css/styles.css'));?>
-
   </head>
 
 <body>
@@ -90,5 +89,7 @@
 	</div>
     <?=$this->inlineScript()
         ->appendFile($this->basePath('/js/uthando.js'));?>
+
+    <?=$this->placeholder('js-scripts');?>
 </body>
 </html>
