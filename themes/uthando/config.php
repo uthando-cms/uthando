@@ -10,5 +10,6 @@ return [
         'widget/blog-recent'    => __DIR__ . '/./view/widgets/blog-recent.phtml',
         'widget/blog-tag-cloud' => __DIR__ . '/./view/widgets/blog-tag-cloud.phtml',
         'widget/search'         => __DIR__ . '/./view/widgets/search.phtml',
+        'widget/tweet-feed'     => __DIR__ . '/./view/widgets/tweet-feed.phtml',
     ],
 ];
