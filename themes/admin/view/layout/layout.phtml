@@ -25,7 +25,7 @@
                     <i class="fa fa-user"></i> <?= $this->identity()->getFullName(); ?>
                     <i class="fa fa-caret-down"></i>
                 </a>
-                <?= $this->uthandoNavigation('UthandoUser\Navigation')
+                <?= $this->uthandoNavigation(\UthandoAdmin\Service\AdminUserNavigationFactory::class)
                     ->uthandoTbMenu()
                     ->setUlClass('dropdown-menu dropdown-menu-right'); ?>
             </li>
@@ -33,7 +33,7 @@
     </header>
 
     <nav id="column-left">
-        <?= $this->navigation('UthandoAdmin\Navigation')
+        <?= $this->navigation(\UthandoAdmin\Service\AdminNavigationFactory::class)
             ->menu()
             ->setPartial('uthando-admin/partial/side-bar'); ?>
     </nav>
@@ -46,7 +46,7 @@
                 </div>
                 <h1><?=$this->pageTitle;?></h1>
                 <nav class="breadcrumb">
-                    <?=$this->navigation('UthandoAdmin\Navigation')
+                    <?=$this->navigation(\UthandoAdmin\Service\AdminNavigationFactory::class)
                         ->breadcrumbs()
                         ->setRenderInvisible(true)
                         ->setSeparator(' / ');
