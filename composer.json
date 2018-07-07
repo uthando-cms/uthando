@@ -18,7 +18,7 @@
   "license": "BSD-3-Clause",
   "homepage": "http://shaunfreeman.name/",
   "require": {
-    "php": ">=7.0",
+    "php": ">=7.1",
     "zendframework/zend-modulemanager": "2.*",
     "zendframework/zend-mvc": "2.*",
     "zendframework/zend-view": "2.*",
@@ -65,7 +65,8 @@
     "summernote/summernote": "*",
     "ccampbell/chromephp": "4.*",
     "studio-42/elfinder": "2.*",
-    "ezyang/htmlpurifier": "^4.9"
+    "ezyang/htmlpurifier": "^4.9",
+    "facebook/graph-sdk": "5.*"
   },
   "extra": {
     "zend-skeleton-installer": [
