@@ -59,7 +59,7 @@
     "twbs/bootstrap": "*",
     "giggsey/libphonenumber-for-php": "*",
     "phpoffice/phpexcel": "1.*",
-    "dompdf/dompdf": "0.7.*",
+    "dompdf/dompdf": "0.*",
     "codeclimate/php-test-reporter": "dev-master",
     "squizlabs/php_codesniffer": "2.0",
     "summernote/summernote": "*",
