@@ -2,12 +2,12 @@
 languages:
   PHP: true
 exclude_paths:
+  - bin/*
+  - build/*
   - config/*
   - data/*
-  - devmodules/*
-  - module/Application/config/*
-  - module/Application/test/*
-  - module/Application/view/*
   - public/*
+  - test/*
+  - themes/*
   - vendor/*
-
+  - view/*

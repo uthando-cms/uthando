@@ -1,16 +1,49 @@
-Uthando Cms
+Uthando CMS
 =======================
 
 [![Build Status](https://travis-ci.org/uthando-cms/uthando.svg?branch=master)](https://travis-ci.org/uthando-cms/uthando)
 [![Test Coverage](https://codeclimate.com/github/uthando-cms/uthando/badges/coverage.svg)](https://codeclimate.com/github/uthando-cms/uthando/coverage)
 [![Code Climate](https://codeclimate.com/github/uthando-cms/uthando/badges/gpa.svg)](https://codeclimate.com/github/uthando-cms/uthando)
-[![Dependency Status](https://www.versioneye.com/user/projects/55ed944e211c6b001f001670/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55ed944e211c6b001f001670)
 [![Packagist](https://img.shields.io/packagist/v/uthando-cms/uthando.svg)]()
 
 Introduction
 ------------
-This is a simple, base application for Uthando CMS.
-You can use it without any of the other modules as a base ZF2 MVC application as a base start for your projects.
+This is a simple, CMS application called Uthando CMS.
+
+We are now merging some modules into the main app in an effort to
+simplify installing and updating.
+
+This application will run based of Zend Framework 3 and only support PHP > 7.1
+
+From now on we are working on Version 3 and have discontinued all updates on all previous
+versions, we will continue to bug fix untill v3 is complete. Some modules will be depreciated as the demand on those are limited to one or two installs.
+
+This will no longer be a base Zend Framework 2 MVC applications but a full CMS instead.
+
+Features will include an install script, admin, blog, dynamic navigation via database,
+theme management, update management, cache management, users and more. 
+
+### Modules & Libraries Included
+
+There are a number of modules that are the base and are listed below
+we will check these off as they are completed, at the moment some maybe
+merged with others 
+
+- [ ] Admin
+- [ ] Core
+- [ ] Contact
+- [ ] DomPdf
+- [ ] Events
+- [ ] File Manager
+- [ ] Mail
+- [ ] Navigation
+- [ ] Newsletter
+- [ ] Portfolio
+- [ ] Session Manager
+- [ ] Testimonial
+- [ ] Theme Manager
+- [ ] Twitter
+- [ ] User
 
 Installation using Composer
 ---------------------------
@@ -43,30 +76,6 @@ If you don't have composer installed globally then another way to install Uthand
         php composer.phar install
 
 If you don't have access to curl, then install Composer into your project as per the [documentation](https://getcomposer.org/doc/00-intro.md).
-
-### Installing extra modules and libraries
-
-There are a number of modules you can add and these will get you up and running very quickly.
-The official Uthando CMS modules are:
-
-- Uthando Admin
-- Uthando Article
-- Uthando Business List
-- Uthando Common
-- Uthando Contact
-- Uthando DomPdf
-- Uthando Events
-- Uthando File Manager
-- Uthando Mail
-- Uthando Navigation
-- Uthando News
-- Uthando Newsletter
-- Uthando Portfolio
-- Uthando Session Manager
-- Uthando Testimonial
-- Uthando Theme Manager
-- Uthando Twitter
-- Uthando User
 
 
 Web server setup

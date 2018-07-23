@@ -1,182 +1,68 @@
 {
-  "name": "uthando-cms/uthando",
-  "description": "Base App for Uthando CMS",
-  "authors": [
-    {
-      "name": "Shaun Freeman",
-      "email": "shaun@shaunfreeman.co.uk",
-      "homepage": "https://github.com/shaunfreeman",
-      "role": "Developer"
-    }
-  ],
+  "name": "shaunfreeman/uthando-cms",
+  "description": "Basic blog application",
+  "type": "project",
+  "license": "BSD-3-Clause",
   "keywords": [
     "framework",
-    "zf2",
-    "cms",
-    "uthando"
+    "mvc",
+    "zf"
   ],
-  "license": "BSD-3-Clause",
-  "homepage": "http://shaunfreeman.name/",
+  "homepage": "http://uthando-cms.co.uk/",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "require": {
-    "php": ">=7.1",
-    "zendframework/zend-modulemanager": "2.*",
-    "zendframework/zend-mvc": "2.*",
-    "zendframework/zend-view": "2.*",
-    "zendframework/zend-config": "2.*",
-    "zendframework/zend-form": "2.*",
-    "zendframework/zend-serializer": "2.*",
-    "zendframework/zend-log": "2.*",
-    "zendframework/zend-console": "2.*",
-    "zendframework/zend-text": "2.*",
-    "zendframework/zend-http": "2.*",
-    "zendframework/zend-i18n": "2.*",
-    "zendframework/zend-i18n-resources": "2.*",
-    "zendframework/zend-navigation": "2.*",
-    "rwoverdijk/assetmanager": "1.*",
-    "neilime/zf2-twb-bundle": "2.*"
+    "php": "^7.1",
+    "zendframework/zend-component-installer": "^1.0 || ^0.7 || ^1.0.0-dev@dev",
+    "zfcampus/zf-development-mode": "^3.0",
+    "zendframework/zend-mvc": "^3.1",
+    "zendframework/zend-navigation": "^2.8",
+    "zendframework/zend-paginator": "^2.7",
+    "zendframework/zend-hydrator": "^2.2",
+    "zendframework/zend-inputfilter": "^2.7",
+    "zendframework/zend-form": "^2.10",
+    "zendframework/zend-db": "^2.8",
+    "zendframework/zend-session": "^2.8",
+    "zendframework/zend-mvc-plugin-flashmessenger": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Admin\\": "module/Admin/src/",
+      "Blog\\": "module/Blog/src/",
+      "Core\\": "module/Core/src/",
+      "User\\": "module/User/src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AdminTest\\": "module/Admin/test/",
+      "BlogTest\\": "module/Blog/test/",
+      "CoreTest\\": "module/Core/test/",
+      "UserTest\\": "module/User/test/"
+    }
+  },
+  "scripts": {
+    "cs-check": "phpcs module/Application/src",
+    "cs-fix": "phpcbf module/Application/src",
+    "development-disable": "zf-development-mode disable",
+    "development-enable": "zf-development-mode enable",
+    "development-status": "zf-development-mode status",
+    "post-create-project-cmd": [
+      "@development-enable"
+    ],
+    "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
+    "test": "phpdbg7.2 -qrr ./vendor/bin/phpunit -v"
   },
   "require-dev": {
     "zendframework/zend-developer-tools": "^1.1",
-    "bjyoungblood/bjy-profiler" : "dev-master",
-    "zendframework/zend-authentication": "2.*",
-    "zendframework/zend-cache": "2.*",
-    "Zendframework/zend-captcha": "2.*",
-    "zendframework/zend-db": "2.*",
-    "zendframework/zend-debug": "2.*",
-    "zendframework/zend-eventmanager": "2.*",
-    "zendframework/zend-file": "2.*",
-    "zendframework/zend-mail": "2.*",
-    "zendframework/zend-paginator": "2.*",
-    "zendframework/zend-permissions-acl": "2.*",
-    "zendframework/zend-session": "2.*",
-    "zendframework/zend-tag": "2.*",
-    "zendframework/zend-test": "2.*",
-    "zendframework/zendoauth": "dev-master",
-    "zendframework/zendservice-twitter": "2.*",
-    "zendframework/zendservice-akismet": "2.*",
-    "paypal/rest-api-sdk-php": "*",
-    "twitter/typeahead.js": "*",
-    "twbs/bootstrap": "*",
-    "giggsey/libphonenumber-for-php": "*",
-    "phpoffice/phpexcel": "1.*",
-    "dompdf/dompdf": "0.*",
-    "codeclimate/php-test-reporter": "dev-master",
-    "squizlabs/php_codesniffer": "2.0",
-    "summernote/summernote": "*",
-    "ccampbell/chromephp": "4.*",
-    "studio-42/elfinder": "2.*",
-    "ezyang/htmlpurifier": "^4.9",
-    "facebook/graph-sdk": "5.*"
-  },
-  "extra": {
-    "zend-skeleton-installer": [
-      {
-
-        "name": "uthando-cms/uthando-common",
-        "constraint": "^2.0.0",
-        "module": true
-      },
-      {
-
-        "name": "uthando-cms/uthando-admin",
-        "constraint": "^2.0.0",
-        "module": true
-      },
-      {
-
-        "name": "uthando-cms/uthando-session-manager",
-        "constraint": "^2.0.0",
-        "module": true
-      },
-      {
-
-        "name": "uthando-cms/uthando-theme-manager",
-        "constraint": "^2.0.0",
-        "module": true
-      },
-      {
-
-        "name": "uthando-cms/uthando-user",
-        "constraint": "^2.0.0",
-        "module": true
-      },
-      {
-
-        "name": "uthando-cms/uthando-article",
-        "constraint": "^2.0.0",
-        "prompt": "Would you like to install Uthando Article?",
-        "module": true
-      },
-      {
-        "name": "uthando-cms/uthando-business-list",
-        "constraint": "^2.0.0",
-        "prompt": "Would you like to install Uthando Business List?",
-        "module": true
-      },
-      {
-        "name": "uthando-cms/uthando-contact",
-        "constraint": "^2.0.0",
-        "prompt": "Would you like to install Uthando Contact?",
-        "module": true
-      },
-      {
-        "name": "uthando-cms/uthando-dompdf",
-        "constraint": "^2.0.0",
-        "prompt": "Would you like to install Uthando Dom PDF?",
-        "module": true
-      },
-      {
-        "name": "uthando-cms/uthando-events",
-        "constraint": "^2.0.0",
-        "prompt": "Would you like to install Uthando Events?",
-        "module": true
-      },
-      {
-        "name": "uthando-cms/uthando-file-manager",
-        "constraint": "^2.0.0",
-        "prompt": "Would you like to install Uthando File Manager?",
-        "module": true
-      },
-      {
-        "name": "uthando-cms/uthando-mail",
-        "constraint": "^2.0.0",
-        "prompt": "Would you like to install Uthando Mail?",
-        "module": true
-      },
-      {
-        "name": "uthando-cms/uthando-navigation",
-        "constraint": "^2.0.0",
-        "prompt": "Would you like to install Uthando Navigation?",
-        "module": true
-      },
-      {
-        "name": "uthando-cms/uthando-news",
-        "constraint": "^2.0.0",
-        "prompt": "Would you like to install Uthando News?",
-        "module": true
-      },
-      {
-        "name": "uthando-cms/uthando-newsletter",
-        "constraint": "^2.0.0",
-        "prompt": "Would you like to install Uthando Newsletter?",
-        "module": true
-      },
-      {
-        "name": "uthando-cms/uthando-portfolio",
-        "constraint": "^2.0.0",
-        "prompt": "Would you like to install Uthando Portfolio?",
-        "module": true
-      },
-      {
-        "name": "uthando-cms/uthando-testimonial",
-        "constraint": "^2.0.0",
-        "prompt": "Would you like to install Uthando Testimonial?",
-        "module": true
-      }
-    ]
-  },
-  "scripts": {
-    "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
-    "test": "phpdbg -qrr ./vendor/bin/phpunit -v"
+    "zendframework/zend-test": "^3.1",
+    "zendframework/zendservice-twitter": "^2.0",
+    "zendframework/zendservice-akismet": "^2.0",
+    "codeclimate/php-test-reporter": "^0.4.4",
+    "squizlabs/php_codesniffer": "^3.0",
+    "summernote/summernote": "^0.8",
+    "ccampbell/chromephp": "^4.0",
+    "studio-42/elfinder": "^2.0",
+    "ezyang/htmlpurifier": "^4.9"
   }
 }

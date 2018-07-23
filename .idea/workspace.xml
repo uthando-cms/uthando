@@ -1,0 +1,1357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="500fccbe-c244-4c7a-94bd-4e903332ae7b" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.codeclimate.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.codeclimate.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/application.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/autoload/global.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/autoload/global.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cache/db/do_not_remove" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cache/do_not_remove" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/do_not_remove" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/fonts/arial.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/sample.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/sessions/do_not_remove" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/Module.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/autoload_classmap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/config/module.config.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/public/css/print.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/public/css/uthando-styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/public/img/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/public/img/spinner.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/public/img/uthando-cms.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/public/img/uthando-cms.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/public/img/zf2-logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/public/js/jquery.searchForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/public/js/loading-overlay.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/public/js/site.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/src/Application/Controller/IndexController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/template_map.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/test/ApplicationTest/Controller/IndexControllerTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/test/ApplicationTest/Framework/TestCase.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/test/Bootstrap.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/test/TestConfig.php.dist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/test/phpunit.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/view/application/index/index.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/view/error/404.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/view/error/index.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/module/Application/view/layout/layout.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/userfiles/.trash/do_not_remove" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/userfiles/do_not_remove" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/admin/config.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/admin/view/layout/basic.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/admin/view/layout/layout.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/uthando/assets/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/uthando/config.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/uthando/view/layout/layout.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/uthando/view/widgets/blog-archive.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/uthando/view/widgets/blog-category.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/uthando/view/widgets/blog-popular.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/uthando/view/widgets/blog-posts.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/uthando/view/widgets/blog-recent.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/uthando/view/widgets/blog-tag-cloud.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/uthando/view/widgets/search.phtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/uthando/view/widgets/tweet-feed.phtml" beforeDir="false" />
+    </list>
+    <ignored path="uthando.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/vendor/bjyoungblood/bjy-profiler/" />
+    <ignored path="$PROJECT_DIR$/vendor/composer/" />
+    <ignored path="$PROJECT_DIR$/vendor/dino/dompdf-module/" />
+    <ignored path="$PROJECT_DIR$/vendor/dompdf/dompdf/" />
+    <ignored path="$PROJECT_DIR$/vendor/firephp/firephp-core/" />
+    <ignored path="$PROJECT_DIR$/vendor/kriswallsmith/assetic/" />
+    <ignored path="$PROJECT_DIR$/vendor/paypal/rest-api-sdk-php/" />
+    <ignored path="$PROJECT_DIR$/vendor/paypal/sdk-core-php/" />
+    <ignored path="$PROJECT_DIR$/vendor/phenx/php-font-lib/" />
+    <ignored path="$PROJECT_DIR$/vendor/rwoverdijk/assetmanager/" />
+    <ignored path="$PROJECT_DIR$/vendor/symfony/process/" />
+    <ignored path="$PROJECT_DIR$/vendor/zendframework/zend-developer-tools/" />
+    <ignored path="$PROJECT_DIR$/vendor/zendframework/zend-modulemanager/" />
+    <ignored path="$PROJECT_DIR$/vendor/zendframework/zendframework/" />
+    <ignored path="$PROJECT_DIR$/vendor/zendframework/zendoauth/" />
+    <ignored path="$PROJECT_DIR$/vendor/zendframework/zendservice-twitter/" />
+    <ignored path="$PROJECT_DIR$/vendor/zendframework/zendxml/" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" executionDataType="PHAR" phpInterpreterId="fce75f7c-efbb-4073-89fa-45ff51e1ac1e" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <pharPath>$PROJECT_DIR$/composer_2.phar</pharPath>
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Uthando CMS$SubscriberTest_testRemoveSubscriberFromList.coverage" NAME="SubscriberTest.testRemoveSubscriberFromList Coverage Results" MODIFIED="1458253644802" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand />
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="uthando" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/composer.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="10" selection-start-line="18" selection-end-line="19" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".codeclimate.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.codeclimate.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="13" lean-forward="true" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>create</find>
+      <find>createRange</find>
+      <find>nodes</find>
+      <find>onApplyCustomStyle</find>
+      <find>cut</find>
+      <find>strikethrough</find>
+      <find>onFormatBlock</find>
+      <find>isOn</find>
+      <find>br</find>
+      <find>blank</find>
+      <find>option</find>
+      <find>options</find>
+      <find>empty</find>
+      <find>Editor</find>
+      <find>emptyPara</find>
+      <find>onEnter</find>
+      <find>keyMap</find>
+      <find>insertParagraph</find>
+      <find>beforeCommand</find>
+      <find>ui</find>
+      <find>var ui</find>
+      <find>blankHTML</find>
+      <find>var dom</find>
+      <find>events</find>
+      <find>buttonGroup</find>
+      <find>dropdown</find>
+      <find>para</find>
+      <find>formatBlock</find>
+      <find>insert</find>
+      <find>restoreTarget</find>
+    </findStrings>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/devmodules/UthandoBlog/src/UthandoBlog/Controller/Feed.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoContact/view/uthando-contact/controller/settings/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/view/uthando-dom-pdf/settings/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoNavigation/view/uthando-navigation/controller/menu/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoNavigation/view/uthando-navigation/controller/menu-item/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoThemeManager/view/uthando-theme-manager/widget/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoThemeManager/view/uthando-theme-manager/widget-group/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoBlog/view/uthando-blog/category/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoBlog/view/uthando-blog/tag/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoMail/view/uthando-mail/mail-queue/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoBusinessList/view/uthando-business-list/business-list/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoTestimonial/view/uthando-testimonial/testimonial/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoNewsletter/view/uthando-newsletter/newsletter/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoNewsletter/view/uthando-newsletter/subscriber-admin/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoNewsletter/view/uthando-newsletter/template/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoNewsletter/view/uthando-newsletter/template/list.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoEvents/view/uthando-events/events/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoPortfolio/view/uthando-portfolio/admin/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoPortfolio/view/uthando-portfolio/tag/index.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoPortfolio/src/UthandoPortfolio/Mapper/Tag.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoAdmin/view/uthando-admin/partial/summernote.phtml" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoThemeManager/src/UthandoThemeManager/Form/WidgetForm.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoCommon/src/UthandoCommon/Controller/AbstractCrudController.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoBlog/config/module.config.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoTwitter/src/UthandoTwitter/Event/AutoPostListener.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoBlog/src/UthandoBlog/Service/Post.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoBlog/src/UthandoBlog/Model/Post.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoBlog/src/UthandoBlog/Form/Post.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoBlog/src/UthandoBlog/Controller/PostAdmin.php" />
+        <option value="$PROJECT_DIR$/config/autoload/uthando-user.local.php" />
+        <option value="$PROJECT_DIR$/config/autoload/uthando-common.local.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoCommon/src/UthandoCommon/Form/Settings/AkismetFieldSet.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/config/uthando-routes.config.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/config/uthando-user.config.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Service/DomPdfFactory.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Mvc/Service/ViewPdfStrategyFactory.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Model/PdfFooterCollection.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Model/PdfHeaderCollection.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Service/DomPdfServiceTest.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Service/PdfModelFactoryTest.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/View/Strategy/PdfStrategyTest.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Mvc/Controller/SettingsControllerTest.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Mvc/Service/ViewPdfRendererFactoryTest.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Mvc/Service/ViewPdfStrategyFactoryTest.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/config/module.config.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Form/View/Helper/PdfTextLineFormCollectionTest.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Service/DomPdfOptionsFactoryTest.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoDomPdf/composer.json" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoUser/src/UthandoUser/Options/AuthOptions.php" />
+        <option value="$PROJECT_DIR$/devmodules/UthandoUser/src/UthandoUser/Authentication/Storage.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>false</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>false</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/giggsey/libphonenumber-for-php" />
+      <path value="$PROJECT_DIR$/vendor/paypal/rest-api-sdk-php" />
+      <path value="$PROJECT_DIR$/vendor/twitter/typeahead.js" />
+      <path value="$PROJECT_DIR$/vendor/neilime/zf2-twb-bundle" />
+      <path value="$PROJECT_DIR$/vendor/kriswallsmith/assetic" />
+      <path value="$PROJECT_DIR$/vendor/rwoverdijk/assetmanager" />
+      <path value="$PROJECT_DIR$/vendor/twbs/bootstrap" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpexcel" />
+      <path value="$PROJECT_DIR$/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-inputfilter" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-i18n" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zendoauth" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-text" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-form" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-log" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-eventmanager" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zendservice-twitter" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-loader" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zendservice-akismet" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-uri" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-console" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-json" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-math" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-crypt" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-modulemanager" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-filter" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-mvc" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-stdlib" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-version" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-config" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-i18n-resources" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-http" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-serializer" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-validator" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-escaper" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-navigation" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-view" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-servicemanager" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-feed" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/container-interop/container-interop" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/vendor/codeclimate/php-test-reporter" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/guzzle/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/satooshi/php-coveralls" />
+      <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-hydrator" />
+      <path value="$PROJECT_DIR$/vendor/squizlabs/php_codesniffer" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zendpdf" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-cache" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-session" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-db" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-authentication" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-permissions-acl" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-paginator" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-mail" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-mime" />
+      <path value="$PROJECT_DIR$/vendor/summernote/summernote" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-file" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-debug" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-captcha" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-psr7bridge" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-dom" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-test" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/giggsey/locale" />
+      <path value="$PROJECT_DIR$/vendor/padraic/phar-updater" />
+      <path value="$PROJECT_DIR$/vendor/padraic/humbug_get_contents" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/ccampbell/chromephp" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-tag" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-developer-tools" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/bjyoungblood/bjy-profiler" />
+      <path value="$PROJECT_DIR$/vendor/studio-42/elfinder" />
+      <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/facebook/graph-sdk" />
+      <path value="$PROJECT_DIR$/vendor/true/punycode" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/zfcampus/zf-development-mode" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-component-installer" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-mvc-plugin-flashmessenger" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-router" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="59" />
+    <option name="y" value="24" />
+    <option name="width" value="1861" />
+    <option name="height" value="1053" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Code SmellPHP</id>
+          </State>
+          <State>
+            <id>GeneralPHP</id>
+          </State>
+          <State>
+            <id>PHP</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PhpInvalidMagicMethodModifiersInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <showMembers ProjectPane="false" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Uthando CMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="uthando-cms" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Uthando CMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="uthando-cms" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="module" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SearchEverywhereHistory" value="" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/themes/default/assets/css/styles.css&#10;/home/shaun/Web-Projects/uthando-cms/config/autoload/uthando-user.local.php&#10;/home/shaun/Web-Projects/uthando-cms/vendor/zendframework/zend-view/src/Helper/ServerUrl.php&#10;true&#10;/home/shaun/Web-Projects/uthando-cms/vendor/twbs/bootstrap/dist/css/bootstrap-theme.css&#10;/home/shaun/Web-Projects/uthando-cms/config/autoload/uthando-common.local.php&#10;/home/shaun/Web-Projects/uthando-cms/data/cache/module-config-cache.config_cache.php" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../uthando-cms-2" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="options.lastSelected" value="preferences.general" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.37695077" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="prop_add_unversioned_files" value="true" />
+    <property name="recentsLimit" value="5" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/devmodules/UthandoTwitter/view/uthando-twitter/settings" />
+      <recent name="$PROJECT_DIR$/devmodules/UthandoTwitter/config" />
+      <recent name="$PROJECT_DIR$/devmodules/UthandoUser/view/uthando-user/limit-login" />
+      <recent name="$PROJECT_DIR$/devmodules/UthandoAdmin/view/uthando-admin/index" />
+      <recent name="$PROJECT_DIR$/devmodules/UthandoUser/src/UthandoUser/Service/Factory" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/devmodules/UthandoContact/src/UthandoContact/Options/Service" />
+      <recent name="$PROJECT_DIR$/devmodules/UthandoFileManager/src/UthandoFileManager/Options/Service" />
+      <recent name="$PROJECT_DIR$/devmodules/UthandoUser/src/UthandoUser/Hydrator" />
+      <recent name="$PROJECT_DIR$/themes/uthando/view/widgets" />
+      <recent name="$PROJECT_DIR$/devmodules/UthandoThemeManager/src/UthandoThemeManager/View" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="PHPUnit.UthandoNewsletter">
+    <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://raspberrypi.local/uthando-cms/devmodules/UthandoNewsletter/build/logs/UthandoNewsletter/index.html" />
+    <configuration name="index.phtml" type="JavascriptDebugType" factoryName="JavaScript Debug" nameIsGenerated="true" uri="http://raspberrypi.local/uthando-cms/devmodules/UthandoDomPdf/view/uthando-dom-pdf/settings/index.phtml" />
+    <configuration name="UthandoAdmin" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoAdmin/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoArticle" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoArticle/test/phpunit.xml" directory="$PROJECT_DIR$/devmodules/UthandoArticle/test" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoBlog" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoBlog/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoBussinessList" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoBusinessList/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoCMS" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/module/Application/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoCommon" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoCommon/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoContact" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoContact/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoDomPdf" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoDomPdf/test/phpunit.xml" directory="$PROJECT_DIR$/devmodules/UthandoDomPdf" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoEvents" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoMail" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoMail/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoNavigation" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoNavigation/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoNews" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoNews/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoNewsletter" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoNewsletter/test/phpunit.xml" directory="$PROJECT_DIR$/../vendor" file="$PROJECT_DIR$/vendor/bin/phpunit" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoPortfolio" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoPortfolio/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoSessionManager" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoSessionManager/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoTestimonial" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoTestimonial/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoThemeManager" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoThemeManager/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoTwitter" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoTwitter/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthandoUser" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoUser/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="UthanosFileManager" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <CommandLine parameters="-dzend_extension=&quot;/usr/local/opt/php56-xdebug/xdebug.so&quot;" />
+      <TestRunner configuration_file="$PROJECT_DIR$/devmodules/UthandoFileManager/test/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+    </configuration>
+    <configuration name="Newsletter Test" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/../vendor/bin/phpunit">
+      <CommandLine parameters="-qrr" workingDirectory="$PROJECT_DIR$/devmodules/UthandoNewsletter/test" />
+      <option name="workingDirectory" value="$PROJECT_DIR$/devmodules/UthandoNewsletter/test" />
+    </configuration>
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="8d8651c5-1352-4287-aac6-ba44a07b71d7" server_name="projects" />
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+    </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.index.phtml" />
+      <item itemvalue="PHP Script.Newsletter Test" />
+      <item itemvalue="PHPUnit.UthandoAdmin" />
+      <item itemvalue="PHPUnit.UthandoArticle" />
+      <item itemvalue="PHPUnit.UthandoBlog" />
+      <item itemvalue="PHPUnit.UthandoBussinessList" />
+      <item itemvalue="PHPUnit.UthandoCommon" />
+      <item itemvalue="PHPUnit.UthandoContact" />
+      <item itemvalue="PHPUnit.UthandoDomPdf" />
+      <item itemvalue="PHPUnit.UthandoEvents" />
+      <item itemvalue="PHPUnit.UthanosFileManager" />
+      <item itemvalue="PHPUnit.UthandoMail" />
+      <item itemvalue="PHPUnit.UthandoNavigation" />
+      <item itemvalue="PHPUnit.UthandoNews" />
+      <item itemvalue="PHPUnit.UthandoNewsletter" />
+      <item itemvalue="PHPUnit.UthandoPortfolio" />
+      <item itemvalue="PHPUnit.UthandoSessionManager" />
+      <item itemvalue="PHPUnit.UthandoTestimonial" />
+      <item itemvalue="PHPUnit.UthandoThemeManager" />
+      <item itemvalue="PHPUnit.UthandoTwitter" />
+      <item itemvalue="PHPUnit.UthandoUser" />
+      <item itemvalue="PHPUnit.UthandoCMS" />
+      <item itemvalue="JavaScript Debug.index.html" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="500fccbe-c244-4c7a-94bd-4e903332ae7b" name="Default" comment="" />
+      <created>1409584710583</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1409584710583</updated>
+      <workItem from="1458236058965" duration="23804000" />
+      <workItem from="1458383065406" duration="274000" />
+      <workItem from="1458385979330" duration="10010000" />
+      <workItem from="1458403730993" duration="9122000" />
+      <workItem from="1458459881316" duration="969000" />
+      <workItem from="1458467877682" duration="131000" />
+      <workItem from="1458477897588" duration="11285000" />
+      <workItem from="1458506949108" duration="11443000" />
+      <workItem from="1458549907916" duration="13395000" />
+      <workItem from="1458684748308" duration="4705000" />
+      <workItem from="1458819857267" duration="1323000" />
+      <workItem from="1459168962402" duration="39000" />
+      <workItem from="1459172500423" duration="2074000" />
+      <workItem from="1459203563715" duration="41000" />
+      <workItem from="1460121296220" duration="16000" />
+      <workItem from="1460193301051" duration="3197000" />
+      <workItem from="1460356263975" duration="3888000" />
+      <workItem from="1460380715718" duration="8536000" />
+      <workItem from="1460732826579" duration="180000" />
+      <workItem from="1461010480368" duration="131000" />
+      <workItem from="1461068990220" duration="106000" />
+      <workItem from="1461069158096" duration="1526000" />
+      <workItem from="1461075902209" duration="14200000" />
+      <workItem from="1461402898611" duration="67000" />
+      <workItem from="1461403137410" duration="59000" />
+      <workItem from="1461403676136" duration="1185000" />
+      <workItem from="1461741572706" duration="1667000" />
+      <workItem from="1462540418848" duration="1627000" />
+      <workItem from="1462542567661" duration="272000" />
+      <workItem from="1462637967584" duration="245000" />
+      <workItem from="1462960087925" duration="4579000" />
+      <workItem from="1463059045062" duration="45000" />
+      <workItem from="1463059120014" duration="568000" />
+      <workItem from="1463142780322" duration="16710000" />
+      <workItem from="1463477470081" duration="1648000" />
+      <workItem from="1463496319100" duration="30000" />
+      <workItem from="1464026331184" duration="7540000" />
+      <workItem from="1464870250380" duration="674000" />
+      <workItem from="1466338335308" duration="5442000" />
+      <workItem from="1469539174539" duration="960000" />
+      <workItem from="1469727294886" duration="161000" />
+      <workItem from="1469796913558" duration="235000" />
+      <workItem from="1469831082950" duration="840000" />
+      <workItem from="1469975207834" duration="312000" />
+      <workItem from="1470043456660" duration="67000" />
+      <workItem from="1470727157880" duration="15346000" />
+      <workItem from="1471628614126" duration="96000" />
+      <workItem from="1471631306305" duration="2372000" />
+      <workItem from="1472647836241" duration="31000" />
+      <workItem from="1472814634837" duration="526000" />
+      <workItem from="1472815874978" duration="4284000" />
+      <workItem from="1473054324975" duration="498000" />
+      <workItem from="1473348646295" duration="145000" />
+      <workItem from="1475589234677" duration="281000" />
+      <workItem from="1482087976056" duration="422000" />
+      <workItem from="1482361034405" duration="243000" />
+      <workItem from="1482791401695" duration="72000" />
+      <workItem from="1485104060202" duration="4140000" />
+      <workItem from="1485242803107" duration="150000" />
+      <workItem from="1486502499470" duration="55000" />
+      <workItem from="1486713154732" duration="1910000" />
+      <workItem from="1486736850162" duration="635000" />
+      <workItem from="1486764695798" duration="1210000" />
+      <workItem from="1486819984849" duration="594000" />
+      <workItem from="1486837990035" duration="1523000" />
+      <workItem from="1486841062556" duration="512000" />
+      <workItem from="1486841830758" duration="15112000" />
+      <workItem from="1487001762262" duration="1143000" />
+      <workItem from="1487331028188" duration="478000" />
+      <workItem from="1487689148850" duration="2502000" />
+      <workItem from="1487692527057" duration="490000" />
+      <workItem from="1487693168814" duration="1361000" />
+      <workItem from="1488633451063" duration="960000" />
+      <workItem from="1489751856420" duration="1117000" />
+      <workItem from="1489950736577" duration="13568000" />
+      <workItem from="1490040718261" duration="21890000" />
+      <workItem from="1490133636204" duration="20000" />
+      <workItem from="1490134088452" duration="38000" />
+      <workItem from="1490134793630" duration="3332000" />
+      <workItem from="1490175659266" duration="16106000" />
+      <workItem from="1490283555480" duration="597000" />
+      <workItem from="1490345043995" duration="166000" />
+      <workItem from="1490345237602" duration="240000" />
+      <workItem from="1490353275649" duration="1804000" />
+      <workItem from="1490363311746" duration="2621000" />
+      <workItem from="1490384820921" duration="272000" />
+      <workItem from="1490385159531" duration="47941000" />
+      <workItem from="1490702129082" duration="12594000" />
+      <workItem from="1490805696640" duration="625000" />
+      <workItem from="1490807010169" duration="533000" />
+      <workItem from="1490821347344" duration="950000" />
+      <workItem from="1490828073244" duration="1384000" />
+      <workItem from="1490943862434" duration="1930000" />
+      <workItem from="1491043960028" duration="4517000" />
+      <workItem from="1491134305042" duration="336000" />
+      <workItem from="1491141520790" duration="451000" />
+      <workItem from="1491167913932" duration="1137000" />
+      <workItem from="1491228870366" duration="570000" />
+      <workItem from="1491310324962" duration="431000" />
+      <workItem from="1491388896348" duration="7753000" />
+      <workItem from="1491817747710" duration="740000" />
+      <workItem from="1492095619457" duration="189000" />
+      <workItem from="1492184263111" duration="798000" />
+      <workItem from="1493445680349" duration="551000" />
+      <workItem from="1493737842292" duration="324000" />
+      <workItem from="1494011985754" duration="409000" />
+      <workItem from="1500148567485" duration="944000" />
+      <workItem from="1500186279851" duration="2613000" />
+      <workItem from="1500270881211" duration="3438000" />
+      <workItem from="1500293908440" duration="8291000" />
+      <workItem from="1500491046395" duration="164000" />
+      <workItem from="1500549819963" duration="2746000" />
+      <workItem from="1500726739829" duration="2751000" />
+      <workItem from="1500831244009" duration="4500000" />
+      <workItem from="1501700435275" duration="380000" />
+      <workItem from="1501758409166" duration="981000" />
+      <workItem from="1502225436314" duration="143000" />
+      <workItem from="1502257570845" duration="4820000" />
+      <workItem from="1502346494485" duration="1811000" />
+      <workItem from="1502433516854" duration="1846000" />
+      <workItem from="1502523539231" duration="1335000" />
+      <workItem from="1502605339301" duration="1872000" />
+      <workItem from="1502692954312" duration="617000" />
+      <workItem from="1502719519699" duration="1367000" />
+      <workItem from="1502777084944" duration="6421000" />
+      <workItem from="1502864052943" duration="6801000" />
+      <workItem from="1502951233570" duration="9615000" />
+      <workItem from="1503039039979" duration="3420000" />
+      <workItem from="1503122992528" duration="1867000" />
+      <workItem from="1503228417657" duration="4426000" />
+      <workItem from="1503383668573" duration="4200000" />
+      <workItem from="1503469241252" duration="2430000" />
+      <workItem from="1503555184252" duration="1258000" />
+      <workItem from="1503665573760" duration="3638000" />
+      <workItem from="1503729926443" duration="7426000" />
+      <workItem from="1503815244073" duration="2094000" />
+      <workItem from="1503903860177" duration="4645000" />
+      <workItem from="1503985607648" duration="3688000" />
+      <workItem from="1504011988706" duration="1801000" />
+      <workItem from="1504088899462" duration="6532000" />
+      <workItem from="1504160461836" duration="16680000" />
+      <workItem from="1504249090716" duration="930000" />
+      <workItem from="1504266013913" duration="16120000" />
+      <workItem from="1504332268387" duration="26947000" />
+      <workItem from="1504422891905" duration="9741000" />
+      <workItem from="1504505723149" duration="13297000" />
+      <workItem from="1504532529268" duration="13667000" />
+      <workItem from="1504587964331" duration="6585000" />
+      <workItem from="1504678147251" duration="4902000" />
+      <workItem from="1504766596819" duration="19033000" />
+      <workItem from="1504851350835" duration="12495000" />
+      <workItem from="1504939259909" duration="6667000" />
+      <workItem from="1504970447729" duration="4600000" />
+      <workItem from="1504985912818" duration="8364000" />
+      <workItem from="1504996485458" duration="44000" />
+      <workItem from="1505024555875" duration="22827000" />
+      <workItem from="1505110710898" duration="21445000" />
+      <workItem from="1505195435036" duration="31967000" />
+      <workItem from="1505282408430" duration="11523000" />
+      <workItem from="1505301345951" duration="425000" />
+      <workItem from="1505301786967" duration="4110000" />
+      <workItem from="1505310875447" duration="8413000" />
+      <workItem from="1505369816237" duration="13594000" />
+      <workItem from="1505391765454" duration="207000" />
+      <workItem from="1505391989026" duration="14841000" />
+      <workItem from="1505458564390" duration="21838000" />
+      <workItem from="1505485458603" duration="17430000" />
+      <workItem from="1505542266630" duration="28194000" />
+      <workItem from="1505630210271" duration="28357000" />
+      <workItem from="1505715168601" duration="38565000" />
+      <workItem from="1505801605533" duration="29450000" />
+      <workItem from="1505851256789" duration="4590000" />
+      <workItem from="1505855883119" duration="129000" />
+      <workItem from="1505888910632" duration="31363000" />
+      <workItem from="1505975129964" duration="20030000" />
+      <workItem from="1506059961116" duration="7971000" />
+      <workItem from="1506146896223" duration="28376000" />
+      <workItem from="1506235504619" duration="15017000" />
+      <workItem from="1506320528532" duration="29191000" />
+      <workItem from="1506409926751" duration="18344000" />
+      <workItem from="1506491850361" duration="22971000" />
+      <workItem from="1506583968683" duration="23870000" />
+      <workItem from="1506666236839" duration="26834000" />
+      <workItem from="1506718992373" duration="353000" />
+      <workItem from="1506719360889" duration="3515000" />
+      <workItem from="1506751287450" duration="18551000" />
+      <workItem from="1506782186363" duration="7196000" />
+      <workItem from="1506837188257" duration="71061000" />
+      <workItem from="1507010103116" duration="77778000" />
+      <workItem from="1507183778415" duration="18068000" />
+      <workItem from="1507269037648" duration="21415000" />
+      <workItem from="1507356400984" duration="10007000" />
+      <workItem from="1507442850148" duration="13456000" />
+      <workItem from="1507528564739" duration="19964000" />
+      <workItem from="1507616587216" duration="13396000" />
+      <workItem from="1507701329520" duration="4245000" />
+      <workItem from="1507723467218" duration="9305000" />
+      <workItem from="1507749084709" duration="129000" />
+      <workItem from="1507788651561" duration="36000" />
+      <workItem from="1507788703491" duration="3939000" />
+      <workItem from="1507874939061" duration="2349000" />
+      <workItem from="1507919085702" duration="5299000" />
+      <workItem from="1507962139827" duration="11769000" />
+      <workItem from="1508134762189" duration="2847000" />
+      <workItem from="1508220361917" duration="5562000" />
+      <workItem from="1508306976748" duration="3905000" />
+      <workItem from="1508395598046" duration="1722000" />
+      <workItem from="1508413434950" duration="2075000" />
+      <workItem from="1508479967294" duration="2817000" />
+      <workItem from="1508655853796" duration="599000" />
+      <workItem from="1508679404211" duration="675000" />
+      <workItem from="1508739797489" duration="1210000" />
+      <workItem from="1508825977000" duration="598000" />
+      <workItem from="1508912029843" duration="1800000" />
+      <workItem from="1509090315665" duration="1198000" />
+      <workItem from="1509443929147" duration="630000" />
+      <workItem from="1509524465318" duration="677000" />
+      <workItem from="1509607711604" duration="607000" />
+      <workItem from="1509699886806" duration="10000" />
+      <workItem from="1509952297814" duration="2171000" />
+      <workItem from="1510062983785" duration="64000" />
+      <workItem from="1510127324175" duration="606000" />
+      <workItem from="1510218821907" duration="605000" />
+      <workItem from="1510473727732" duration="1197000" />
+      <workItem from="1510645054684" duration="1210000" />
+      <workItem from="1510731597970" duration="1224000" />
+      <workItem from="1510838649766" duration="608000" />
+      <workItem from="1511163734163" duration="1196000" />
+      <workItem from="1511250688809" duration="5520000" />
+      <workItem from="1511346925790" duration="2271000" />
+      <workItem from="1511421059757" duration="596000" />
+      <workItem from="1511430874849" duration="33816000" />
+      <workItem from="1511598165258" duration="6107000" />
+      <workItem from="1511680238184" duration="6781000" />
+      <workItem from="1511975555403" duration="174000" />
+      <workItem from="1511975745223" duration="8066000" />
+      <workItem from="1512018221184" duration="8667000" />
+      <workItem from="1512041534327" duration="19000" />
+      <workItem from="1512042523883" duration="9018000" />
+      <workItem from="1512079111981" duration="641000" />
+      <workItem from="1512122913912" duration="29000" />
+      <workItem from="1512155466222" duration="399000" />
+      <workItem from="1512156842153" duration="599000" />
+      <workItem from="1512199959616" duration="5228000" />
+      <workItem from="1512252750888" duration="190000" />
+      <workItem from="1512289680216" duration="17894000" />
+      <workItem from="1512376286419" duration="13569000" />
+      <workItem from="1512462163799" duration="26698000" />
+      <workItem from="1512544476730" duration="5084000" />
+      <workItem from="1512549580480" duration="18886000" />
+      <workItem from="1512596004401" duration="57000" />
+      <workItem from="1512630816324" duration="26774000" />
+      <workItem from="1512717567738" duration="7145000" />
+      <workItem from="1512798707830" duration="4253000" />
+      <workItem from="1512976053457" duration="3799000" />
+      <workItem from="1513063076471" duration="7050000" />
+      <workItem from="1513150555135" duration="712000" />
+      <workItem from="1513231349766" duration="1019000" />
+      <workItem from="1513246778983" duration="630000" />
+      <workItem from="1513321588031" duration="664000" />
+      <workItem from="1513408668857" duration="602000" />
+      <workItem from="1513484838480" duration="2654000" />
+      <workItem from="1513580616203" duration="986000" />
+      <workItem from="1513600425522" duration="4142000" />
+      <workItem from="1514141716422" duration="5742000" />
+      <workItem from="1514151835907" duration="1207000" />
+      <workItem from="1514153965255" duration="208000" />
+      <workItem from="1514189740006" duration="1220000" />
+      <workItem from="1514191799291" duration="1628000" />
+      <workItem from="1514380849110" duration="1580000" />
+      <workItem from="1515227426508" duration="210000" />
+      <workItem from="1515227649407" duration="6000" />
+      <workItem from="1515744790490" duration="49000" />
+      <workItem from="1515838700352" duration="2999000" />
+      <workItem from="1515918623383" duration="1338000" />
+      <workItem from="1516113980322" duration="210000" />
+      <workItem from="1516168066673" duration="3141000" />
+      <workItem from="1519826148902" duration="1422000" />
+      <workItem from="1520343074170" duration="3741000" />
+      <workItem from="1520579917034" duration="6771000" />
+      <workItem from="1520596489528" duration="28000" />
+      <workItem from="1520596540217" duration="105000" />
+      <workItem from="1522775261798" duration="6087000" />
+      <workItem from="1522824271982" duration="4871000" />
+      <workItem from="1522937434784" duration="2322000" />
+      <workItem from="1522996449268" duration="604000" />
+      <workItem from="1523080333573" duration="603000" />
+      <workItem from="1523170658717" duration="2636000" />
+      <workItem from="1523341181906" duration="2159000" />
+      <workItem from="1523383153264" duration="920000" />
+      <workItem from="1523442961215" duration="604000" />
+      <workItem from="1523612958695" duration="2794000" />
+      <workItem from="1523687260272" duration="752000" />
+      <workItem from="1523709178481" duration="1515000" />
+      <workItem from="1523772898907" duration="609000" />
+      <workItem from="1523966396782" duration="338000" />
+      <workItem from="1523967031059" duration="687000" />
+      <workItem from="1524255901697" duration="149000" />
+      <workItem from="1524289799225" duration="98000" />
+      <workItem from="1524290375913" duration="32000" />
+      <workItem from="1524290588673" duration="240000" />
+      <workItem from="1524906017368" duration="34000" />
+      <workItem from="1527611288428" duration="47000" />
+      <workItem from="1528089510266" duration="106000" />
+      <workItem from="1528213904704" duration="127000" />
+      <workItem from="1528352604781" duration="9381000" />
+      <workItem from="1528479538774" duration="2438000" />
+      <workItem from="1528535249578" duration="7094000" />
+      <workItem from="1528610576848" duration="3387000" />
+      <workItem from="1528697548088" duration="1330000" />
+      <workItem from="1528800293602" duration="47000" />
+      <workItem from="1528817704481" duration="83000" />
+      <workItem from="1528835306525" duration="5000" />
+      <workItem from="1528866999934" duration="624000" />
+      <workItem from="1529045422086" duration="1199000" />
+      <workItem from="1529571607379" duration="29000" />
+      <workItem from="1529946463589" duration="1898000" />
+      <workItem from="1529994137930" duration="453000" />
+      <workItem from="1529994925516" duration="1503000" />
+      <workItem from="1530098036080" duration="12800000" />
+      <workItem from="1530183042106" duration="6007000" />
+      <workItem from="1530194017003" duration="2622000" />
+      <workItem from="1530736668011" duration="480000" />
+      <workItem from="1530914846243" duration="16000" />
+      <workItem from="1530947655250" duration="15815000" />
+      <workItem from="1531030610286" duration="3546000" />
+      <workItem from="1531156661404" duration="76000" />
+      <workItem from="1531315615518" duration="7250000" />
+      <workItem from="1531377090494" duration="1216000" />
+      <workItem from="1531813803964" duration="1206000" />
+      <workItem from="1531831964523" duration="5226000" />
+      <workItem from="1531912563205" duration="1844000" />
+      <workItem from="1531934156055" duration="4699000" />
+      <workItem from="1531944220924" duration="121000" />
+      <workItem from="1531981667122" duration="1233000" />
+      <workItem from="1531990116791" duration="664000" />
+      <workItem from="1531991576232" duration="1112000" />
+      <workItem from="1531997077759" duration="206000" />
+      <workItem from="1531997348412" duration="17000" />
+      <workItem from="1532068324627" duration="4072000" />
+      <workItem from="1532111688920" duration="177000" />
+      <workItem from="1532366529163" duration="1667000" />
+      <workItem from="1532371767679" duration="67000" />
+      <workItem from="1532371992310" duration="221000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="UthandoNewsletter - 2016.03.22 at 11h 14m 52s.xml">
+      <configuration name="UthandoNewsletter" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UthandoNewsletter - 2016.03.22 at 11h 21m 24s.xml">
+      <configuration name="UthandoNewsletter" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UthandoNewsletter - 2016.03.22 at 11h 25m 31s.xml">
+      <configuration name="UthandoNewsletter" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UthandoNewsletter - 2016.03.22 at 11h 33m 07s.xml">
+      <configuration name="UthandoNewsletter" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UthandoNewsletter - 2016.03.22 at 11h 33m 26s.xml">
+      <configuration name="UthandoNewsletter" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UthandoNewsletter - 2016.03.22 at 11h 33m 48s.xml">
+      <configuration name="UthandoNewsletter" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UthandoNewsletter - 2016.03.22 at 11h 35m 27s.xml">
+      <configuration name="UthandoNewsletter" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UthandoNewsletter - 2016.03.22 at 11h 36m 46s.xml">
+      <configuration name="UthandoNewsletter" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UthandoNewsletter - 2016.03.22 at 11h 37m 15s.xml">
+      <configuration name="UthandoNewsletter" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="UthandoNewsletter - 2016.03.22 at 11h 38m 10s.xml">
+      <configuration name="UthandoNewsletter" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1901331000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.28334257" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32882413" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.37589827" side_tool="true" weight="0.26229507" />
+      <window_info anchor="right" id="Database" order="3" sideWeight="0.49548388" weight="0.3294766" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32879582" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.27539268" />
+      <window_info anchor="right" id="Structure" order="6" sideWeight="0.5407098" side_tool="true" visible="true" weight="0.1759823" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.6241017" visible="true" weight="0.2624729" />
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.26321137" />
+      <window_info anchor="bottom" id="Thumbnails" order="15" weight="0.32994923" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Remote Host" order="5" sideWeight="0.45929018" weight="0.2369146" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Changes" order="7" />
+      <window_info anchor="bottom" id="Application Servers" order="13" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="14" weight="0.3298647" />
+      <window_info anchor="bottom" id="Database Console" order="9" weight="0.3292683" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="File Transfer" order="8" sideWeight="0.49201277" visible="true" weight="0.15400624" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3253796" />
+      <window_info anchor="right" id="Coverage" order="4" side_tool="true" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Remote Host" order="5" sideWeight="0.45929018" weight="0.2369146" />
+      <window_info anchor="bottom" id="Thumbnails" order="17" weight="0.32994923" />
+      <window_info anchor="right" id="Structure" order="6" sideWeight="0.5407098" side_tool="true" visible="true" weight="0.1759823" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32882413" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32879582" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.27539268" />
+      <window_info anchor="bottom" id="Changes" order="8" />
+      <window_info anchor="bottom" id="Application Servers" order="15" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32606325" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="16" weight="0.3298647" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.31101272" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.26321137" />
+      <window_info anchor="bottom" id="Terminal" order="14" sideWeight="0.6241017" visible="true" weight="0.29067245" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.37589827" side_tool="true" weight="0.26229507" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="File Transfer" order="9" sideWeight="0.49201277" visible="true" weight="0.15400624" />
+      <window_info anchor="bottom" id="Database Console" order="10" weight="0.3292683" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Database" order="3" sideWeight="0.49548388" weight="0.3294766" />
+      <window_info anchor="right" id="Coverage" order="4" side_tool="true" />
+      <window_info id="Favorites" order="0" side_tool="true" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.gitignore" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.project" />
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/devmodules/UthandoAdmin" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoArticle" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoBlog" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoBusinessList" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoCommon" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoContact" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoDomPdf" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoEvents" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoFileManager" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoMail" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoNavigation" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoNews" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoNewsletter" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoPortfolio" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoSessionManager" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoTestimonial" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoThemeManager" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoTwitter" />
+      <path value="$PROJECT_DIR$/devmodules/UthandoUser" />
+    </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="79" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="22" selection-start-line="64" selection-start-column="3" selection-end-line="67" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/config/module.config.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/View/Strategy/PdfStrategyTest.php" />
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoBlog/src/UthandoBlog/Service/Post.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoCommon/src/UthandoCommon/Form/Settings/AkismetFieldSet.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/config/uthando-routes.config.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/config/uthando-user.config.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Service/DomPdfFactory.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Mvc/Service/ViewPdfRendererFactory.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Mvc/Service/ViewPdfStrategyFactory.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/View/Renderer/PdfRenderer.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Form/DomPdfOptionsFieldSet.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Form/DomPdfSettings.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Form/PdfTextLineFieldSet.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Form/PdfTextLineFontFieldSet.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Model/PdfTextLine.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Model/PdfHeaderCollection.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Form/PdfOptionsFieldSet.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Model/PdfFooterCollection.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/View/Renderer/PdfRenderTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Options/DomPdfOptionsTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Options/PdfOptionsTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Mvc/Controller/SettingsControllerTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Mvc/Service/ViewPdfRendererFactoryTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Mvc/Service/ViewPdfStrategyFactoryTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Model/PdfTextLineFontTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/Form/View/Helper/PdfTextLineFormCollection.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/Bootstrap.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Form/DomPdfOptionsFieldSetTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Service/PdfModelFactoryTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Service/DomPdfServiceTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Service/DomPdfOptionsFactoryTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/Form/View/Helper/PdfTextLineFormCollectionTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/src/UthandoDomPdf/View/Strategy/PdfStrategy.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/test/UthandoDomPdfTest/View/Strategy/PdfStrategyTest.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/composer.json" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoUser/src/UthandoUser/Options/AuthOptions.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoDomPdf/config/module.config.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoAdmin/src/UthandoAdmin/Controller/IndexController.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoUser/src/UthandoUser/Authentication/Storage.php" />
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoCommon/src/UthandoCommon/Mapper/AbstractDbMapper.php" />
+    <entry file="file://$PROJECT_DIR$/devmodules/UthandoCommon/src/UthandoCommon/Mapper/MapperManager.php" />
+    <entry file="file://$PROJECT_DIR$/config/autoload/db.local.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="17" selection-start-line="3" selection-start-column="11" selection-end-line="15" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="10" selection-start-line="18" selection-end-line="19" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-919" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="17">
+            <caret line="2" selection-end-line="139" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.codeclimate.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" lean-forward="true" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

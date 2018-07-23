@@ -1,20 +1,20 @@
 language: php
 
 php:
-  - 7.0
   - 7.1
+  - 7.2
 
 before_script:
-  - echo ${TRAVIS_PHP_VERSION:0:3}
+  - cd ..
+  - git clone git://github.com/shaunfreeman/uthando-cms.git
+  - cd uthando-cms
   - composer install --no-interaction --ignore-platform-reqs --prefer-source --no-scripts
-  - cd module/Application/test
 
 script:
-  - phpdbg -qrr ../../../vendor/bin/phpunit -v
+  - composer test
 
 after_script:
-  - cd ../../../
-  - php vendor/bin/test-reporter --coverage-report=build/logs/clover.xml
+  - php vendor/bin/test-reporter --coverage-report=build/clover.xml
 
 before_install:
   - composer self-update
