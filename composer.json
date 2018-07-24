@@ -51,7 +51,7 @@
       "@development-enable"
     ],
     "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
-    "test": "phpdbg7.2 -qrr ./vendor/bin/phpunit -v"
+    "test": "phpdbg -qrr ./vendor/bin/phpunit -v"
   },
   "require-dev": {
     "zendframework/zend-developer-tools": "^1.1",
