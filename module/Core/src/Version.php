@@ -12,7 +12,7 @@
 namespace Core;
 
 
-class Version
+final class Version
 {
     const VERSION = '3.0.0-dev';
 
@@ -21,7 +21,7 @@ class Version
      *
      * @return string
      */
-    static public function getVersion(): string
+    public static function getVersion(): string
     {
         return self::VERSION;
     }

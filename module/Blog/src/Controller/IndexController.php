@@ -12,6 +12,7 @@
 namespace Blog\Controller;
 
 
+use Blog\Entity\PostEntity;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -20,14 +21,37 @@ use Zend\View\Model\ViewModel;
  *
  * @package Blog\Controller
  */
-class IndexController extends AbstractActionController
+final class IndexController extends AbstractActionController
 {
+    /**
+     * Entity manager.
+     * @var \Doctrine\ORM\EntityManager;
+     */
+    protected $entityManager;
+
+    /**
+     * IndexController constructor.
+     * @param $entityManager
+     */
+    public function __construct($entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      *
      * @return ViewModel
+     * @throws \Exception
      */
     public function indexAction() : ViewModel
     {
-        return new ViewModel();
+        /** @var PostEntity $post */
+        $posts = $this->entityManager->getRepository(PostEntity::class)->findBy(
+            ['status' => PostEntity::STATUS_PUBLISHED]
+        );
+
+        return new ViewModel([
+            'post' => $posts,
+        ]);
     }
 }

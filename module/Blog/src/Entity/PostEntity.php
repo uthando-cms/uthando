@@ -11,216 +11,229 @@
 
 namespace Blog\Entity;
 
-class PostEntity
+
+use Core\Stdlib\W3cDateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
+use Zend\Form\Annotation as Form;
+use Zend\Form\Form as ZendForm;
+
+/**
+ * This class represents a blog post.
+ *
+ * @package Blog\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="posts")
+ * @Form\Name("post")
+ * @Form\Hydrator("Zend\Hydrator\ArraySerializable")
+ */
+final class PostEntity
 {
     const STATUS_DRAFT      = 0;
     const STATUS_PUBLISHED  = 1;
 
     /**
-     * @var int
+     * @var UuidInterface
+     *
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     * @Form\Exclude()
      */
-    protected $id;
-
-    /**
-     * @var string
-     */
-    protected $title;
-
-    /**
-     * @var string
-     */
-    protected $seo;
-
-    /**
-     * @var string
-     */
-    protected $content;
+    private $id;
 
     /**
      * @var int
+     *
+     * @ORM\Column(type="boolean", options={"default":0})
+     * @Form\Type("Zend\Form\Element\Select")
+     * @Form\Options({"label":"Status:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}, "value_options":{"0":"Draft","1":"Published"}})
      */
-    protected $status = self::STATUS_DRAFT;
-
-    /**
-     * @var CommentCollection
-     */
-    protected $comments;
-
-    /**
-     * @var TagCollection
-     */
-    protected $tags;
+    private $status = self::STATUS_DRAFT;
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string")
+     * @Form\Filter({"name":"StringTrim"})
+     * @Form\Filter({"name":"StripTags"})
+     * @Form\Validator({"name":"StringLength", "options":{"min":1, "max":255}})
+     * @Form\Attributes({"type":"text"})
+     * @Form\Options({"label":"Title:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
-    protected $dateCreated;
+    private $title;
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string", unique=true)
+     * @Form\Filter({"name":"StringTrim"})
+     * @Form\Filter({"name":"StripTags"})
+     * @Form\Validator({"name":"StringLength", "options":{"min":1, "max":255}})
+     * @Form\Attributes({"type":"text"})
+     * @Form\Options({"label":"Seo:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
-    protected $dateModified;
+    private $seo;
 
     /**
-     * @return int
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     * @Form\Filter({"name":"StringTrim"})
+     * @Form\Attributes({"type":"textarea"})
+     * @Form\Options({"label":"Content:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
-    public function getId(): ?int
+    private $content;
+
+    /**
+     * @var W3cDateTime
+     *
+     * @ORM\Column(name="date_created", type="w3cdatetime", length=25)
+     * @Form\Exclude()
+     */
+    private $dateCreated;
+
+    /**
+     * @var W3cDateTime
+     *
+     * @ORM\Column(name="date_modified", type="w3cdatetime", length=25)
+     * @Form\Exclude()
+     */
+    private $dateModified;
+
+    /**
+     * @ORM\OneToMany(targetEntity="\Blog\Entity\CommentEntity", mappedBy="posts")
+     * @ORM\JoinColumn(name="id", referencedColumnName="post_id")
+     */
+    private $comments;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="\Blog\Entity\TagEntity", inversedBy="posts")
+     * @ORM\JoinTable(name="post_tag",
+     *      joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     *      )
+     */
+    private $tags;
+
+    /**
+     * @param ZendForm $form
+     * @return PostEntity
+     * @throws \Exception
+     */
+    public static function FromFormData(ZendForm $form): PostEntity
     {
-        return $this->id;
+        $data = $form->getData();
+        $post = new PostEntity();
+        $post->compose($data['title'], $data['seo'], $data['content']);
+        return $post;
     }
 
     /**
-     * @param int $id
-     * @return PostEntity
+     * PostEntity constructor.
+     *
+     * @throws \Exception
      */
-    public function setId(int $id): PostEntity
+    public function __construct()
     {
-        $this->id = $id;
-        return $this;
+        $this->id           = Uuid::uuid4();
+        $this->dateCreated  = new W3cDateTime('now');
+        $this->dateModified = new W3cDateTime('now');
+        $this->comments     = new ArrayCollection();
+        $this->tags         = new ArrayCollection();
     }
 
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function __toString(): string
     {
-        return $this->title;
+       return $this->id->toString();
     }
 
     /**
+     * Publish post
+     */
+    public function publish(): void
+    {
+        $this->status       = self::STATUS_PUBLISHED;
+        $this->dateCreated  = new W3cDateTime('now');
+        $this->dateModified = new W3cDateTime('now');
+    }
+
+    /**
+     * Compose post
+     *
      * @param string $title
-     * @return PostEntity
-     */
-    public function setTitle(string $title): PostEntity
-    {
-        $this->title = $title;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSeo(): string
-    {
-        return $this->seo;
-    }
-
-    /**
      * @param string $seo
-     * @return PostEntity
-     */
-    public function setSeo(string $seo): PostEntity
-    {
-        $this->seo = $seo;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContent(): string
-    {
-        return $this->content;
-    }
-
-    /**
      * @param string $content
-     * @return PostEntity
      */
-    public function setContent(string $content): PostEntity
+    public function compose(string $title, string $seo, string $content): void
     {
-        $this->content = $content;
-        return $this;
+        $this->title    = $title;
+        $this->seo      = $seo;
+        $this->content  = $content;
     }
 
     /**
-     * @return int
+     * Update post
      */
-    public function getStatus(): int
+    public function update(): void
     {
-        return $this->status;
+        $this->dateModified = new W3cDateTime('now');
     }
 
     /**
-     * @param int $status
-     * @return PostEntity
+     * Adds a new comment to post.
+     *
+     * @param $comment
      */
-    public function setStatus(int $status): PostEntity
+    public function addComment($comment): void
     {
-        $this->status = $status;
-        return $this;
+        $this->comments[] = $comment;
     }
 
     /**
-     * @return CommentCollection
+     * Adds a new comment to post.
+     *
+     * @param $tag
      */
-    public function getComments(): CommentCollection
+    public function addTag($tag): void
     {
-        return $this->comments;
+        $this->tags[] = $tag;
     }
 
     /**
-     * @param CommentCollection $comments
-     * @return PostEntity
+     * Removes association between this post and the given tag.
+     *
+     * @param $tag
      */
-    public function setComments(CommentCollection $comments): PostEntity
+    public function removeTagAssociation($tag): void
     {
-        $this->comments = $comments;
-        return $this;
+        $this->tags->removeElement($tag);
     }
 
     /**
-     * @return TagCollection
+     * Convert the object to an array.
+     *
+     * @return array
      */
-    public function getTags(): TagCollection
+    public function getArrayCopy(): array
     {
-        return $this->tags;
-    }
+        $array                  = [];
+        $array['id']            = $this->id;
+        $array['title']         = $this->title;
+        $array['seo']           = $this->seo;
+        $array['content']       = $this->content;
+        $array['status']        = $this->status;
+        $array['date_created']  = $this->dateCreated;
+        $array['date_modified'] = $this->dateModified;
+        $array['comments']      = $this->comments;
+        $array['tags']          = $this->tags;
 
-    /**
-     * @param TagCollection $tags
-     * @return PostEntity
-     */
-    public function setTags(TagCollection $tags): PostEntity
-    {
-        $this->tags = $tags;
-        return $this;
+        return $array;
     }
-
-    /**
-     * @return string
-     */
-    public function getDateCreated(): string
-    {
-        return $this->dateCreated;
-    }
-
-    /**
-     * @param string $dateCreated
-     * @return PostEntity
-     */
-    public function setDateCreated(string $dateCreated): PostEntity
-    {
-        $this->dateCreated = $dateCreated;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDateModified(): string
-    {
-        return $this->dateModified;
-    }
-
-    /**
-     * @param string $dateModified
-     * @return PostEntity
-     */
-    public function setDateModified(string $dateModified): PostEntity
-    {
-        $this->dateModified = $dateModified;
-        return $this;
-    }
-
 }

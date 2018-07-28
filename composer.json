@@ -21,9 +21,14 @@
     "zendframework/zend-hydrator": "^2.2",
     "zendframework/zend-inputfilter": "^2.7",
     "zendframework/zend-form": "^2.10",
-    "zendframework/zend-db": "^2.8",
     "zendframework/zend-session": "^2.8",
-    "zendframework/zend-mvc-plugin-flashmessenger": "^1.0"
+    "zendframework/zend-mvc-plugin-flashmessenger": "^1.0",
+    "doctrine/common": "^2.9",
+    "doctrine/doctrine-orm-module": "^2.1",
+    "doctrine/migrations": "^1.8",
+    "ramsey/uuid-doctrine": "^1.4",
+    "neilime/zf2-twb-bundle": "^3.2",
+    "rwoverdijk/assetmanager": "^1.7"
   },
   "autoload": {
     "psr-4": {
@@ -51,7 +56,8 @@
       "@development-enable"
     ],
     "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
-    "test": "phpdbg -qrr ./vendor/bin/phpunit -v"
+    "test": "phpdbg -qrr ./vendor/bin/phpunit -v",
+    "doctrine-migrations": "doctrine-migrations"
   },
   "require-dev": {
     "zendframework/zend-developer-tools": "^1.1",

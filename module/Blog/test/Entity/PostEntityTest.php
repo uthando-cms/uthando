@@ -15,6 +15,8 @@ use Blog\Entity\CommentCollection;
 use Blog\Entity\PostEntity;
 use Blog\Entity\TagCollection;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use Zend\Paginator\Adapter\ArrayAdapter;
 
 class PostEntityTest extends TestCase
@@ -60,11 +62,10 @@ class PostEntityTest extends TestCase
     public function testSetGetId()
     {
         $post = new PostEntity();
-        $this->assertNull($post->getId(), '"id" should be able to return null.');
 
-        $id = $post->setId(1);
+        $id = $post->setId(Uuid::uuid4());
         $this->assertInstanceOf(PostEntity::class, $id, '"setId" method did not return self.');
-        $this->assertSame(1, $post->getId(), '"id" was not set correctly');
+        $this->assertInstanceOf(UuidInterface::class, $post->getId(), '"id" was not set correctly');
     }
 
     public function testSetGetTitle()

@@ -11,6 +11,26 @@
  * file.
  */
 
+use Core\Doctine\Types\W3cDateTimeType;
+use Ramsey\Uuid\Doctrine\UuidType;
+
 return [
-    // ...
+    'doctrine' => [
+        'migrations_configuration' => [
+            'orm_default' => [
+                'directory' => 'data/Migrations',
+                'name'      => 'Doctrine Database Migrations',
+                'namespace' => 'Migrations',
+                'table'     => 'migrations',
+            ],
+        ],
+        'configuration' => [
+            'orm_default' => [
+                'types' => [
+                    UuidType::NAME          => UuidType::class,
+                    W3cDateTimeType::NAME   => W3cDateTimeType::class,
+                ],
+            ],
+        ],
+    ],
 ];

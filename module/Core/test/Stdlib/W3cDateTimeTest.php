@@ -2,41 +2,26 @@
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
- * @package   BlogTest\Entity
+ * @package   CoreTest\Stdlib
  * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
  * @copyright Copyright (c) 2018 Shaun Freeman. (http://www.shaunfreeman.co.uk)
  * @license   see LICENSE
  */
 
-namespace BlogTest\Entity;
+namespace CoreTest\Stdlib;
 
-use Blog\Entity\TagEntity;
+use Core\Stdlib\W3cDateTime;
 use PHPUnit\Framework\TestCase;
 
-class TagEntityTest extends TestCase
+class W3cDateTimeTest extends TestCase
 {
-
-    public function testAddPost()
-    {
-
-    }
 
     public function test__toString()
     {
 
     }
 
-    public function test__construct()
-    {
-
-    }
-
-    public function testGetArrayCopy()
-    {
-
-    }
-
-    public function testFromFormData()
+    public function testToString()
     {
 
     }
