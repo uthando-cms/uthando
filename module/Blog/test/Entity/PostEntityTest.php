@@ -10,65 +10,98 @@
 
 namespace BlogTest\Entity;
 
+use Blog\Entity\CommentEntity;
 use Blog\Entity\PostEntity;
+use Blog\Entity\TagEntity;
+use Core\Stdlib\W3cDateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 
 class PostEntityTest extends TestCase
 {
-    private $testData = [
-        'title'     => 'Test Title',
-        'seo'       => 'test-title',
-        'content'   => 'Test Content',
-    ];
-
-    public function testPublish()
+    /**
+     * @throws \Exception
+     */
+    public function testCancreateEntityWithDefaultValues()
     {
         $post = new PostEntity();
-
+        $this->assertInstanceOf(PostEntity::class, $post);
+        $this->assertInstanceOf(Uuid::class, $post->id);
+        $this->assertInstanceOf(W3cDateTime::class, $post->dateCreated);
+        $this->assertInstanceOf(W3cDateTime::class, $post->dateModified);
+        $this->assertInstanceOf(ArrayCollection::class, $post->comments);
+        $this->assertInstanceOf(ArrayCollection::class, $post->tags);
     }
 
-    public function testFromFormData()
+    /**
+     * @throws \Exception
+     */
+    public function testCanUpdateDatesOnStatusChange()
     {
+        $post = new PostEntity();
+        $dateCreated = new W3cDateTime('2000/10/12');
+        $dateModified = new W3cDateTime('2001/10/12');
+        $post->dateCreated = $dateCreated;
+        $post->dateModified = $dateModified;
 
+        $post->updateDates(['status' => PostEntity::STATUS_PUBLISHED]);
+
+        $this->assertNotSame($dateCreated->toString(), $post->dateCreated->toString());
+        $this->assertNotSame($dateModified->toString(), $post->dateModified->toString());
+
+        $post->dateCreated = $dateCreated;
+        $post->dateModified = $dateModified;
+        $post->updateDates(['status' => PostEntity::STATUS_DRAFT]);
+
+        $this->assertSame($dateCreated->toString(), $post->dateCreated->toString());
+        $this->assertNotSame($dateModified->toString(), $post->dateModified->toString());
     }
 
-    public function testCompose()
+    /**
+     * @throws \Exception
+     */
+    public function testCanGetStatusString()
     {
-
+        $post = new PostEntity();
+        $this->assertSame('Draft', $post->status());
     }
 
-    public function testGetArrayCopy()
+    public function testGetCommentsReturnsArrayCollection()
     {
-
+        $post = new PostEntity();
+        $this->assertInstanceOf(ArrayCollection::class, $post->getComments());
     }
 
-    public function testAddComment()
+    public function testGetTagsReturnsArrayCollection()
     {
-
+        $post = new PostEntity();
+        $this->assertInstanceOf(ArrayCollection::class, $post->getTags());
     }
 
-    public function testRemoveTagAssociation()
+    public function testCanAddComments()
     {
-
+        $post = new PostEntity();
+        $comment = new CommentEntity();
+        $post->addComments([$comment]);
+        $this->assertTrue($post->comments->contains($comment));
     }
 
-    public function test__toString()
+    public function testCanAddTags()
     {
-
+        $post = new PostEntity();
+        $tag = new TagEntity('tag', 'tag');
+        $post->addTags([$tag]);
+        $this->assertTrue($post->tags->contains($tag));
     }
 
-    public function testAddTag()
+    public function testCanRemoveTags()
     {
-
-    }
-
-    public function test__construct()
-    {
-
-    }
-
-    public function testUpdate()
-    {
-
+        $post = new PostEntity();
+        $tag = new TagEntity('tag', 'tag');
+        $post->addTags([$tag]);
+        $post->removeTags([$tag]);
+        $this->assertTrue($post->tags->isEmpty());
+        ;
     }
 }
