@@ -11,8 +11,7 @@
 namespace Blog\Controller\Factory;
 
 
-use Blog\Controller\IndexController;
-use Blog\Entity\CommentEntity;
+use Blog\Controller\PostController;
 use Blog\Entity\PostEntity;
 use Blog\Service\PostManager;
 use Doctrine\ORM\EntityManager;
@@ -21,28 +20,27 @@ use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
-final class IndexControllerFactory implements FactoryInterface
+final class PostControllerFactory implements FactoryInterface
 {
+
     /**
-     * Create IndexController
+     * Create an post controller
      *
-     * @param  ContainerInterface $container
-     * @param  string $requestedName
-     * @param  null|array $options
-     * @return IndexController
+     * @param ContainerInterface $container
+     * @param string $requestedName
+     * @param array|null $options
+     * @return PostController
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): IndexController
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): PostController
     {
         $entityManager  = $container->get(EntityManager::class);
         $postRepository = $entityManager->getRepository(PostEntity::class);
         $postManager    = $container->get(PostManager::class);
         $builder        = new AnnotationBuilder($entityManager);
-        $form           = $builder->createForm(CommentEntity::class);
+        $form           = $builder->createForm(PostEntity::class);
 
         $form->setHydrator(new DoctrineObject($entityManager));
 
-
-        // Instantiate the controller and inject dependencies
-        return new IndexController($postRepository, $postManager, $form);
+        return new PostController($postRepository, $postManager, $form);
     }
 }

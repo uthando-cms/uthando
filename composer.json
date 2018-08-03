@@ -28,7 +28,8 @@
     "doctrine/migrations": "^1.8",
     "ramsey/uuid-doctrine": "^1.4",
     "neilime/zf2-twb-bundle": "^3.2",
-    "rwoverdijk/assetmanager": "^1.7"
+    "rwoverdijk/assetmanager": "^1.7",
+    "zendframework/zend-tag": "^2.7"
   },
   "autoload": {
     "psr-4": {
@@ -69,6 +70,21 @@
     "summernote/summernote": "^0.8",
     "ccampbell/chromephp": "^4.0",
     "studio-42/elfinder": "^2.0",
-    "ezyang/htmlpurifier": "^4.9"
-  }
+    "ezyang/htmlpurifier": "^4.9",
+    "szmnmichalowski/doctrine-cache-toolbar": "dev-master"
+  },
+  "repositories": [
+    {
+      "type":"package",
+      "package": {
+        "name": "szmnmichalowski/doctrine-cache-toolbar",
+        "version":"dev-master",
+        "source": {
+          "url": "https://github.com/shaunfreeman/DoctrineCacheToolbar.git",
+          "type": "git",
+          "reference":"master"
+        }
+      }
+    }
+  ]
 }

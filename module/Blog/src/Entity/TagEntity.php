@@ -10,82 +10,66 @@
 
 namespace Blog\Entity;
 
+use Core\Entity\AbstractEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Zend\Form\Annotation as Form;
-use Zend\Form\Form as ZendForm;
 
 /**
  * This class represents a tag related to a blog post.
  *
  * @package Blog\Entity
  * @ORM\Entity
+ * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
  * @ORM\Table(name="tags")
- * @Form\Name("tag")
+ * @Form\Name("tag-form")
  * @Form\Hydrator("Zend\Hydrator\ArraySerializable")
+ * @property string $name
+ * @property ArrayCollection $posts
  */
-final class TagEntity
+class TagEntity extends AbstractEntity
 {
     /**
-     * @var string
-     *
-     * @ORM\Id
-     * @ORM\Column(type="uuid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     * @Form\Exclude()
-     */
-    private $id;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(type="string")
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})
-     * @Form\Validator({"name":"StringLength", "options":{"min":1, "max":255}})
+     * @Form\Validator({"name":"StringLength", "options":{"max":255}})
      * @Form\Attributes({"type":"text"})
      * @Form\Options({"label":"Name:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
-    private $name;
+    protected $name;
 
     /**
+     * @ORM\Column(type="string", unique=true)
+     * @Form\Filter({"name":"StringTrim"})
+     * @Form\Filter({"name":"StripTags"})
+     * @Form\Filter({"name":"Core\Filter\Slug"})
+     * @Form\Validator({"name":"StringLength", "options":{"max":255}})
+     * @Form\Attributes({"type":"text"})
+     * @Form\Options({"label":"Seo:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
+     */
+    protected $seo;
+
+    /**
+     * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
      * @ORM\ManyToMany(targetEntity="\Blog\Entity\PostEntity", mappedBy="tags")
      */
-    private $posts;
-
-    /**
-     * @param ZendForm $form
-     * @return TagEntity
-     * @throws \Exception
-     */
-    public static function FromFormData(ZendForm $form): TagEntity
-    {
-        $data = $form->getData();
-        $model = new TagEntity($data['name']);
-        return $model;
-    }
+    protected $posts;
 
     /**
      * PostEntity constructor.
      *
      * @param string $name
+     * @param string $seo
      * @throws \Exception
      */
-    public function __construct(string $name)
+    public function __construct(string $name, string $seo)
     {
         $this->id       = Uuid::uuid4();
-        $this->posts    = new ArrayCollection();
         $this->name     = $name;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->id->toString();
+        $this->seo      = $seo;
+        $this->posts    = new ArrayCollection();
     }
 
     /**
@@ -95,21 +79,14 @@ final class TagEntity
      */
     public function addPost(PostEntity $post): void
     {
-        $this->posts[] = $post;
+        $this->posts->add($post);
     }
 
     /**
-     * Convert the object to an array.
-     *
-     * @return array
+     * @param PostEntity $post
      */
-    public function getArrayCopy(): array
+    public function removePost(PostEntity $post): void
     {
-        $array          = [];
-        $array['id']    = $this->id;
-        $array['name']  = $this->name;
-        $array['posts'] = $this->posts;
-
-        return $array;
+        $this->posts->removeElement($post);
     }
 }

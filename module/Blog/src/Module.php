@@ -11,6 +11,9 @@
 
 namespace Blog;
 
+
+use Zend\Mvc\MvcEvent;
+
 /**
  * Class Module
  *

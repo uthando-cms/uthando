@@ -37,7 +37,7 @@ final class W3cDateTimeType extends Type
      * @return null|string
      * @throws ConversionException
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
         if (null === $value) {
             $value = new W3cDateTime('now');
@@ -56,13 +56,17 @@ final class W3cDateTimeType extends Type
      * @return W3cDateTime|null|bool
      * @throws ConversionException
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform): ?W3cDateTime
+    public function convertToPHPValue($value, AbstractPlatform $platform): W3cDateTime
     {
         if ($value instanceof W3cDateTime) {
             return $value;
         }
 
-        $val = new W3cDateTime($value);
+        try {
+            $val = new W3cDateTime($value);
+        } catch (\Exception $e) {
+            $val = null;
+        }
 
         if (!$val) {
             throw ConversionException::conversionFailed($value, $this->getName());

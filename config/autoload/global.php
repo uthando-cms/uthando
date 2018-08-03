@@ -33,4 +33,9 @@ return [
             ],
         ],
     ],
+    'service_manager' => [
+        'factories' => [
+            'doctrine.cache.filesystem' => \Core\Doctine\Cache\FilesystemFactory::class,
+        ],
+    ],
 ];

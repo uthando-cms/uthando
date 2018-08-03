@@ -1,0 +1,68 @@
+
+<div class="col-sm-8">
+    <a href="
+    <?= $this->url('home'); ?>">
+        &lt;&lt; Back to list of posts
+    </a>
+
+    <h1>
+        <?= $this->escapeHtml($post->title); ?>
+    </h1>
+
+    <p class="comments-header">
+        <?= $this->commentCount($post); ?> |
+        <a href="#comment">
+            Add new comment
+        </a>
+    </p>
+
+    <p>
+        Published: <?= $this->escapeHtml($post->dateCreated->format('jS \of F Y g:i a')); ?>
+        | Tags:  <?= $this->tagHelper()->renderTags($post->getTags()); ?>
+    </p>
+
+    <p>
+        <?= $this->escapeHtml($post->content); ?>
+    </p>
+
+    <h3></h3>
+
+    <?php foreach ($post->getComments() as $comment): ?>
+
+        <hr>
+
+        <p>
+            <?= $this->escapeHtml($comment->author) ?> on
+            <?= $this->escapeHtml($comment->dateCreated->format('d/m/Y g:i a')); ?>
+        </p>
+
+        <p>
+            <?= $this->escapeHtml($comment->content); ?>
+        </p>
+
+    <?php endforeach; ?>
+
+    <hr>
+
+    <a name="comment"></a>
+    <h3>Leave Reply</h3>
+
+    <div class="row">
+        <div class="col-md-8">
+            <?=$this->form($form);?>
+            <button type="submit" form="comment-form" data-toggle="tooltip" title="<?=$this->translate('Save');?>" class="btn btn-primary col-sm-offset-2">Save</button>
+        </div>
+    </div>
+
+</div>
+
+<div class="col-sm-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Popular Tags</h3>
+        </div>
+        <div class="panel-body">
+            <?= $this->tagHelper()->renderTagCloud($tagCloud, 'home'); ?>
+        </div>
+    </div>
+</div>

@@ -12,125 +12,119 @@
 namespace Blog\Entity;
 
 
+use Core\Entity\AbstractEntity;
 use Core\Stdlib\W3cDateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 use Zend\Form\Annotation as Form;
-use Zend\Form\Form as ZendForm;
 
 /**
  * This class represents a blog post.
  *
  * @package Blog\Entity
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Blog\Repository\PostRepository")
+ * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
  * @ORM\Table(name="posts")
- * @Form\Name("post")
- * @Form\Hydrator("Zend\Hydrator\ArraySerializable")
+ * @Form\Type("Core\Form\FormBase")
+ * @Form\Name("post-form")
+ * @property int $status
+ * @property string $title
+ * @property string $seo
+ * @property string $content
+ * @property W3cDateTime $dateCreated
+ * @property W3cDateTime $dateModified
+ * @property ArrayCollection $comments
+ * @property ArrayCollection $tags
+ * @property string $newTags
  */
-final class PostEntity
+class PostEntity extends AbstractEntity
 {
-    const STATUS_DRAFT      = 0;
-    const STATUS_PUBLISHED  = 1;
+    const STATUS_DRAFT      = false;
+    const STATUS_PUBLISHED  = true;
 
     /**
-     * @var UuidInterface
-     *
-     * @ORM\Id
-     * @ORM\Column(type="uuid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     * @Form\Exclude()
-     */
-    private $id;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(type="boolean", options={"default":0})
+     * @ORM\Column(type="boolean", options={"default":true})
+     * @Form\AllowEmpty()
+     * @Form\Filter({"name":"Boolean", "options":{"type":"zero"}})
      * @Form\Type("Zend\Form\Element\Select")
      * @Form\Options({"label":"Status:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}, "value_options":{"0":"Draft","1":"Published"}})
      */
-    private $status = self::STATUS_DRAFT;
+    protected $status = self::STATUS_DRAFT;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string")
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})
-     * @Form\Validator({"name":"StringLength", "options":{"min":1, "max":255}})
+     * @Form\Validator({"name":"StringLength", "options":{"max":255}})
      * @Form\Attributes({"type":"text"})
      * @Form\Options({"label":"Title:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
-    private $title;
+    protected $title;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string", unique=true)
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})
-     * @Form\Validator({"name":"StringLength", "options":{"min":1, "max":255}})
+     * @Form\Filter({"name":"Core\Filter\Slug"})
+     * @Form\Validator({"name":"StringLength", "options":{"max":255}})
      * @Form\Attributes({"type":"text"})
      * @Form\Options({"label":"Seo:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
-    private $seo;
+    protected $seo;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="text")
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Attributes({"type":"textarea"})
      * @Form\Options({"label":"Content:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
-    private $content;
+    protected $content;
 
     /**
-     * @var W3cDateTime
-     *
      * @ORM\Column(name="date_created", type="w3cdatetime", length=25)
      * @Form\Exclude()
      */
-    private $dateCreated;
+    protected $dateCreated;
 
     /**
-     * @var W3cDateTime
-     *
      * @ORM\Column(name="date_modified", type="w3cdatetime", length=25)
      * @Form\Exclude()
      */
-    private $dateModified;
+    protected $dateModified;
 
     /**
-     * @ORM\OneToMany(targetEntity="\Blog\Entity\CommentEntity", mappedBy="posts")
-     * @ORM\JoinColumn(name="id", referencedColumnName="post_id")
+     * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
+     * @ORM\OneToMany(targetEntity="\Blog\Entity\CommentEntity", mappedBy="post", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @ORM\OrderBy({"dateCreated" = "DESC"})
+     * @Form\Exclude()
      */
-    private $comments;
+    protected $comments;
 
     /**
-     * @ORM\ManyToMany(targetEntity="\Blog\Entity\TagEntity", inversedBy="posts")
+     * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
+     * @ORM\ManyToMany(targetEntity="\Blog\Entity\TagEntity", inversedBy="posts", cascade={"persist", "remove"}, fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="post_tag",
      *      joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
      *      )
+     * @ORM\OrderBy({"name" = "ASC"})
+     * @Form\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Form\Options({"label":"Tags: ", "target_class": "Blog\Entity\TagEntity", "property": "name", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
+     * @Form\Attributes({"multiple" : "multiple"})
      */
-    private $tags;
+    protected $tags;
 
     /**
-     * @param ZendForm $form
-     * @return PostEntity
-     * @throws \Exception
+     * @Form\AllowEmpty()
+     * @Form\Attributes({"type":"text"})
+     * @Form\Filter({"name":"StringTrim"})
+     * @Form\Filter({"name":"StripTags"})
+     * @Form\Options({"label":"New tags:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
+     * @Form\Validator({"name":"StringLength", "options":{"min":1, "max":255}})
      */
-    public static function FromFormData(ZendForm $form): PostEntity
-    {
-        $data = $form->getData();
-        $post = new PostEntity();
-        $post->compose($data['title'], $data['seo'], $data['content']);
-        return $post;
-    }
+    protected $newTags;
 
     /**
      * PostEntity constructor.
@@ -147,93 +141,78 @@ final class PostEntity
     }
 
     /**
+     * Update post
+     * @param array $data
+     */
+    public function updateDates(array $data): void
+    {
+        if ($data['status'] !== $this->status && $data['status'] === self::STATUS_PUBLISHED) {
+            $this->dateCreated  = new W3cDateTime('now');
+            $this->dateModified = new W3cDateTime('now');
+        }  else {
+            $this->dateModified = new W3cDateTime('now');
+        }
+    }
+
+    /**
      * @return string
      */
-    public function __toString(): string
+    public function status(): string
     {
-       return $this->id->toString();
+        return ($this->status) ? 'Published' : 'Draft';
     }
 
     /**
-     * Publish post
+     * @return ArrayCollection|PersistentCollection
      */
-    public function publish(): void
+    public function getComments()
     {
-        $this->status       = self::STATUS_PUBLISHED;
-        $this->dateCreated  = new W3cDateTime('now');
-        $this->dateModified = new W3cDateTime('now');
+        return $this->comments;
     }
 
     /**
-     * Compose post
-     *
-     * @param string $title
-     * @param string $seo
-     * @param string $content
+     * @param ArrayCollection $comments
      */
-    public function compose(string $title, string $seo, string $content): void
+    public function addComments(ArrayCollection $comments): void
     {
-        $this->title    = $title;
-        $this->seo      = $seo;
-        $this->content  = $content;
+        foreach ($comments as $comment) {
+            $this->comments->add($comment);
+        }
     }
 
     /**
-     * Update post
+     * @return ArrayCollection|PersistentCollection
      */
-    public function update(): void
+    public function getTags()
     {
-        $this->dateModified = new W3cDateTime('now');
+        return $this->tags;
     }
 
     /**
      * Adds a new comment to post.
      *
-     * @param $comment
+     * @param $tags
      */
-    public function addComment($comment): void
+    public function addTags($tags): void
     {
-        $this->comments[] = $comment;
-    }
-
-    /**
-     * Adds a new comment to post.
-     *
-     * @param $tag
-     */
-    public function addTag($tag): void
-    {
-        $this->tags[] = $tag;
+        /** @var TagEntity $tag */
+        foreach ($tags as $tag) {
+            $tag->addPost($this);
+            $this->tags->add($tag);
+        }
     }
 
     /**
      * Removes association between this post and the given tag.
      *
-     * @param $tag
+     * @param $tags
      */
-    public function removeTagAssociation($tag): void
+    public function removeTags($tags): void
     {
-        $this->tags->removeElement($tag);
-    }
-
-    /**
-     * Convert the object to an array.
-     *
-     * @return array
-     */
-    public function getArrayCopy(): array
-    {
-        $array                  = [];
-        $array['id']            = $this->id;
-        $array['title']         = $this->title;
-        $array['seo']           = $this->seo;
-        $array['content']       = $this->content;
-        $array['status']        = $this->status;
-        $array['date_created']  = $this->dateCreated;
-        $array['date_modified'] = $this->dateModified;
-        $array['comments']      = $this->comments;
-        $array['tags']          = $this->tags;
-
-        return $array;
+        /** @var TagEntity $tag */
+        foreach ($tags as $tag) {
+            $tag->removePost($this);
+            $this->tags->removeElement($tag);
+        }
     }
 }

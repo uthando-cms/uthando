@@ -27,6 +27,7 @@ return [
     'Zend\Validator',
     'DoctrineModule',
     'DoctrineORMModule',
+    //'DoctrineCacheToolbar',
     'AssetManager',
     'TwbBundle',
     'Blog',

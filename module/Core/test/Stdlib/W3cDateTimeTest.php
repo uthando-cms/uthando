@@ -18,11 +18,17 @@ class W3cDateTimeTest extends TestCase
 
     public function test__toString()
     {
-
+        $date = new W3cDateTime('now');
+        $this->assertInternalType('string', (string) $date);
     }
 
     public function testToString()
     {
+        $date = new \DateTime('now');
+        $format = $date->format(DATE_W3C);
 
+        $testDate = new W3cDateTime($format);
+
+        $this->assertSame($format, $testDate->toString());
     }
 }

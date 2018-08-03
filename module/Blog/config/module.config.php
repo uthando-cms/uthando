@@ -2,30 +2,93 @@
 
 namespace Blog;
 
+
+use Blog\Service\Factory\NavigationFactory;
+use Blog\Service\Factory\PostManagerFactory;
+use Blog\Service\PostManager;
+use Blog\View\Helper\CommentCount;
+use Blog\View\Helper\TagHelper;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
+use DoctrineORMModule\Service\FormAnnotationBuilderFactory;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
         'routes' => [
             'home' => [
-                'type' => Literal::class,
+                'type' => Segment::class,
                 'options' => [
-                    'route' => '/',
+                    'route' => '/[tag/:tag/][page/:page]',
+                    'constraints' => [
+                        'page' => '\d+',
+                        'tag'   => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action' => 'index',
+                        'tag'   => '',
+                        'page' => 1
                     ],
                 ],
             ],
             'blog' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '[:action]',
+                    'route' => '/blog[/tag/:tag][/][page/:page]',
+                    'constraints' => [
+                        'page' => '\d+',
+                        'tag'   => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action' => 'index',
+                        'tag'   => '',
+                        'page' => 1,
+                    ],
+                ],
+            ],
+            'post' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/:id',
+                    'constraints' => [
+                        'id' => '[a-z0-9][a-z0-9-]*'
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action' => 'view',
+                    ],
+                ],
+            ],
+            'admin' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => '/admin',
+                    'defaults' => [
+                        'controller'    => Controller\PostController::class,
+                        'action'        => 'index',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                    'post' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/posts[/page/:page][/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[a-z0-9][a-z0-9-]*',
+                                'page' => '\d+',
+                            ],
+                            'defaults' => [
+                                'controller'    => Controller\PostController::class,
+                                'action'        => 'index',
+                                'page'          => 1,
+                            ],
+                        ],
                     ],
                 ],
             ],
@@ -33,7 +96,26 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
+            Controller\IndexController::class   => Controller\Factory\IndexControllerFactory::class,
+            Controller\PostController::class    => Controller\Factory\PostControllerFactory::class,
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
+            NavigationFactory::class    => NavigationFactory::class,
+            PostManager::class          => PostManagerFactory::class,
+
+            AnnotationBuilder::class    => FormAnnotationBuilderFactory::class,
+        ],
+    ],
+    'view_helpers' => [
+        'aliases' => [
+            'commentCount'  => CommentCount::class,
+            'tagHelper'     => TagHelper::class,
+        ],
+        'factories' => [
+            CommentCount::class => InvokableFactory::class,
+            TagHelper::class    => InvokableFactory::class
         ],
     ],
     'navigation' => [
@@ -41,6 +123,50 @@ return [
             [
                 'label' => 'Home',
                 'route' => 'home'
+            ],
+            [
+                'label' => 'Blog',
+                'route' => 'blog',
+                'pages' => [
+                    [
+                        'label'     => 'Posts',
+                        'route'     => 'blog/post',
+                        'visible'   => false,
+                    ],
+                    [
+                        'label'     => 'Posts',
+                        'route'     => 'blog/tag-cloud',
+                        'visible'   => false,
+                    ],
+                ],
+            ],
+            [
+                'label' => 'Admin',
+                'route' => 'admin/post',
+            ],
+        ],
+        'admin' => [
+            [
+                'label' => 'Admin',
+                'route' => 'admin/post',
+                'pages' => [
+                    [
+                        'label' => 'Posts',
+                        'route' => 'admin/post',
+                        'pages' => [
+                            [
+                                'label' => 'New Post',
+                                'route' => 'admin/post',
+                                'action' => 'add',
+                            ],
+                            [
+                                'label' => 'Edit Post',
+                                'route' => 'admin/post',
+                                'action' => 'edit',
+                            ],
+                        ],
+                    ],
+                ],
             ],
         ],
     ],
