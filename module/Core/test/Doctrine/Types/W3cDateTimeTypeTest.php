@@ -12,6 +12,7 @@ namespace CoreTest\Doctrine\Types;
 
 use Core\Doctine\Types\W3cDateTimeType;
 use Core\Stdlib\W3cDateTime;
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 use PHPUnit\Framework\TestCase;
@@ -27,6 +28,17 @@ class W3cDateTimeTypeTest extends TestCase
      * @var W3cDateTimeType
      */
     private $type;
+
+    public static function setUpBeforeClass()
+    {
+        if (class_exists('Doctrine\\DBAL\\Types\\Type')) {
+            try {
+                Type::addType('w3cdatetime', W3cDateTimeType::class);
+            } catch (DBALException $e) {
+                // dont register type if not there!
+            }
+        }
+    }
 
     /**
      * @throws \Doctrine\DBAL\DBALException
