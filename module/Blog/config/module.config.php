@@ -3,7 +3,6 @@
 namespace Blog;
 
 
-use Blog\Service\Factory\NavigationFactory;
 use Blog\Service\Factory\PostManagerFactory;
 use Blog\Service\PostManager;
 use Blog\View\Helper\CommentCount;
@@ -19,60 +18,59 @@ return [
     'router' => [
         'routes' => [
             'home' => [
-                'type' => Segment::class,
+                'type' => Literal::class,
                 'options' => [
-                    'route' => '/[tag/:tag/][page/:page]',
-                    'constraints' => [
-                        'page' => '\d+',
-                        'tag'   => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ],
+                    'route' => '/',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action' => 'index',
-                        'tag'   => '',
-                        'page' => 1
                     ],
                 ],
             ],
             'blog' => [
-                'type' => Segment::class,
+                'type' => Literal::class,
                 'options' => [
-                    'route' => '/blog[/tag/:tag][/][page/:page]',
-                    'constraints' => [
-                        'page' => '\d+',
-                        'tag'   => '[a-zA-Z][a-zA-Z0-9_-]*',
-                    ],
+                    'route' => '/blog',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action' => 'index',
-                        'tag'   => '',
-                        'page' => 1,
-                    ],
-                ],
-            ],
-            'post' => [
-                'type' => Segment::class,
-                'options' => [
-                    'route' => '/:id',
-                    'constraints' => [
-                        'id' => '[a-z0-9][a-z0-9-]*'
-                    ],
-                    'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action' => 'view',
-                    ],
-                ],
-            ],
-            'admin' => [
-                'type' => Literal::class,
-                'options' => [
-                    'route' => '/admin',
-                    'defaults' => [
-                        'controller'    => Controller\PostController::class,
-                        'action'        => 'index',
                     ],
                 ],
                 'may_terminate' => true,
+                'child_routes' => [
+                    'list' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '[/tag/:tag][/][page/:page]',
+                            'constraints' => [
+                                'page' => '\d+',
+                                'tag'   => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                'controller' => Controller\IndexController::class,
+                                'action' => 'index',
+                                'tag'   => '',
+                                'page' => 1,
+                            ],
+                        ],
+                    ],
+                    'post' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/:id',
+                            'constraints' => [
+                                'id' => '[a-z0-9][a-z0-9-]*'
+                            ],
+                            'defaults' => [
+                                'controller' => Controller\IndexController::class,
+                                'action' => 'view',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+
+            'admin' => [
                 'child_routes' => [
                     'post' => [
                         'type' => Segment::class,
@@ -102,9 +100,7 @@ return [
     ],
     'service_manager' => [
         'factories' => [
-            NavigationFactory::class    => NavigationFactory::class,
             PostManager::class          => PostManagerFactory::class,
-
             AnnotationBuilder::class    => FormAnnotationBuilderFactory::class,
         ],
     ],
@@ -120,53 +116,62 @@ return [
     ],
     'navigation' => [
         'default' => [
-            [
+            'home' => [
                 'label' => 'Home',
                 'route' => 'home'
             ],
-            [
+            'blog' => [
                 'label' => 'Blog',
-                'route' => 'blog',
+                'route' => 'blog/list',
                 'action' => 'index',
             ],
-            [
-                'label' => 'Admin',
-                'uri' => '#',
+            'admin' => [
                 'pages' => [
-                    [
+                    'post' => [
                         'label' => 'Posts',
                         'route' => 'admin/post',
-                        'action' => 'index'
+                        'action' => 'index',
 
-                    ],
-                    [
-                        'label' => 'New Post',
-                        'route' => 'admin/post',
-                        'action' => 'add',
                     ],
                 ],
             ],
         ],
         'admin' => [
-            [
-                'label' => 'Admin',
-                'route' => 'admin/post',
+            'admin' => [
                 'pages' => [
-                    [
+                    'post' => [
                         'label' => 'Posts',
                         'route' => 'admin/post',
                         'pages' => [
-                            [
+                            'add-post' => [
                                 'label' => 'New Post',
                                 'route' => 'admin/post',
                                 'action' => 'add',
                             ],
-                            [
+                            'edit-post' => [
                                 'label' => 'Edit Post',
                                 'route' => 'admin/post',
                                 'action' => 'edit',
                             ],
                         ],
+                    ],
+                ],
+            ],
+        ],
+        'dashboard' => [
+            'post' => [
+                'label' => 'Posts',
+                'route' => 'admin/post',
+                'pages' => [
+                    'list-post' => [
+                        'label' => 'List Posts',
+                        'route' => 'admin/post',
+                        'action' => 'index',
+                    ],
+                    'add-post' => [
+                        'label' => 'New Post',
+                        'route' => 'admin/post',
+                        'action' => 'add',
                     ],
                 ],
             ],
@@ -180,7 +185,6 @@ return [
         'exception_template'        => 'error/index',
         'template_map' => [
             'layout/layout'             => __DIR__ . '/../view/layout/layout.phtml',
-            'application/index/index'   => __DIR__ . '/../view/application/index/index.phtml',
             'error/404'                 => __DIR__ . '/../view/error/404.phtml',
             'error/index'               => __DIR__ . '/../view/error/index.phtml',
         ],

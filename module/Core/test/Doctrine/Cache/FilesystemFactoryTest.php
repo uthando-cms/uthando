@@ -19,12 +19,12 @@ class FilesystemFactoryTest extends TestCase
 {
     public function test__invoke()
     {
-        $moduleLoder = new ModuleLoader(ArrayUtils::merge(
+        $moduleLoader = new ModuleLoader(ArrayUtils::merge(
             include __DIR__ . '/../../../../../config/application.config.php',
             []
         ));
 
-        $class = $moduleLoder->getServiceManager()->get('doctrine.cache.filesystem');
+        $class = $moduleLoader->getServiceManager()->get('doctrine.cache.filesystem');
 
         $this->assertInstanceOf(FilesystemCache::class, $class);
     }

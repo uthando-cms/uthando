@@ -1,7 +1,7 @@
 
 <ol class="breadcrumb">
     <!-- Breadcrumbs -->
-    <?= $this->navigation(\Blog\Service\Factory\NavigationFactory::class)
+    <?= $this->navigation(\Admin\Service\Factory\NavigationFactory::class)
         ->breadcrumbs()
         ->setSeparator(' / '); ?>
 </ol>
@@ -29,7 +29,7 @@
         <tr>
             <td><?= $this->escapeHtml($post->id); ?></td>
             <td>
-                <a href="<?= $this->url('post', ['action'=>'view', 'id'=>$post->id]); ?>">
+                <a href="<?= $this->url('blog/post', ['action'=>'view', 'id'=>$post->id]); ?>">
                     <?= $this->escapeHtml($post->title); ?>
                 </a>
             </td>

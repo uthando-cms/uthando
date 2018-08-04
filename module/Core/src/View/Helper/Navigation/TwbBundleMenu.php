@@ -301,10 +301,12 @@ class TwbBundleMenu extends ZendMenu
             // render li tag and page
             $liClasses = array();
             $liClasses[] = $this->getLiClass();
+
             // Is page active?
             if ($isActive) {
                 $liClasses[] = 'active';
             }
+
             // Is page parent?
             if ($page->hasPages() && (!isset($maxDepth) || $depth < $maxDepth)) {
                 $liClasses[] = ($depth == 0) ? 'dropdown': 'dropdown-submenu';
@@ -314,14 +316,21 @@ class TwbBundleMenu extends ZendMenu
                     $page->isSubmenu = true;
                 }
             }
+
             // Add CSS class from page to <li>
             if ($addClassToListItem && $page->getClass()) {
                 $liClasses[] = $page->getClass();
             }
             $liClass = empty($liClasses) ? '' : ' class="' . implode(' ', $liClasses) . '"';
 
-            $html .= $myIndent . '    <li' . $liClass . '>' . PHP_EOL
-                . $myIndent . '        ' . $this->htmlify($page, $escapeLabels, $addClassToListItem) . PHP_EOL;
+            if (true === $page->get("separator")) {
+                $html .= $myIndent . '    <li role="separator" class="divider">' . PHP_EOL
+                    . $myIndent . '        ' . PHP_EOL;
+            } else {
+                $html .= $myIndent . '    <li' . $liClass . '>' . PHP_EOL
+                    . $myIndent . '        ' . $this->htmlify($page, $escapeLabels, $addClassToListItem) . PHP_EOL;
+            }
+
 
             // store as previous depth for next iteration
             $prevDepth = $depth;
@@ -401,6 +410,11 @@ class TwbBundleMenu extends ZendMenu
         }
 
         $html = '<' . $element . $this->htmlAttribs($attribs) . '>';
+
+        if ($page->get("icon") !== "") {
+            $html .= '<span class="' . $page->get("icon") . '"></span>&nbsp;';
+        }
+
         if ($escapeLabel === true) {
             $escaper = $this->view->plugin('escapeHtml');
             $html .= $escaper($label);

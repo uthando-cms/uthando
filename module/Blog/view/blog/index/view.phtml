@@ -1,7 +1,7 @@
 
 <div class="col-sm-8">
     <a href="
-    <?= $this->url('home'); ?>">
+    <?= $this->url('blog/list'); ?>">
         &lt;&lt; Back to list of posts
     </a>
 
@@ -62,7 +62,7 @@
             <h3 class="panel-title">Popular Tags</h3>
         </div>
         <div class="panel-body">
-            <?= $this->tagHelper()->renderTagCloud($tagCloud, 'home'); ?>
+            <?= $this->tagHelper()->renderTagCloud($tagCloud, 'blog/list'); ?>
         </div>
     </div>
 </div>

@@ -1,0 +1,42 @@
+<?php
+$iterator   = new \RecursiveIteratorIterator($this->container, \RecursiveIteratorIterator::SELF_FIRST);
+$prevDepth  = -1;
+$count      = -1;
+?>
+<div class="row">
+
+<?php /* @var $page Zend\Navigation\Page\Mvc */ ?>
+<?php foreach ($iterator as $page): ?>
+    <?php $depth= $iterator->getDepth(); ?>
+    <?php $hasChildren = $page->hasPages();?>
+    <?php $count++; ?>
+
+    <?php if( ! $page->isVisible() || !$this->navigation()->accept($page)) continue; ?>
+
+    <?php if ($depth === 0): ?>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <?=$page->getLabel();?>
+                    </div>
+                </div>
+
+                <?php foreach ($page->getPages() as $child): ?>
+                <div class="list-group">
+                    <a class="list-group-item" href="<?=$child->getHref();?>"><?=$child->getLabel();?></a>
+                </div>
+                <?php endforeach;?>
+
+            </div>
+        </div>
+    <?php endif; ?>
+
+<?php endforeach; ?>
+
+</div>
+
+
+
+
+

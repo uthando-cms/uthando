@@ -2,21 +2,23 @@
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
- * @package   Blog\Service\Factory
+ * @package   Admin
  * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
  * @copyright Copyright (c) 2018 Shaun Freeman. (http://www.shaunfreeman.co.uk)
  * @license   see LICENSE
  */
 
-namespace Blog\Service\Factory;
+namespace Admin;
 
 
-use Zend\Navigation\Service\AbstractNavigationFactory;
-
-class NavigationFactory extends AbstractNavigationFactory
+class Module
 {
-    protected function getName(): string
+    /**
+     *
+     * @return array
+     */
+    public function getConfig() : array
     {
-        return 'admin';
+        return include __DIR__ . '/../config/module.config.php';
     }
 }

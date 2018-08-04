@@ -30,5 +30,6 @@ return [
     //'DoctrineCacheToolbar',
     'AssetManager',
     'TwbBundle',
+    'Admin',
     'Blog',
 ];
