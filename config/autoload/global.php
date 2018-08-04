@@ -38,4 +38,14 @@ return [
             'doctrine.cache.filesystem' => \Core\Doctine\Cache\FilesystemFactory::class,
         ],
     ],
+    'view_helpers' => [
+        'aliases' => [
+            'navigation'        => \Core\View\Helper\Navigation::class,
+            'Navigation'        => \Core\View\Helper\Navigation::class,
+        ],
+        'factories' => [
+            \Core\View\Helper\Navigation::class => \Core\View\NavigationHelperFactory::class,
+            'zendviewhelpernavigation' => \Core\View\NavigationHelperFactory::class,
+        ]
+    ]
 ];

@@ -127,22 +127,24 @@ return [
             [
                 'label' => 'Blog',
                 'route' => 'blog',
-                'pages' => [
-                    [
-                        'label'     => 'Posts',
-                        'route'     => 'blog/post',
-                        'visible'   => false,
-                    ],
-                    [
-                        'label'     => 'Posts',
-                        'route'     => 'blog/tag-cloud',
-                        'visible'   => false,
-                    ],
-                ],
+                'action' => 'index',
             ],
             [
                 'label' => 'Admin',
-                'route' => 'admin/post',
+                'uri' => '#',
+                'pages' => [
+                    [
+                        'label' => 'Posts',
+                        'route' => 'admin/post',
+                        'action' => 'index'
+
+                    ],
+                    [
+                        'label' => 'New Post',
+                        'route' => 'admin/post',
+                        'action' => 'add',
+                    ],
+                ],
             ],
         ],
         'admin' => [
