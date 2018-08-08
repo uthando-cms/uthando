@@ -17,7 +17,7 @@ use Ramsey\Uuid\Uuid;
 use Zend\Form\Annotation as Form;
 
 /**
- * This class represents a tag related to a blog post.
+ * This class represents a tag related to a blog post-admin.
  *
  * @package Blog\Entity
  * @ORM\Entity
@@ -28,26 +28,15 @@ use Zend\Form\Annotation as Form;
  * @property string $name
  * @property ArrayCollection $posts
  */
-class TagEntity extends AbstractEntity
+final class TagEntity extends AbstractEntity
 {
     /**
      * @ORM\Column(type="string")
-     * @Form\Filter({"name":"StringTrim"})
-     * @Form\Filter({"name":"StripTags"})
-     * @Form\Validator({"name":"StringLength", "options":{"max":255}})
-     * @Form\Attributes({"type":"text"})
-     * @Form\Options({"label":"Name:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
     protected $name;
 
     /**
      * @ORM\Column(type="string", unique=true)
-     * @Form\Filter({"name":"StringTrim"})
-     * @Form\Filter({"name":"StripTags"})
-     * @Form\Filter({"name":"Core\Filter\Slug"})
-     * @Form\Validator({"name":"StringLength", "options":{"max":255}})
-     * @Form\Attributes({"type":"text"})
-     * @Form\Options({"label":"Seo:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
     protected $seo;
 
@@ -73,7 +62,7 @@ class TagEntity extends AbstractEntity
     }
 
     /**
-     * Adds a post into collection of posts related to this tag.
+     * Adds a post-admin into collection of posts related to this tag.
      *
      * @param PostEntity $post
      */

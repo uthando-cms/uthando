@@ -1,4 +1,4 @@
-<?php $this->headTitle('New Post') ?>
+<?php $this->headTitle('Edit Post') ?>
 
 
 <div class="breadcrumb">
@@ -11,7 +11,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="panel-title">
-            <i class=" fa fa-pencil"></i> <?=$this->translate('New Post');?>
+            <i class=" fa fa-pencil"></i> <?=$this->translate('Edit Post');?>
 
         </div>
     </div>
@@ -21,7 +21,7 @@
             <button type="submit" form="post-form" data-toggle="tooltip" title="<?=$this->translate('Save');?>" class="btn btn-primary">
             <i class="fa fa-save"></i>
             </button>
-            <a href="<?=$this->url('admin/post');?>" data-toggle="tooltip" title="<?=$this->translate('Cancel');?>" class="btn btn-default">
+            <a href="<?=$this->url('admin/post-admin');?>" data-toggle="tooltip" title="<?=$this->translate('Cancel');?>" class="btn btn-default">
                 <i class="fa fa-reply"></i>
             </a>
         </span>

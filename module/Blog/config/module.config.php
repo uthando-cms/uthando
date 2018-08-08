@@ -8,8 +8,6 @@ use Blog\Service\PostManager;
 use Blog\View\Helper\CommentCount;
 use Blog\View\Helper\TagHelper;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
-use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
-use DoctrineORMModule\Service\FormAnnotationBuilderFactory;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
@@ -22,7 +20,7 @@ return [
                 'options' => [
                     'route' => '/',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\PostController::class,
                         'action' => 'index',
                     ],
                 ],
@@ -32,7 +30,7 @@ return [
                 'options' => [
                     'route' => '/blog',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\PostController::class,
                         'action' => 'index',
                     ],
                 ],
@@ -47,7 +45,7 @@ return [
                                 'tag'   => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ],
                             'defaults' => [
-                                'controller' => Controller\IndexController::class,
+                                'controller' => Controller\PostController::class,
                                 'action' => 'index',
                                 'tag'   => '',
                                 'page' => 1,
@@ -62,7 +60,7 @@ return [
                                 'id' => '[a-z0-9][a-z0-9-]*'
                             ],
                             'defaults' => [
-                                'controller' => Controller\IndexController::class,
+                                'controller' => Controller\PostController::class,
                                 'action' => 'view',
                             ],
                         ],
@@ -72,7 +70,7 @@ return [
 
             'admin' => [
                 'child_routes' => [
-                    'post' => [
+                    'post-admin' => [
                         'type' => Segment::class,
                         'options' => [
                             'route' => '/posts[/page/:page][/:action[/:id]]',
@@ -82,7 +80,7 @@ return [
                                 'page' => '\d+',
                             ],
                             'defaults' => [
-                                'controller'    => Controller\PostController::class,
+                                'controller'    => Controller\PostAdminController::class,
                                 'action'        => 'index',
                                 'page'          => 1,
                             ],
@@ -94,14 +92,13 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class   => Controller\Factory\IndexControllerFactory::class,
-            Controller\PostController::class    => Controller\Factory\PostControllerFactory::class,
+            Controller\PostController::class        => Controller\Factory\PostControllerFactory::class,
+            Controller\PostAdminController::class   => Controller\Factory\PostAdminControllerFactory::class,
         ],
     ],
     'service_manager' => [
         'factories' => [
-            PostManager::class          => PostManagerFactory::class,
-            AnnotationBuilder::class    => FormAnnotationBuilderFactory::class,
+            PostManager::class          => PostManagerFactory::class
         ],
     ],
     'view_helpers' => [
@@ -123,13 +120,13 @@ return [
             'blog' => [
                 'label' => 'Blog',
                 'route' => 'blog/list',
-                'action' => 'index',
+                'action' => 'post',
             ],
             'admin' => [
                 'pages' => [
-                    'post' => [
+                    'post-admin' => [
                         'label' => 'Posts',
-                        'route' => 'admin/post',
+                        'route' => 'admin/post-admin',
                         'action' => 'index',
 
                     ],
@@ -139,18 +136,18 @@ return [
         'admin' => [
             'admin' => [
                 'pages' => [
-                    'post' => [
+                    'post-admin' => [
                         'label' => 'Posts',
-                        'route' => 'admin/post',
+                        'route' => 'admin/post-admin',
                         'pages' => [
-                            'add-post' => [
+                            'add-post-admin' => [
                                 'label' => 'New Post',
-                                'route' => 'admin/post',
+                                'route' => 'admin/post-admin',
                                 'action' => 'add',
                             ],
-                            'edit-post' => [
+                            'edit-post-admin' => [
                                 'label' => 'Edit Post',
-                                'route' => 'admin/post',
+                                'route' => 'admin/post-admin',
                                 'action' => 'edit',
                             ],
                         ],
@@ -159,18 +156,18 @@ return [
             ],
         ],
         'dashboard' => [
-            'post' => [
-                'label' => 'Posts',
-                'route' => 'admin/post',
+            'post-admin' => [
+                'label' => 'Manage Posts',
+                'route' => 'admin/post-admin',
                 'pages' => [
-                    'list-post' => [
+                    'list-post-admin' => [
                         'label' => 'List Posts',
-                        'route' => 'admin/post',
+                        'route' => 'admin/post-admin',
                         'action' => 'index',
                     ],
-                    'add-post' => [
+                    'add-post-admin' => [
                         'label' => 'New Post',
-                        'route' => 'admin/post',
+                        'route' => 'admin/post-admin',
                         'action' => 'add',
                     ],
                 ],
@@ -182,11 +179,11 @@ return [
         'display_exceptions'        => true,
         'doctype'                   => 'HTML5',
         'not_found_template'        => 'error/404',
-        'exception_template'        => 'error/index',
+        'exception_template'        => 'error/post',
         'template_map' => [
             'layout/layout'             => __DIR__ . '/../view/layout/layout.phtml',
             'error/404'                 => __DIR__ . '/../view/error/404.phtml',
-            'error/index'               => __DIR__ . '/../view/error/index.phtml',
+            'error/post'               => __DIR__ . '/../view/error/index.phtml',
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',

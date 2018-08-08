@@ -15,6 +15,11 @@ use Blog\Entity\PostEntity;
 use Blog\Entity\TagEntity;
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Class PostRepository
+ * @package Blog\Repository
+ * @method PostEntity findOneBy()
+ */
 class PostRepository extends EntityRepository
 {
     /**
@@ -23,17 +28,15 @@ class PostRepository extends EntityRepository
      */
     public function findPostsByTagName($tag)
     {
-        $entityManager  = $this->getEntityManager();
-        $queryBuilder   = $entityManager->createQueryBuilder();
+        $queryBuilder   = $this->createQueryBuilder('p');
 
-        $queryBuilder->select('p')
-            ->from(PostEntity::class, 'p')
+        $queryBuilder
             ->join('p.tags', 't')
-            ->where('p.status = ?1')
-            ->andWhere('t.seo = ?2')
+            ->where('p.status = :status')
+            ->andWhere('t.seo = :seo')
             ->orderBy('p.dateCreated', 'DESC')
-            ->setParameter('1', PostEntity::STATUS_PUBLISHED)
-            ->setParameter('2', $tag);
+            ->setParameter('status', PostEntity::STATUS_PUBLISHED)
+            ->setParameter('seo', $tag);
 
         $posts = $queryBuilder
             ->getQuery()

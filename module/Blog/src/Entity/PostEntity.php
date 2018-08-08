@@ -18,16 +18,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\Uuid;
+use User\Entity\UserEntity;
 use Zend\Form\Annotation as Form;
 
 /**
- * This class represents a blog post.
+ * This class represents a blog post-admin.
  *
  * @package Blog\Entity
  * @ORM\Entity(repositoryClass="Blog\Repository\PostRepository")
  * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
  * @ORM\Table(name="posts")
- * @Form\Type("Core\Form\FormBase")
+ * @Form\Type("Blog\Form\PostForm")
  * @Form\Name("post-form")
  * @property int $status
  * @property string $title
@@ -38,8 +39,9 @@ use Zend\Form\Annotation as Form;
  * @property ArrayCollection $comments
  * @property ArrayCollection $tags
  * @property string $newTags
+ * @property UserEntity $user
  */
-class PostEntity extends AbstractEntity
+final class PostEntity extends AbstractEntity
 {
     const STATUS_DRAFT      = false;
     const STATUS_PUBLISHED  = true;
@@ -67,7 +69,7 @@ class PostEntity extends AbstractEntity
      * @ORM\Column(type="string", unique=true)
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})
-     * @Form\Filter({"name":"Core\Filter\Slug"})
+     * @Form\Filter({"name":"Core\Filter\Seo"})
      * @Form\Validator({"name":"StringLength", "options":{"max":255}})
      * @Form\Attributes({"type":"text"})
      * @Form\Options({"label":"Seo:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
@@ -111,7 +113,8 @@ class PostEntity extends AbstractEntity
      *      )
      * @ORM\OrderBy({"name" = "ASC"})
      * @Form\Type("DoctrineModule\Form\Element\ObjectSelect")
-     * @Form\Options({"label":"Tags: ", "target_class": "Blog\Entity\TagEntity", "property": "name", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
+     * @Form\Options({"label":"Tags: ", "target_class": "Blog\Entity\TagEntity", "property": "name",
+     *     "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      * @Form\Attributes({"multiple" : "multiple"})
      */
     protected $tags;
@@ -141,7 +144,7 @@ class PostEntity extends AbstractEntity
     }
 
     /**
-     * Update post
+     * Update post-admin
      * @param array $data
      */
     public function updateDates(array $data): void
@@ -189,7 +192,7 @@ class PostEntity extends AbstractEntity
     }
 
     /**
-     * Adds a new comment to post.
+     * Adds a new comment to post-admin.
      *
      * @param $tags
      */
@@ -203,7 +206,7 @@ class PostEntity extends AbstractEntity
     }
 
     /**
-     * Removes association between this post and the given tag.
+     * Removes association between this post-admin and the given tag.
      *
      * @param $tags
      */

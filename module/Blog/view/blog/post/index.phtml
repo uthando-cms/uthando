@@ -1,57 +1,45 @@
 
-<ol class="breadcrumb">
-    <!-- Breadcrumbs -->
-    <?= $this->navigation(\Admin\Service\Factory\NavigationFactory::class)
-        ->breadcrumbs()
-        ->setSeparator(' / '); ?>
-</ol>
+<div class="col-sm-8">
+    <h1>Welcome to Uthando CMS</h1>
+    <?php foreach($this->posts as $post): ?>
 
-<h1>Manage Posts</h1>
+    <h3>
+        <a href="<?=$this->url('blog/post', [
+            'action' => 'view',
+            'id'     => $post->id->toString()
+        ]);?>">
+            <?= $this->escapeHtml($post->title); ?>
+        </a>
+    </h3>
 
-<p>
-    <a class="btn btn-default" href="
-    <?= $this->url('admin/post', ['action'=>'add']); ?>">
-        New Post
-    </a>
-</p>
+    <p>
+        Published: <?= $this->escapeHtml($post->dateCreated->format('jS \of F Y g:i a')); ?>
+        | Tags:  <?= $this->tagHelper()->renderTags($post->getTags()); ?>
+    </p>
 
-<table class="table table-striped">
+    <p>
+        <?= $this->escapeHtml($post->content); ?>
+    </p>
 
-    <tr>
-        <th>ID</th>
-        <th>Post Title</th>
-        <th>Date Created</th>
-        <th>Status</th>
-        <th>Actions</th>
-    </tr>
-
-    <?php foreach ($this->posts as $post): ?>
-        <tr>
-            <td><?= $this->escapeHtml($post->id); ?></td>
-            <td>
-                <a href="<?= $this->url('blog/post', ['action'=>'view', 'id'=>$post->id]); ?>">
-                    <?= $this->escapeHtml($post->title); ?>
-                </a>
-            </td>
-            <td><?= $this->escapeHtml($post->dateCreated->format('d/m/Y')); ?></td>
-            <td><?= $this->escapeHtml($post->status()); ?></td>
-            <td>
-                <a class="btn btn-info" href="<?= $this->url('admin/post',
-                    ['action'=>'edit', 'id'=>$post->id]); ?>">
-                    <span class="fa fa-pencil" ></span> Edit
-                </a>
-                <a class="btn btn-danger" href="<?= $this->url('admin/post',
-                    ['action'=>'delete', 'id'=>$post->id]); ?>">
-                    <span class="fa fa-remove"></span> Delete
-                </a>
-            </td>
-        </tr>
+    <hr>
 
     <?php endforeach; ?>
+    <?= $this->paginationControl($posts,
+        'Sliding',
+        'blog/partial/paginator',
+        ['route' => $this->route, 'routeParams' => $this->routeParams]); ?>
 
-</table>
+</div>
 
-<?= $this->paginationControl($posts,
-    'Sliding',
-    'blog/partial/paginator',
-    ['route' => $this->route, 'routeParams' => 'admin/post']); ?>
+<div class="col-sm-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Popular Tags</h3>
+        </div>
+        <div class="panel-body">
+            <?= $this->tagHelper($this->route)->renderTagCloud($tagCloud, 'blog/list'); ?>
+        </div>
+    </div>
+</div>
+
+

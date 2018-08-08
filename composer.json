@@ -57,8 +57,7 @@
       "@development-enable"
     ],
     "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
-    "test": "phpdbg -qrr ./vendor/bin/phpunit -v",
-    "doctrine-migrations": "doctrine-migrations"
+    "test": "phpdbg -qrr ./vendor/bin/phpunit -v"
   },
   "require-dev": {
     "zendframework/zend-developer-tools": "^1.1",
@@ -79,6 +78,11 @@
       "package": {
         "name": "szmnmichalowski/doctrine-cache-toolbar",
         "version":"dev-master",
+        "autoload": {
+          "psr-4": {
+            "DoctrineCacheToolbar\\": "src/"
+          }
+        },
         "source": {
           "url": "https://github.com/shaunfreeman/DoctrineCacheToolbar.git",
           "type": "git",

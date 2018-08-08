@@ -18,7 +18,7 @@ use Ramsey\Uuid\Uuid;
 use Zend\Form\Annotation as Form;
 
 /**
- * This class represents a comment related to a blog post.
+ * This class represents a comment related to a blog post-admin.
  *
  * @ORM\Entity
  * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
@@ -26,12 +26,12 @@ use Zend\Form\Annotation as Form;
  * @Form\Attributes({"class":"comments"})
  * @Form\Name("comment-form")
  * @Form\Type("Core\Form\FormBase")
- * @property PostEntity $post
+ * @property PostEntity $post-admin
  * @property string $content
  * @property string $author
  * @property W3cDateTime $dateCreated
  */
-class CommentEntity extends AbstractEntity
+final class CommentEntity extends AbstractEntity
 {
     /**
      * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
@@ -46,7 +46,7 @@ class CommentEntity extends AbstractEntity
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})
      * @Form\Validator({"name":"StringLength", "options":{"max":255}})
-     * @Form\Attributes({"type":"text"})
+     * @Form\Attributes({"type":"string"})
      * @Form\Options({"label":"Author:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
     protected $author;

@@ -1,0 +1,60 @@
+
+<ol class="breadcrumb">
+    <!-- Breadcrumbs -->
+    <?= $this->navigation(\Admin\Service\Factory\NavigationFactory::class)
+        ->breadcrumbs()
+        ->setSeparator(' / '); ?>
+</ol>
+
+<h1>Manage Users</h1>
+
+<p>
+    <a class="btn btn-default" href="
+    <?= $this->url('admin/user-admin', ['action'=>'add']); ?>">
+        New User
+    </a>
+</p>
+
+<table class="table table-striped">
+
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Date Created</th>
+        <th>Date Created</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    <?php foreach ($users as $user): ?>
+        <tr>
+            <td><?= $this->escapeHtml($user->id); ?></td>
+            <td>
+                <a href="<?= $this->url('user', ['action'=>'view', 'id'=>$user->id]); ?>">
+                    <?= $this->escapeHtml($user->email); ?>
+                </a>
+            </td>
+            <td><?= $this->escapeHtml($user->fullName); ?></td>
+            <td><?= $this->escapeHtml($user->dateCreated->format('d/m/Y')); ?></td>
+            <td><?= $this->escapeHtml($user->status()); ?></td>
+            <td>
+                <a class="btn btn-info" href="<?= $this->url('admin/user-admin',
+                    ['action'=>'edit', 'id'=>$user->id]); ?>">
+                    <span class="fa fa-pencil" ></span> Edit
+                </a>
+                <a class="btn btn-danger" href="<?= $this->url('admin/user-admin',
+                    ['action'=>'delete', 'id'=>$user->id]); ?>">
+                    <span class="fa fa-remove"></span> Delete
+                </a>
+            </td>
+        </tr>
+
+    <?php endforeach; ?>
+
+</table>
+
+<?= $this->paginationControl($users,
+    'Sliding',
+    'blog/partial/paginator',
+    ['route' => 'admin/user-admin']); ?>
+

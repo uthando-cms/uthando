@@ -12,6 +12,7 @@ namespace Blog\Controller\Factory;
 
 
 use Blog\Controller\PostController;
+use Blog\Entity\CommentEntity;
 use Blog\Entity\PostEntity;
 use Blog\Service\PostManager;
 use Doctrine\ORM\EntityManager;
@@ -22,13 +23,12 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 
 final class PostControllerFactory implements FactoryInterface
 {
-
     /**
-     * Create an post controller
+     * Create PostController
      *
-     * @param ContainerInterface $container
-     * @param string $requestedName
-     * @param array|null $options
+     * @param  ContainerInterface $container
+     * @param  string $requestedName
+     * @param  null|array $options
      * @return PostController
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): PostController
@@ -37,10 +37,12 @@ final class PostControllerFactory implements FactoryInterface
         $postRepository = $entityManager->getRepository(PostEntity::class);
         $postManager    = $container->get(PostManager::class);
         $builder        = new AnnotationBuilder($entityManager);
-        $form           = $builder->createForm(PostEntity::class);
+        $form           = $builder->createForm(CommentEntity::class);
 
         $form->setHydrator(new DoctrineObject($entityManager));
 
+
+        // Instantiate the controller and inject dependencies
         return new PostController($postRepository, $postManager, $form);
     }
 }

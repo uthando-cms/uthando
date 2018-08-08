@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4d0c7df4e3188ad4bd87ac57488efa02",
+    "content-hash": "21c52791cb4d07e198ea8fc69cb67ab3",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -6208,6 +6208,11 @@
                 "reference": "master"
             },
             "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DoctrineCacheToolbar\\": "src/"
+                }
+            },
             "time": "2018-08-02T08:47:51+00:00"
         },
         {

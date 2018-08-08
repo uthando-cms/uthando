@@ -1,30 +1,32 @@
 <?php declare(strict_types=1);
 /**
- * Uthando CMS (http://www.shaunfreeman.co.uk/)
+ * Uthando CMS (http://www.shaunfreeman.name/)
  *
  * @package   Blog\Controller
- * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
- * @copyright Copyright (c) 2018 Shaun Freeman. (http://www.shaunfreeman.co.uk)
+ * @author    Shaun Freeman
+ * @copyright Copyright (c) 2018 Shaun Freeman. (http://www.shaunfreeman.name)
+ * @date      19/07/18
  * @license   see LICENSE
  */
 
 namespace Blog\Controller;
 
 
+use Blog\Entity\CommentEntity;
 use Blog\Entity\PostEntity;
 use Blog\Repository\PostRepository;
 use Blog\Service\PostManager;
-use Ramsey\Uuid\Uuid;
 use Zend\Form\Form;
 use Zend\Http\PhpEnvironment\Request;
-use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Paginator\Adapter\ArrayAdapter;
 use Zend\Paginator\Paginator;
 use Zend\View\Model\ViewModel;
+use Zend\Http\PhpEnvironment\Response;
 
 /**
  * Class PostController
+ *
  * @package Blog\Controller
  * @method  Request getRequest()
  * @method Response getResponse()
@@ -53,77 +55,50 @@ final class PostController extends AbstractActionController
         $this->form             = $form;
     }
 
-    public function indexAction()
+    /**
+     *
+     * @return ViewModel
+     * @throws \Exception
+     */
+    public function indexAction() : ViewModel
     {
+        $filter = $this->params()->fromRoute('tag');
         $page   = $this->params()->fromRoute('page', 1);
 
-        // Get recent posts
-        $posts = $this->postRepository
-            ->findBy([], ['dateCreated'=>'DESC']);
+        if ($filter) {
+            $posts = $this->postRepository->findPostsByTagName($filter);
+        } else {
+            $posts = $this->postRepository->findBy(
+                ['status' => PostEntity::STATUS_PUBLISHED],
+                ['dateCreated' => 'DESC']
+            );
+        }
 
         $adaptor    = new ArrayAdapter($posts);
         $paginator  = new Paginator($adaptor);
 
-        $paginator->setDefaultItemCountPerPage(25);
+        $paginator->setDefaultItemCountPerPage(10);
         $paginator->setCurrentPageNumber($page);
 
-        // Render the view template
+        $tagCloud = $this->postRepository->fetchTagCount();
+
         return new ViewModel([
-            'posts' => $paginator,
-            'postManager' => $this->postManager
+            'posts'         => $paginator,
+            'tagCloud'      => $tagCloud,
+            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
+            'routeParams'   => $this->getEvent()->getRouteMatch()->getParams(),
         ]);
     }
 
     /**
-     * @return \Zend\Http\Response|ViewModel
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Exception
-     */
-    public function addAction()
-    {
-        // Create the form.
-        $form = $this->form;
-
-        // Check whether this post is a POST request.
-        if ($this->getRequest()->isPost()) {
-
-            // Get POST data.
-            $data = $this->params()->fromPost();
-
-            // Fill form with data.
-            $form->setData($data);
-            $form->bind(new PostEntity());
-
-            if ($form->isValid()) {
-
-                // Use post manager service to add new post to database.
-                $this->postManager->addPost($form->getData());
-
-                // Redirect the user to "index" page.
-                return $this->redirect()->toRoute('admin/post');
-            }
-        }
-
-        // Render the view template.
-        return new ViewModel([
-            'form' => $form
-        ]);
-    }
-
-    /**
+     * @return bool|ViewModel|Response
      * @throws \Doctrine\ORM\ORMException
      * @throws \Exception
      */
-    public function editAction()
+    public function viewAction(): ViewModel
     {
         $id = $this->params()->fromRoute('id');
 
-        if (!Uuid::isValid($id)) {
-            throw new \Exception(sprintf('Not a valid UUID: %s', $id));
-        }
-
-        /** @var PostEntity $post */
         $post = $this->postRepository->findOneBy(['id' => $id]);
 
         if ($post == null) {
@@ -131,62 +106,34 @@ final class PostController extends AbstractActionController
             return false;
         }
 
-        $postOld = $post->getArrayCopy();
-
         $form = $this->form;
-        $form->bind($post);
 
-        // Check whether this post is a POST request.
-        if ($this->getRequest()->isPost()) {
+        // Check whether this post-admin is a POST request.
+        if($this->getRequest()->isPost()) {
+
             // Get POST data.
             $data = $this->params()->fromPost();
 
             // Fill form with data.
             $form->setData($data);
+            $form->bind(new CommentEntity());
 
-            if ($form->isValid()) {
+            if($form->isValid()) {
 
-                // Use post manager service to add new post to database.
-                $this->postManager->updatePost($form->getData(), $postOld);
+                // Use post-admin manager service to add new comment to post-admin.
+                $this->postManager->addCommentToPost($post, $form->getData());
 
-                // Redirect the user to "admin" page.
-                return $this->redirect()->toRoute('admin/post');
+                // Redirect the user again to "view" page.
+                return $this->redirect()->toRoute('blog/post-admin', ['id' => $id]);
             }
-        } else {
-            $form->setData($post->getArrayCopy());
         }
 
-        // Render the view template.
+        $tagCloud = $this->postRepository->fetchTagCount();
+
         return new ViewModel([
-            'form' => $form,
-            'post' => $post
+            'post'      => $post,
+            'form'      => $form,
+            'tagCloud'  => $tagCloud,
         ]);
-    }
-
-    /**
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Exception
-     */
-    public function deleteAction()
-    {
-        $id = $this->params()->fromRoute('id');
-
-        if (!Uuid::isValid($id)) {
-            throw new \Exception(sprintf('Not a valid UUID: %s', $id));
-        }
-
-        /** @var PostEntity $post */
-        $post = $this->postRepository->findOneBy(['id' => $id]);
-
-        if ($post == null) {
-            $this->getResponse()->setStatusCode(404);
-            return false;
-        }
-
-        $this->postManager->removePost($post);
-
-        // Redirect the user to "index" page.
-        return $this->redirect()->toRoute('admin/post');
     }
 }

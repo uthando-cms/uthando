@@ -14,14 +14,15 @@ namespace Core\Filter;
 use Zend\Filter\AbstractFilter;
 
 /**
- * Class Slug
+ * Class Seo
  *
  * @package Core\Filter
  */
-class Slug extends AbstractFilter
+class Seo extends AbstractFilter
 {
     /**
      * @param mixed $value
+     * @param null $context
      * @return string
      */
     public function filter($value)

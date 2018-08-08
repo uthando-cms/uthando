@@ -10,7 +10,7 @@
 
 namespace CoreTest\Filter;
 
-use Core\Filter\Slug;
+use Core\Filter\Seo;
 use PHPUnit\Framework\TestCase;
 use Zend\Filter\StaticFilter;
 
@@ -20,7 +20,7 @@ class SlugTest extends TestCase
     public function testFilter()
     {
         $string = 'This Is a Non normalised @ & String';
-        $slug   = StaticFilter::execute($string, Slug::class);
+        $slug   = StaticFilter::execute($string, Seo::class);
 
         $this->assertSame('this-is-a-non-normalised-and-string', $slug);
     }

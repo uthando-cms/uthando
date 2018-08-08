@@ -36,6 +36,24 @@ return [
     'service_manager' => [
         'factories' => [
             'doctrine.cache.filesystem' => \Core\Doctine\Cache\FilesystemFactory::class,
+            \DoctrineORMModule\Form\Annotation\AnnotationBuilder::class => \Core\Doctine\Annotation\FormAnnotationBuilderFactory::class
+        ],
+    ],
+    'filters' => [
+        'aliases' => [
+            'Seo' => \Core\Filter\Seo::class,
+            'seo' => \Core\Filter\Seo::class,
+        ],
+        'factories' => [
+            \Core\Filter\Seo::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
+        ],
+    ],
+    'validators' => [
+        'aliases' => [
+            'NoObjectExists' => \Core\Validator\NoObjectExists::class,
+        ],
+        'factories' => [
+            \Core\Validator\NoObjectExists::class => \Core\Validator\Factory\NoObjectExistsFactory::class,
         ],
     ],
     'view_helpers' => [

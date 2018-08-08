@@ -11,9 +11,9 @@
 namespace Blog\Controller\Factory;
 
 
-use Blog\Controller\IndexController;
-use Blog\Entity\CommentEntity;
+use Blog\Controller\PostAdminController;
 use Blog\Entity\PostEntity;
+use Blog\Repository\PostRepository;
 use Blog\Service\PostManager;
 use Doctrine\ORM\EntityManager;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
@@ -21,28 +21,29 @@ use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
-final class IndexControllerFactory implements FactoryInterface
+final class PostAdminControllerFactory implements FactoryInterface
 {
     /**
-     * Create IndexController
+     * Create an post-admin controller
      *
-     * @param  ContainerInterface $container
-     * @param  string $requestedName
-     * @param  null|array $options
-     * @return IndexController
+     * @param ContainerInterface $container
+     * @param string $requestedName
+     * @param array|null $options
+     * @return PostAdminController
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): IndexController
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): PostAdminController
     {
+        /** @var EntityManager $entityManager */
         $entityManager  = $container->get(EntityManager::class);
+        /** @var PostRepository $postRepository */
         $postRepository = $entityManager->getRepository(PostEntity::class);
         $postManager    = $container->get(PostManager::class);
-        $builder        = new AnnotationBuilder($entityManager);
-        $form           = $builder->createForm(CommentEntity::class);
+        /** @var AnnotationBuilder $builder */
+        $builder        = $container->get(AnnotationBuilder::class);
+        $form           = $builder->createForm(PostEntity::class);
 
         $form->setHydrator(new DoctrineObject($entityManager));
 
-
-        // Instantiate the controller and inject dependencies
-        return new IndexController($postRepository, $postManager, $form);
+        return new PostAdminController($postRepository, $postManager, $form);
     }
 }

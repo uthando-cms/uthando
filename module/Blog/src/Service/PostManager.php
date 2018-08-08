@@ -14,7 +14,7 @@ namespace Blog\Service;
 use Blog\Entity\CommentEntity;
 use Blog\Entity\PostEntity;
 use Blog\Entity\TagEntity;
-use Core\Filter\Slug;
+use Core\Filter\Seo;
 use Doctrine\ORM\EntityManager;
 use Zend\Filter\StaticFilter;
 
@@ -112,17 +112,28 @@ final class PostManager
         $newTags    = explode(',', $post->newTags);
         $tags       = [];
 
+        $tagEntity = $this->entityManager->getRepository(TagEntity::class);
+
         foreach ($newTags as $newTag) {
             $newTag = trim($newTag);
             if ('' === $newTag) continue;
-            $seo = StaticFilter::execute($newTag, Slug::class);
-            $tags[] = new TagEntity($newTag, $seo);
+            $seo = StaticFilter::execute($newTag, Seo::class);
+
+            $match = $tagEntity->findOneBy(['seo' => $seo]);
+
+            if ($match instanceof TagEntity) {
+                if (!$post->getTags()->contains($match)) {
+                    $tags[] = $match;
+                }
+            } else {
+                $tags[] = new TagEntity($newTag, $seo);
+            }
         }
 
         $post->addTags($tags);
     }
 
-    // This method adds a new comment to post.
+    // This method adds a new comment to post-admin.
 
     /**
      * @param PostEntity $post
@@ -133,9 +144,9 @@ final class PostManager
      */
     public function addCommentToPost(PostEntity $post, CommentEntity $comment)
     {
-        // Add post to comment.
+        // Add post-admin to comment.
         $comment->post = $post;
-        // Add comment to post.
+        // Add comment to post-admin.
         $post->comments->add($comment);
 
         // Apply changes.

@@ -1,0 +1,57 @@
+
+<ol class="breadcrumb">
+    <!-- Breadcrumbs -->
+    <?= $this->navigation(\Admin\Service\Factory\NavigationFactory::class)
+        ->breadcrumbs()
+        ->setSeparator(' / '); ?>
+</ol>
+
+<h1>Manage Posts</h1>
+
+<p>
+    <a class="btn btn-default" href="
+    <?= $this->url('admin/post-admin', ['action'=>'add']); ?>">
+        New Post
+    </a>
+</p>
+
+<table class="table table-striped">
+
+    <tr>
+        <th>ID</th>
+        <th>Post Title</th>
+        <th>Date Created</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    <?php foreach ($posts as $post): ?>
+        <tr>
+            <td><?= $this->escapeHtml($post->id); ?></td>
+            <td>
+                <a href="<?= $this->url('blog/post', ['action'=>'view', 'id'=>$post->id]); ?>">
+                    <?= $this->escapeHtml($post->title); ?>
+                </a>
+            </td>
+            <td><?= $this->escapeHtml($post->dateCreated->format('d/m/Y')); ?></td>
+            <td><?= $this->escapeHtml($post->status()); ?></td>
+            <td>
+                <a class="btn btn-info" href="<?= $this->url('admin/post-admin',
+                    ['action'=>'edit', 'id'=>$post->id]); ?>">
+                    <span class="fa fa-pencil" ></span> Edit
+                </a>
+                <a class="btn btn-danger" href="<?= $this->url('admin/post-admin',
+                    ['action'=>'delete', 'id'=>$post->id]); ?>">
+                    <span class="fa fa-remove"></span> Delete
+                </a>
+            </td>
+        </tr>
+
+    <?php endforeach; ?>
+
+</table>
+
+<?= $this->paginationControl($posts,
+    'Sliding',
+    'blog/partial/paginator',
+    ['route' => 'admin/post-admin']); ?>
