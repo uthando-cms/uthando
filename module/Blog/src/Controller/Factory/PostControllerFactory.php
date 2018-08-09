@@ -14,8 +14,10 @@ namespace Blog\Controller\Factory;
 use Blog\Controller\PostController;
 use Blog\Entity\CommentEntity;
 use Blog\Entity\PostEntity;
+use Blog\Repository\PostRepository;
 use Blog\Service\PostManager;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
 use Interop\Container\ContainerInterface;
@@ -34,8 +36,8 @@ final class PostControllerFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): PostController
     {
         $entityManager  = $container->get(EntityManager::class);
-        $postRepository = $entityManager->getRepository(PostEntity::class);
-        $postManager    = $container->get(PostManager::class);
+        $postRepository = new PostRepository($entityManager, new ClassMetadata(PostEntity::class));
+        $postManager    = new PostManager($entityManager);
         $builder        = new AnnotationBuilder($entityManager);
         $form           = $builder->createForm(CommentEntity::class);
 

@@ -13,9 +13,11 @@ namespace Blog\Controller\Factory;
 
 use Blog\Controller\PostAdminController;
 use Blog\Entity\PostEntity;
+use Blog\Form\PostForm;
 use Blog\Repository\PostRepository;
 use Blog\Service\PostManager;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
 use Interop\Container\ContainerInterface;
@@ -35,11 +37,10 @@ final class PostAdminControllerFactory implements FactoryInterface
     {
         /** @var EntityManager $entityManager */
         $entityManager  = $container->get(EntityManager::class);
-        /** @var PostRepository $postRepository */
-        $postRepository = $entityManager->getRepository(PostEntity::class);
-        $postManager    = $container->get(PostManager::class);
-        /** @var AnnotationBuilder $builder */
-        $builder        = $container->get(AnnotationBuilder::class);
+        $postRepository = new PostRepository($entityManager, new ClassMetadata(PostEntity::class));
+        $postManager    = new PostManager($entityManager);
+        $builder        = new AnnotationBuilder($entityManager);
+        /** @var PostForm $form */
         $form           = $builder->createForm(PostEntity::class);
 
         $form->setHydrator(new DoctrineObject($entityManager));

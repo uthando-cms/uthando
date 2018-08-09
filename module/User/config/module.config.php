@@ -76,16 +76,16 @@ return [
         'admin' => [
             'admin' => [
                 'pages' => [
-                    'post-admin' => [
+                    'user-admin' => [
                         'label' => 'Users',
                         'route' => 'admin/user-admin',
                         'pages' => [
-                            'add-post-admin' => [
+                            'add-user-admin' => [
                                 'label' => 'New User',
                                 'route' => 'admin/user-admin',
                                 'action' => 'add',
                             ],
-                            'edit-post-admin' => [
+                            'edit-user-admin' => [
                                 'label' => 'Edit User',
                                 'route' => 'admin/user-admin',
                                 'action' => 'edit',

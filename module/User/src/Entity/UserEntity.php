@@ -16,7 +16,7 @@ use Core\Stdlib\W3cDateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Zend\Form\Annotation as Form;
+
 
 /**
  * This class represents a blog post-admin.
@@ -25,10 +25,9 @@ use Zend\Form\Annotation as Form;
  * @ORM\Entity()
  * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
  * @ORM\Table(name="users")
- * @Form\Type("Core\Form\FormBase")
- * @Form\Name("user-form")
  * @property string $email
- * @property string $fullName
+ * @property string $firstname
+ * @property string $lastname
  * @property string $password
  * @property bool $status
  * @property W3cDateTime $dateCreated
@@ -43,58 +42,41 @@ class UserEntity extends AbstractEntity
 
     /**
      * @ORM\Column(type="string", length=128)
-     * @Form\Filter({"name":"StringTrim"})
-     * @Form\Filter({"name":"StripTags"})
-     * @Form\Validator({"name":"EmailAddress", "options":{"allow":255}})
-     * @Form\Attributes({"type":"email"})
-     * @Form\Options({"label":"Email:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
     protected $email;
 
     /**
-     * @ORM\Column(name="full_name", type="string", length=512)
-     * @Form\Filter({"name":"StringTrim"})
-     * @Form\Filter({"name":"StripTags"})
-     * @Form\Validator({"name":"StringLength", "options":{"max":512}})
-     * @Form\Attributes({"type":"text"})
-     * @Form\Options({"label":"FullName:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
+     * @ORM\Column(name="firstname", type="string", length=512)
      */
-    protected $fullName;
+    protected $firstname;
+
+    /**
+     * @ORM\Column(name="lastname", type="string", length=512)
+     */
+    protected $lastname;
 
     /**
      * @ORM\Column(type="string", length=256)
-     * @Form\Filter({"name":"StringTrim"})
-     * @Form\Filter({"name":"StripTags"})
-     * @Form\Validator({"name":"StringLength", "options":{"max":256}})
-     * @Form\Attributes({"type":"password"})
-     * @Form\Options({"label":"Password:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
     protected $password;
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
-     * @Form\AllowEmpty()
-     * @Form\Filter({"name":"Boolean", "options":{"type":"zero"}})
-     * @Form\Type("Zend\Form\Element\Select")
-     * @Form\Options({"label":"Status:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}, "value_options":{"0":"Inactive","1":"Active"}})
      */
     protected $status = self::STATUS_INACTIVE;
 
     /**
-     * @ORM\Column(name="date_modified", type="w3cdatetime", length=25)
-     * @Form\Exclude()
+     * @ORM\Column(name="date_created", type="w3cdatetime", length=25)
      */
     protected $dateCreated;
 
     /**
-     * @ORM\Column(name="pwd_reset_token", type="string", length=32)
-     * @Form\Exclude()
+     * @ORM\Column(name="pwd_reset_token", type="string", length=32, nullable=true, options={"default":NULL})
      */
     protected $pwdResetToken;
 
     /**
-     * @ORM\Column(name="pwd_reset_token_creation_date", type="w3cdatetime", length=25)
-     * @Form\Exclude()
+     * @ORM\Column(name="pwd_reset_token_creation_date", type="w3cdatetime", length=25, nullable=true, options={"default":NULL})
      */
     protected $pwdResetTokenCreationDate;
 
@@ -114,5 +96,13 @@ class UserEntity extends AbstractEntity
     public function status(): string
     {
         return ($this->status) ? 'Active' : 'Inactive';
+    }
+
+    /**
+     * @return string
+     */
+    public function toFullName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
     }
 }

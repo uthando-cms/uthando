@@ -46,16 +46,16 @@ final class CommentEntity extends AbstractEntity
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})
      * @Form\Validator({"name":"StringLength", "options":{"max":255}})
-     * @Form\Attributes({"type":"string"})
+     * @Form\Type("Text")
      * @Form\Options({"label":"Author:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
     protected $author;
 
     /**
-     *@Form\Attributes({"type":"textarea"})
      * @ORM\Column(type="text")
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})
+     * @Form\Type("Textarea")
      * @Form\Validator({"name":"StringLength", "options":{"max":4096}})
      * @Form\Options({"label":"Content:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */

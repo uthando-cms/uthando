@@ -18,7 +18,7 @@ use Doctrine\ORM\EntityRepository;
 /**
  * Class PostRepository
  * @package Blog\Repository
- * @method PostEntity findOneBy()
+ * @method PostEntity findOneBy(array $criteria, array $orderBy = null)
  */
 class PostRepository extends EntityRepository
 {

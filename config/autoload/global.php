@@ -64,6 +64,21 @@ return [
         'factories' => [
             \Core\View\Helper\Navigation::class => \Core\View\NavigationHelperFactory::class,
             'zendviewhelpernavigation' => \Core\View\NavigationHelperFactory::class,
-        ]
-    ]
+        ],
+    ],
+    'view_manager' => [
+        'display_not_found_reason'  => true,
+        'display_exceptions'        => true,
+        'doctype'                   => 'HTML5',
+        'not_found_template'        => 'error/404',
+        'exception_template'        => 'error/post',
+        'template_map' => [
+            'layout/layout' => './module/Core/view/layout/layout.phtml',
+            'error/404'     => './module/Core/view/error/404.phtml',
+            'error/post'    => './module/Core/view/error/index.phtml',
+        ],
+        'template_path_stack' => [
+            './module/Core/view',
+        ],
+    ],
 ];

@@ -12,18 +12,17 @@ namespace User\Controller\Factory;
 
 
 use Doctrine\ORM\EntityManager;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
-use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Interop\Container\ContainerInterface;
 use User\Controller\UserAdminController;
 use User\Entity\UserEntity;
 use User\Service\UserManager;
-use Zend\Form\Form;
+use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 final class UserAdminControllerFactory implements FactoryInterface
 {
-
     /**
      * Create an user admin controller
      * @param ContainerInterface $container
@@ -35,15 +34,10 @@ final class UserAdminControllerFactory implements FactoryInterface
     {
         /** @var EntityManager $entityManager */
         $entityManager      = $container->get(EntityManager::class);
-        $entityRepository   = $entityManager->getRepository(UserEntity::class);
-        $userManager        = $container->get(UserManager::class);
-        $builder            = new AnnotationBuilder($entityManager);
+        $entityRepository   = new EntityRepository($entityManager, new ClassMetadata(UserEntity::class));
+        $userManager        = new UserManager($entityManager);
+        $builder            = $container->get(AnnotationBuilder::class);
 
-        /** @var Form $form */
-        $form = $builder->createForm(UserEntity::class);
-
-        $form->setHydrator(new DoctrineObject($entityManager));
-
-        return new UserAdminController($entityRepository, $userManager, $form);
+        return new UserAdminController($entityRepository, $userManager, $builder);
     }
 }

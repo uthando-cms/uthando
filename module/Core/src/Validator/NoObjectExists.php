@@ -28,7 +28,8 @@ class NoObjectExists extends DoctrineNoObjectExists
 
     public function __construct($options = null)
     {
-        $this->excludeValue = (bool) $options['exclude_value'] ?? false ;
+        $excludeValue = $options['exclude_value'] ?? false ;
+        $this->excludeValue = (bool) $excludeValue;
         parent::__construct($options);
     }
 
@@ -48,7 +49,7 @@ class NoObjectExists extends DoctrineNoObjectExists
         foreach ($cleanedValue as $key => $value) {
             $and->add($expr->eq('p.'.$key, ':'.$key));
 
-            if ($this->excludeValue) {
+            if ((bool) $this->excludeValue) {
                 $and->add($expr->not($expr->eq('p.'.$key, ':'.$key)));
             }
         }

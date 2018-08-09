@@ -25,7 +25,7 @@ use Zend\Form\Annotation as Form;
  * This class represents a blog post-admin.
  *
  * @package Blog\Entity
- * @ORM\Entity(repositoryClass="Blog\Repository\PostRepository")
+ * @ORM\Entity
  * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
  * @ORM\Table(name="posts")
  * @Form\Type("Blog\Form\PostForm")
@@ -50,7 +50,7 @@ final class PostEntity extends AbstractEntity
      * @ORM\Column(type="boolean", options={"default":true})
      * @Form\AllowEmpty()
      * @Form\Filter({"name":"Boolean", "options":{"type":"zero"}})
-     * @Form\Type("Zend\Form\Element\Select")
+     * @Form\Type("Select")
      * @Form\Options({"label":"Status:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}, "value_options":{"0":"Draft","1":"Published"}})
      */
     protected $status = self::STATUS_DRAFT;
@@ -60,7 +60,7 @@ final class PostEntity extends AbstractEntity
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})
      * @Form\Validator({"name":"StringLength", "options":{"max":255}})
-     * @Form\Attributes({"type":"text"})
+     * @Form\Type("Text")
      * @Form\Options({"label":"Title:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
     protected $title;
@@ -71,7 +71,7 @@ final class PostEntity extends AbstractEntity
      * @Form\Filter({"name":"StripTags"})
      * @Form\Filter({"name":"Core\Filter\Seo"})
      * @Form\Validator({"name":"StringLength", "options":{"max":255}})
-     * @Form\Attributes({"type":"text"})
+     * @Form\Type("Text")
      * @Form\Options({"label":"Seo:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
     protected $seo;
@@ -79,7 +79,7 @@ final class PostEntity extends AbstractEntity
     /**
      * @ORM\Column(type="text")
      * @Form\Filter({"name":"StringTrim"})
-     * @Form\Attributes({"type":"textarea"})
+     * @Form\Type("Textarea")
      * @Form\Options({"label":"Content:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
     protected $content;
@@ -98,7 +98,7 @@ final class PostEntity extends AbstractEntity
 
     /**
      * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
-     * @ORM\OneToMany(targetEntity="\Blog\Entity\CommentEntity", mappedBy="post", cascade={"persist"}, fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="\Blog\Entity\CommentEntity", mappedBy="post", cascade={"persist"})
      * @ORM\OrderBy({"dateCreated" = "DESC"})
      * @Form\Exclude()
      */
@@ -106,7 +106,7 @@ final class PostEntity extends AbstractEntity
 
     /**
      * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
-     * @ORM\ManyToMany(targetEntity="\Blog\Entity\TagEntity", inversedBy="posts", cascade={"persist", "remove"}, fetch="EXTRA_LAZY")
+     * @ORM\ManyToMany(targetEntity="\Blog\Entity\TagEntity", inversedBy="posts", cascade={"persist", "remove"})
      * @ORM\JoinTable(name="post_tag",
      *      joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
@@ -121,7 +121,7 @@ final class PostEntity extends AbstractEntity
 
     /**
      * @Form\AllowEmpty()
-     * @Form\Attributes({"type":"text"})
+     * @Form\Type("Text")
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})
      * @Form\Options({"label":"New tags:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})

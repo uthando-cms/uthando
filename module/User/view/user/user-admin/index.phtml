@@ -20,13 +20,14 @@
     <tr>
         <th>ID</th>
         <th>Email</th>
-        <th>Date Created</th>
+        <th>Full Name</th>
         <th>Date Created</th>
         <th>Status</th>
         <th>Actions</th>
     </tr>
 
-    <?php foreach ($users as $user): ?>
+    <?php /** @var \User\Entity\UserEntity $user */
+    foreach ($this->users as $user): ?>
         <tr>
             <td><?= $this->escapeHtml($user->id); ?></td>
             <td>
@@ -34,7 +35,7 @@
                     <?= $this->escapeHtml($user->email); ?>
                 </a>
             </td>
-            <td><?= $this->escapeHtml($user->fullName); ?></td>
+            <td><?= $this->escapeHtml($user->toFullName()); ?></td>
             <td><?= $this->escapeHtml($user->dateCreated->format('d/m/Y')); ?></td>
             <td><?= $this->escapeHtml($user->status()); ?></td>
             <td>
@@ -53,8 +54,8 @@
 
 </table>
 
-<?= $this->paginationControl($users,
+<?= $this->paginationControl($this->users,
     'Sliding',
-    'blog/partial/paginator',
+    'partial/paginator',
     ['route' => 'admin/user-admin']); ?>
 

@@ -93,7 +93,6 @@ final class PostAdminController extends AbstractActionController
 
             // Fill form with data.
             $form->setData($data);
-            $form->checkSeo();
             $form->bind(new PostEntity());
 
             if ($form->isValid()) {
@@ -132,10 +131,7 @@ final class PostAdminController extends AbstractActionController
             return false;
         }
 
-        $postOld = $post->getArrayCopy();
-
         $form = $this->form;
-        $form->noRecordExists($this->postRepository, 'seo', true);
         $form->bind($post);
 
         // Check whether this post is a POST request.
@@ -145,7 +141,6 @@ final class PostAdminController extends AbstractActionController
 
             // Fill form with data.
             $form->setData($data);
-            $form->checkSeo();
 
             if ($form->isValid()) {
 
