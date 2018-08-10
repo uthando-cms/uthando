@@ -15,6 +15,7 @@ use Doctrine\ORM\EntityRepository;
 use Ramsey\Uuid\Uuid;
 use User\Entity\DTO\AddUser;
 use User\Entity\DTO\EditUser;
+use User\Entity\UserEntity;
 use User\Service\UserManager;
 use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Http\PhpEnvironment\Request;
@@ -128,6 +129,7 @@ final class UserAdminController extends AbstractActionController
         $form = $this->formBuilder->createForm(EditUser::class);
         $form->bind(new EditUser());
         $form->setData($user->getArrayCopy());
+        $form->get('old_email')->setValue($user->email);
 
         // Check whether this post is a POST request.
         if ($this->getRequest()->isPost()) {
@@ -154,8 +156,29 @@ final class UserAdminController extends AbstractActionController
         ]);
     }
 
+    /**
+     * @return bool|\Zend\Http\Response
+     * @throws \Exception
+     */
     public function deleteAction()
     {
+        $id = $this->params()->fromPost('id');
 
+        if (!Uuid::isValid($id)) {
+            throw new \Exception(sprintf('Not a valid UUID: %s', $id));
+        }
+
+        /** @var UserEntity $post */
+        $user = $this->userRepository->findOneBy(['id' => $id]);
+
+        if ($user == null) {
+            $this->getResponse()->setStatusCode(404);
+            return false;
+        }
+
+        $this->userManager->removeUser($user);
+
+        // Redirect the user to "post" page.
+        return $this->redirect()->toRoute('admin/user-admin');
     }
 }

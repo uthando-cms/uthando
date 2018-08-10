@@ -13,10 +13,10 @@ namespace Core\Validator\Factory;
 
 use Core\Validator\NoObjectExists;
 use Doctrine\ORM\EntityManager;
+use DoctrineModule\Validator\Service\AbstractValidatorFactory;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
 
-class NoObjectExistsFactory implements FactoryInterface
+final class NoObjectExistsFactory extends AbstractValidatorFactory
 {
 
     /**
@@ -26,14 +26,17 @@ class NoObjectExistsFactory implements FactoryInterface
      * @param array|null $options
      * @return NoObjectExists
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): NoObjectExists
     {
-        /** @var EntityManager $entityManager */
-        $entityManager      = $container->get(EntityManager::class);
-        $entityRepostitory  = $entityManager->getRepository($options['object_repository']);
+        $container = $this->container($container);
 
-        $options['object_repository'] = $entityRepostitory;
+        $repository = $this->getRepository($container, $options);
 
-        return new NoObjectExists($options);
+        $validator = new NoObjectExists($this->merge($options, [
+            'object_repository' => $repository,
+            'fields'            => $this->getFields($options)
+        ]));
+
+        return $validator;
     }
 }

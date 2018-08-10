@@ -12,11 +12,11 @@
 namespace Blog\Controller;
 
 
-use Blog\Entity\CommentEntity;
+use Blog\Entity\DTO\AddComment;
 use Blog\Entity\PostEntity;
 use Blog\Repository\PostRepository;
 use Blog\Service\PostManager;
-use Zend\Form\Form;
+use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Paginator\Adapter\ArrayAdapter;
@@ -44,15 +44,15 @@ final class PostController extends AbstractActionController
     private $postManager;
 
     /**
-     * @var Form
+     * @var AnnotationBuilder
      */
-    private $form;
+    private $formBuilder;
 
-    public function __construct(PostRepository $postRepository, PostManager $postManager, Form $form)
+    public function __construct(PostRepository $postRepository, PostManager $postManager, AnnotationBuilder $formBuilder)
     {
         $this->postRepository   = $postRepository;
         $this->postManager      = $postManager;
-        $this->form             = $form;
+        $this->formBuilder             = $formBuilder;
     }
 
     /**
@@ -106,7 +106,7 @@ final class PostController extends AbstractActionController
             return false;
         }
 
-        $form = $this->form;
+        $form = $this->formBuilder->createForm(AddComment::class);
 
         // Check whether this post-admin is a POST request.
         if($this->getRequest()->isPost()) {
@@ -116,7 +116,7 @@ final class PostController extends AbstractActionController
 
             // Fill form with data.
             $form->setData($data);
-            $form->bind(new CommentEntity());
+            $form->bind(new AddComment());
 
             if($form->isValid()) {
 
@@ -124,7 +124,7 @@ final class PostController extends AbstractActionController
                 $this->postManager->addCommentToPost($post, $form->getData());
 
                 // Redirect the user again to "view" page.
-                return $this->redirect()->toRoute('blog/post-admin', ['id' => $id]);
+                return $this->redirect()->toRoute('blog/post', ['id' => $id]);
             }
         }
 

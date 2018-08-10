@@ -16,7 +16,7 @@ use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
-class FormAnnotationBuilderFactory implements FactoryInterface
+final class FormAnnotationBuilderFactory implements FactoryInterface
 {
     /**
      * Create an Annotation builder object

@@ -19,7 +19,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 use Ramsey\Uuid\Uuid;
 use User\Entity\UserEntity;
-use Zend\Form\Annotation as Form;
 
 /**
  * This class represents a blog post-admin.
@@ -28,9 +27,7 @@ use Zend\Form\Annotation as Form;
  * @ORM\Entity
  * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
  * @ORM\Table(name="posts")
- * @Form\Type("Blog\Form\PostForm")
- * @Form\Name("post-form")
- * @property int $status
+ * @property bool $status
  * @property string $title
  * @property string $seo
  * @property string $content
@@ -48,51 +45,31 @@ final class PostEntity extends AbstractEntity
 
     /**
      * @ORM\Column(type="boolean", options={"default":true})
-     * @Form\AllowEmpty()
-     * @Form\Filter({"name":"Boolean", "options":{"type":"zero"}})
-     * @Form\Type("Select")
-     * @Form\Options({"label":"Status:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}, "value_options":{"0":"Draft","1":"Published"}})
      */
     protected $status = self::STATUS_DRAFT;
 
     /**
      * @ORM\Column(type="string")
-     * @Form\Filter({"name":"StringTrim"})
-     * @Form\Filter({"name":"StripTags"})
-     * @Form\Validator({"name":"StringLength", "options":{"max":255}})
-     * @Form\Type("Text")
-     * @Form\Options({"label":"Title:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
     protected $title;
 
     /**
      * @ORM\Column(type="string", unique=true)
-     * @Form\Filter({"name":"StringTrim"})
-     * @Form\Filter({"name":"StripTags"})
-     * @Form\Filter({"name":"Core\Filter\Seo"})
-     * @Form\Validator({"name":"StringLength", "options":{"max":255}})
-     * @Form\Type("Text")
-     * @Form\Options({"label":"Seo:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
     protected $seo;
 
     /**
      * @ORM\Column(type="text")
-     * @Form\Filter({"name":"StringTrim"})
-     * @Form\Type("Textarea")
-     * @Form\Options({"label":"Content:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
     protected $content;
 
     /**
      * @ORM\Column(name="date_created", type="w3cdatetime", length=25)
-     * @Form\Exclude()
      */
     protected $dateCreated;
 
     /**
      * @ORM\Column(name="date_modified", type="w3cdatetime", length=25)
-     * @Form\Exclude()
      */
     protected $dateModified;
 
@@ -100,7 +77,6 @@ final class PostEntity extends AbstractEntity
      * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
      * @ORM\OneToMany(targetEntity="\Blog\Entity\CommentEntity", mappedBy="post", cascade={"persist"})
      * @ORM\OrderBy({"dateCreated" = "DESC"})
-     * @Form\Exclude()
      */
     protected $comments;
 
@@ -112,22 +88,8 @@ final class PostEntity extends AbstractEntity
      *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
      *      )
      * @ORM\OrderBy({"name" = "ASC"})
-     * @Form\Type("DoctrineModule\Form\Element\ObjectSelect")
-     * @Form\Options({"label":"Tags: ", "target_class": "Blog\Entity\TagEntity", "property": "name",
-     *     "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
-     * @Form\Attributes({"multiple" : "multiple"})
      */
     protected $tags;
-
-    /**
-     * @Form\AllowEmpty()
-     * @Form\Type("Text")
-     * @Form\Filter({"name":"StringTrim"})
-     * @Form\Filter({"name":"StripTags"})
-     * @Form\Options({"label":"New tags:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
-     * @Form\Validator({"name":"StringLength", "options":{"min":1, "max":255}})
-     */
-    protected $newTags;
 
     /**
      * PostEntity constructor.
@@ -144,12 +106,12 @@ final class PostEntity extends AbstractEntity
     }
 
     /**
-     * Update post-admin
-     * @param array $data
+     * Update post dates
+     * @param bool $status
      */
-    public function updateDates(array $data): void
+    public function updateDates(bool $status): void
     {
-        if ($data['status'] !== $this->status && $data['status'] === self::STATUS_PUBLISHED) {
+        if ($status !== $this->status && $status === self::STATUS_PUBLISHED) {
             $this->dateCreated  = new W3cDateTime('now');
             $this->dateModified = new W3cDateTime('now');
         }  else {

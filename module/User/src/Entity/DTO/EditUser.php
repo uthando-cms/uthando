@@ -28,8 +28,8 @@ final class EditUser extends AbstractDto
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})
      * @Form\Validator({"name":"EmailAddress"})
-     * @Form\Validator({"name":"NoObjectExists", "options":{
-     *     "object_repository":"User\Entity\UserEntity", "fields":"email", "exclude_value":true
+     * @Form\Validator({"name":"CoreNoObjectExists", "options":{
+     *     "target_class":"User\Entity\UserEntity", "fields":"email", "exclude_field":"email", "context_field":"old_email"
      *     }})
      * @Form\Type("Email")
      * @Form\Options({"label":"Email:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
@@ -66,4 +66,13 @@ final class EditUser extends AbstractDto
      *     })
      */
     public $status = UserEntity::STATUS_INACTIVE;
+
+    /**
+     * @var string
+     * @Form\Name("old_email")
+     * @Form\Type("Hidden")
+     * @Form\Filter({"name":"StringTrim"})
+     * @Form\Filter({"name":"StripTags"})
+     */
+    public $oldEmail;
 }

@@ -15,7 +15,7 @@ use Doctrine\Common\Cache\FilesystemCache;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
-class FilesystemFactory implements FactoryInterface
+final class FilesystemFactory implements FactoryInterface
 {
 
     /**

@@ -18,7 +18,7 @@ use Zend\Filter\AbstractFilter;
  *
  * @package Core\Filter
  */
-class Seo extends AbstractFilter
+final class Seo extends AbstractFilter
 {
     /**
      * @param mixed $value

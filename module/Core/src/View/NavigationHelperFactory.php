@@ -15,7 +15,7 @@ use Interop\Container\ContainerInterface;
 use ReflectionProperty;
 use Core\View\Helper\Navigation as NavigationHelper;
 
-class NavigationHelperFactory extends \Zend\Navigation\View\NavigationHelperFactory
+final class NavigationHelperFactory extends \Zend\Navigation\View\NavigationHelperFactory
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {

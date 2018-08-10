@@ -11,7 +11,7 @@
 namespace Core\View\Helper;
 
 
-class Navigation extends \Zend\View\Helper\Navigation
+final class Navigation extends \Zend\View\Helper\Navigation
 {
     /**
      * Retrieve plugin loader for navigation helpers

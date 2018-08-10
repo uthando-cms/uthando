@@ -14,7 +14,6 @@ namespace Core\Entity;
 use Core\Exception\InvalidPropertyException;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
-use Zend\Form\Annotation as Form;
 
 /**
  * Class AbstractEntity
@@ -28,7 +27,6 @@ abstract class AbstractEntity
     * @ORM\Column(type="uuid", unique=true)
     * @ORM\GeneratedValue(strategy="CUSTOM")
     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-    * @Form\Exclude()
     */
     protected $id;
 
@@ -70,17 +68,6 @@ abstract class AbstractEntity
 
     /**
      * @param $name
-     * @param $value
-     */
-    final public function __set($name, $value)
-    {
-        if (property_exists($this, $name)) {
-            $this->$name = $value;
-        }
-    }
-
-    /**
-     * @param $name
      * @param $arguments
      * @return mixed
      */
@@ -90,10 +77,6 @@ abstract class AbstractEntity
 
         if (strncasecmp($name, "get", 3) === 0) {
             return $this->$var;
-        }
-
-        if (strncasecmp($name, "set", 3) === 0) {
-            $this->$var = $arguments[0];
         }
     }
 }

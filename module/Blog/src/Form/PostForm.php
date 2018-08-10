@@ -49,25 +49,4 @@ final class PostForm extends FormBase
 
         return $data;
     }
-
-    /**
-     * @param PostRepository $repository
-     * @param string $field
-     * @param bool $excludeValue
-     */
-    public function noRecordExists(PostRepository $repository, string $field, bool $excludeValue = false): void
-    {
-        $validator = new NoObjectExists([
-            // object repository to lookup
-            'object_repository' => $repository,
-            // fields to match
-            'fields' => $field,
-            'exclude_value' => $excludeValue,
-        ]);
-
-        $this->getInputFilter()
-            ->get($field)
-            ->getValidatorChain()
-            ->prependValidator($validator);
-    }
 }

@@ -11,11 +11,13 @@
 namespace Blog\Controller;
 
 
+use Blog\Entity\DTO\AddPost;
+use Blog\Entity\DTO\EditPost;
 use Blog\Entity\PostEntity;
-use Blog\Form\PostForm;
 use Blog\Repository\PostRepository;
 use Blog\Service\PostManager;
 use Ramsey\Uuid\Uuid;
+use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -42,15 +44,15 @@ final class PostAdminController extends AbstractActionController
     private $postManager;
 
     /**
-     * @var PostForm
+     * @var AnnotationBuilder
      */
-    private $form;
+    private $formBuilder;
 
-    public function __construct(PostRepository $postRepository, PostManager $postManager, PostForm $form)
+    public function __construct(PostRepository $postRepository, PostManager $postManager, AnnotationBuilder $formBuilder)
     {
         $this->postRepository   = $postRepository;
         $this->postManager      = $postManager;
-        $this->form             = $form;
+        $this->formBuilder      = $formBuilder;
     }
 
     public function indexAction()
@@ -82,8 +84,7 @@ final class PostAdminController extends AbstractActionController
     public function addAction()
     {
         // Create the form.
-        $form = $this->form;
-        $form->noRecordExists($this->postRepository, 'seo');
+        $form = $this->formBuilder->createForm(AddPost::class);
 
         // Check whether this post-admin is a POST request.
         if ($this->getRequest()->isPost()) {
@@ -93,7 +94,7 @@ final class PostAdminController extends AbstractActionController
 
             // Fill form with data.
             $form->setData($data);
-            $form->bind(new PostEntity());
+            $form->bind(new AddPost());
 
             if ($form->isValid()) {
 
@@ -131,8 +132,10 @@ final class PostAdminController extends AbstractActionController
             return false;
         }
 
-        $form = $this->form;
-        $form->bind($post);
+        $form = $this->formBuilder->createForm(EditPost::class);
+        $form->bind(new EditPost());
+        $form->setData($post->getArrayCopy());
+        $form->get('old_seo')->setValue($post->seo);
 
         // Check whether this post is a POST request.
         if ($this->getRequest()->isPost()) {
@@ -145,7 +148,7 @@ final class PostAdminController extends AbstractActionController
             if ($form->isValid()) {
 
                 // Use post manager service to add new post-admin to database.
-                $this->postManager->updatePost($form->getData(), $postOld);
+                $this->postManager->updatePost($post, $form->getData());
 
                 // Redirect the user to "admin" page.
                 return $this->redirect()->toRoute('admin/post-admin');
@@ -168,7 +171,7 @@ final class PostAdminController extends AbstractActionController
      */
     public function deleteAction()
     {
-        $id = $this->params()->fromRoute('id');
+        $id = $this->params()->fromPost('id');
 
         if (!Uuid::isValid($id)) {
             throw new \Exception(sprintf('Not a valid UUID: %s', $id));

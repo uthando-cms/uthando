@@ -12,10 +12,15 @@ namespace Blog\Service;
 
 
 use Blog\Entity\CommentEntity;
+use Blog\Entity\DTO\AddComment;
+use Blog\Entity\DTO\AddPost;
+use Blog\Entity\DTO\EditPost;
+use Blog\Entity\DTO\PostDTOInterface;
 use Blog\Entity\PostEntity;
 use Blog\Entity\TagEntity;
 use Core\Filter\Seo;
 use Doctrine\ORM\EntityManager;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use Zend\Filter\StaticFilter;
 
 final class PostManager
@@ -48,16 +53,22 @@ final class PostManager
     }
 
     /**
-     * @param PostEntity $post
+     * @param AddPost $dto
+     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Exception
      */
-    public function addPost(PostEntity $post): void
+    public function addPost(AddPost $dto): void
     {
+        $post       = new PostEntity();
+        $hydrator   = new DoctrineObject($this->entityManager, false);
+        /** @var PostEntity $post */
+        $post       = $hydrator->hydrate($dto->getArrayCopy(), $post);
+
         // Add the entity to entity manager.
         $this->entityManager->persist($post);
-        $this->processNewTags($post);
+        $this->processNewTags($post, $dto);
 
         // Apply changes to database.
         $this->entityManager->flush();
@@ -66,16 +77,20 @@ final class PostManager
 
     /**
      * @param PostEntity $post
-     * @param array $data
+     * @param EditPost $dto
+     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Exception
      */
-    public function updatePost(PostEntity $post, array $data): void
+    public function updatePost(PostEntity $post, EditPost $dto): void
     {
-        $post->updateDates($data);
+        $hydrator = new DoctrineObject($this->entityManager, false);
 
-        $this->processNewTags($post);
+        $post->updateDates($dto->status);
+        $hydrator->hydrate($dto->getArrayCopy(), $post);
+
+        $this->processNewTags($post, $dto);
 
         // Apply changes to database.
         $this->entityManager->flush();
@@ -105,11 +120,12 @@ final class PostManager
 
     /**
      * @param PostEntity $post
+     * @param PostDTOInterface $dto
      * @throws \Exception
      */
-    private function processNewTags(PostEntity $post): void
+    private function processNewTags(PostEntity $post, PostDTOInterface $dto): void
     {
-        $newTags    = explode(',', $post->newTags);
+        $newTags    = explode(',', $dto->newTags);
         $tags       = [];
 
         $tagEntity = $this->entityManager->getRepository(TagEntity::class);
@@ -137,17 +153,20 @@ final class PostManager
 
     /**
      * @param PostEntity $post
-     * @param CommentEntity $comment
-     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
+     * @param AddComment $dto
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Exception
      */
-    public function addCommentToPost(PostEntity $post, CommentEntity $comment)
+    public function addCommentToPost(PostEntity $post, AddComment $dto)
     {
-        // Add post-admin to comment.
-        $comment->post = $post;
-        // Add comment to post-admin.
-        $post->comments->add($comment);
+        // Add post to comment
+        $dto->post  = $post;
+        $comment    = new CommentEntity();
+        $hydrator   = new DoctrineObject($this->entityManager, false);
+        $comment    = $hydrator->hydrate($dto->getArrayCopy(), $comment);
+
+        $post->getComments()->add($comment);
 
         // Apply changes.
         $this->entityManager->flush();

@@ -28,8 +28,8 @@ final class AddUser extends AbstractDto
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})
      * @Form\Validator({"name":"EmailAddress"})
-     * @Form\Validator({"name":"NoObjectExists", "options":{
-     *     "object_repository":"User\Entity\UserEntity", "fields":"email",
+     * @Form\Validator({"name":"DoctrineNoObjectExists", "options":{
+     *     "target_class":"User\Entity\UserEntity", "fields":"email",
      *     }})
      * @Form\Type("Email")
      * @Form\Options({"label":"Email:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
@@ -70,12 +70,13 @@ final class AddUser extends AbstractDto
      * @var string
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})
+     * @Form\Name("confirm_password")
      * @Form\Validator({"name":"StringLength", "options":{"min":8, "max":16}})
      * @Form\Validator({"name":"Identical", "options":{"token":"password"}})
      * @Form\Type("Password")
      * @Form\Options({"label":"Confirm password:", "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})
      */
-    public $password_confirm;
+    public $confirmPassword;
 
     /**
      * @var bool

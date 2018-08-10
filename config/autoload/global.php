@@ -1,15 +1,4 @@
-<?php
-/**
- * Global Configuration Override
- *
- * You can use this file for overriding configuration values from modules, etc.
- * You would place values in here that are agnostic to the environment and not
- * sensitive to security.
- *
- * @NOTE: In practice, this file will typically be INCLUDED in your source
- * control, so do not include passwords or other sensitive information in this
- * file.
- */
+<?php declare(strict_types=1);
 
 use Core\Doctine\Types\W3cDateTimeType;
 use Ramsey\Uuid\Doctrine\UuidType;
@@ -33,10 +22,24 @@ return [
             ],
         ],
     ],
+    'controllers' => [
+        'factories' => [
+            \Core\Controller\CaptchaController::class => \Core\Controller\Factory\CaptchaControllerFactory::class,
+        ],
+    ],
     'service_manager' => [
         'factories' => [
             'doctrine.cache.filesystem' => \Core\Doctine\Cache\FilesystemFactory::class,
             \DoctrineORMModule\Form\Annotation\AnnotationBuilder::class => \Core\Doctine\Annotation\FormAnnotationBuilderFactory::class
+        ],
+    ],
+    'form_elements' => [
+        'aliases' => [
+            'CoreCaptcha' => \Core\Form\Element\Captcha::class,
+            'corecaptcha' => \Core\Form\Element\Captcha::class,
+        ],
+        'factories' => [
+            \Core\Form\Element\Captcha::class   => \Core\Form\Element\Factory\CaptchaFactory::class,
         ],
     ],
     'filters' => [
@@ -50,7 +53,7 @@ return [
     ],
     'validators' => [
         'aliases' => [
-            'NoObjectExists' => \Core\Validator\NoObjectExists::class,
+            'CoreNoObjectExists' => \Core\Validator\NoObjectExists::class,
         ],
         'factories' => [
             \Core\Validator\NoObjectExists::class => \Core\Validator\Factory\NoObjectExistsFactory::class,
@@ -58,12 +61,12 @@ return [
     ],
     'view_helpers' => [
         'aliases' => [
-            'navigation'        => \Core\View\Helper\Navigation::class,
-            'Navigation'        => \Core\View\Helper\Navigation::class,
+            'navigation'    => \Core\View\Helper\Navigation::class,
+            'Navigation'    => \Core\View\Helper\Navigation::class,
         ],
         'factories' => [
             \Core\View\Helper\Navigation::class => \Core\View\NavigationHelperFactory::class,
-            'zendviewhelpernavigation' => \Core\View\NavigationHelperFactory::class,
+            'zendviewhelpernavigation'          => \Core\View\NavigationHelperFactory::class,
         ],
     ],
     'view_manager' => [
@@ -79,6 +82,20 @@ return [
         ],
         'template_path_stack' => [
             './module/Core/view',
+        ],
+    ],
+    'router' => [
+        'routes' => [
+            'captcha-form-generate' => [
+                'type' => \Zend\Router\Http\Segment::class,
+                'options' => [
+                    'route' => '/captcha/[:id]',
+                    'defaults' => [
+                        'controller'    => \Core\Controller\CaptchaController::class,
+                        'action'        => 'generate',
+                    ],
+                ],
+            ],
         ],
     ],
 ];

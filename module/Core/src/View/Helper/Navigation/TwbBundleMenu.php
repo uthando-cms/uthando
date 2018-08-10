@@ -15,7 +15,7 @@ use Zend\View\Helper\Navigation\Menu as ZendMenu;
 use Zend\Navigation\AbstractContainer;
 use Zend\Navigation\Page\AbstractPage;
 
-class TwbBundleMenu extends ZendMenu
+final class TwbBundleMenu extends ZendMenu
 {
     /**
      * CSS class to use for the ul element

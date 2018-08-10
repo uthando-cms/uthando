@@ -19,26 +19,33 @@ use DoctrineModule\Validator\NoObjectExists as DoctrineNoObjectExists;
  * @package Core\Validator
  * @property EntityRepository $objectRepository
  */
-class NoObjectExists extends DoctrineNoObjectExists
+final class NoObjectExists extends DoctrineNoObjectExists
 {
     /**
-     * @var bool
+     * @var string
      */
-    protected $excludeValue = false;
+    protected $excludeField;
+
+    /**
+     * @var string
+     */
+    protected $contextField;
 
     public function __construct($options = null)
     {
-        $excludeValue = $options['exclude_value'] ?? false ;
-        $this->excludeValue = (bool) $excludeValue;
+        $this->excludeField = $options['exclude_field'] ?? null;
+        $this->contextField = $options['context_field'] ?? null;
+
         parent::__construct($options);
     }
 
     /**
      * @param $value
+     * @param null $context
      * @return bool
-     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function isValid($value)
+    public function isValid($value, $context = null)
     {
         $cleanedValue = $this->cleanSearchValue($value);
 
@@ -48,10 +55,12 @@ class NoObjectExists extends DoctrineNoObjectExists
 
         foreach ($cleanedValue as $key => $value) {
             $and->add($expr->eq('p.'.$key, ':'.$key));
+        }
 
-            if ((bool) $this->excludeValue) {
-                $and->add($expr->not($expr->eq('p.'.$key, ':'.$key)));
-            }
+        if ($this->excludeField) {
+            $excludeValue = $context[$this->contextField] ?? $value;
+            $and->add($expr->not($expr->eq('p.'.$this->excludeField, ':exclude')));
+            $cleanedValue['exclude'] = $excludeValue;
         }
 
         $queryBuilder->where($and)

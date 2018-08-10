@@ -13,7 +13,7 @@ namespace Core\View\Helper\Navigation;
 
 use Zend\ServiceManager\Factory\InvokableFactory;
 
-class PluginManager extends \Zend\View\Helper\Navigation\PluginManager
+final class PluginManager extends \Zend\View\Helper\Navigation\PluginManager
 {
     public function __construct($configOrContainerInstance = null, array $v3config = [])
     {

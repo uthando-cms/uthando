@@ -14,7 +14,6 @@ use Core\Entity\AbstractEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use Zend\Form\Annotation as Form;
 
 /**
  * This class represents a tag related to a blog post-admin.
@@ -23,8 +22,6 @@ use Zend\Form\Annotation as Form;
  * @ORM\Entity
  * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
  * @ORM\Table(name="tags")
- * @Form\Name("tag-form")
- * @Form\Hydrator("Zend\Hydrator\ArraySerializable")
  * @property string $name
  * @property ArrayCollection $posts
  */

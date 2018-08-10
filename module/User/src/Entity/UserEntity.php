@@ -41,7 +41,7 @@ class UserEntity extends AbstractEntity
     const STATUS_ACTIVE     = true;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=128, unique=true)
      */
     protected $email;
 
