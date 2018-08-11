@@ -3,6 +3,8 @@ vendor/
 config/development.config.php
 data/cache/*
 !data/cache/.gitkeep
+data/sessions/*
+!data/sessions/.gitkeep
 composer.phar
 .idea
 .phpunit.result.cache
