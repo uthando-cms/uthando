@@ -28,7 +28,5 @@ return [
     'DoctrineORMModule',
     'AssetManager',
     'TwbBundle',
-    'Admin',
-    'User',
-    'Blog',
+    'Uthando',
 ];

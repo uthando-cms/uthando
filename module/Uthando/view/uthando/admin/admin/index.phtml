@@ -1,0 +1,12 @@
+<ol class="breadcrumb">
+    <!-- Breadcrumbs -->
+    <?= $this->navigation(Uthando\Admin\Service\Factory\NavigationFactory::class)
+        ->breadcrumbs()
+        ->setSeparator(' / '); ?>
+</ol>
+
+<h1>Dashboard</h1>
+
+<?= $this->navigation(Uthando\Admin\Service\Factory\NavigationDashboardFactory::class)
+        ->menu()
+        ->setPartial('uthando/admin/partial/dashboard-menu'); ?>

@@ -29,22 +29,17 @@
     "ramsey/uuid-doctrine": "^1.4",
     "neilime/zf2-twb-bundle": "^3.2",
     "rwoverdijk/assetmanager": "^1.7",
-    "zendframework/zend-tag": "^2.7"
+    "zendframework/zend-tag": "^2.7",
+    "zendframework/zend-captcha": "^2.8"
   },
   "autoload": {
     "psr-4": {
-      "Admin\\": "module/Admin/src/",
-      "Blog\\": "module/Blog/src/",
-      "Core\\": "module/Core/src/",
-      "User\\": "module/User/src/"
+      "Uthando\\": "module/Uthando/src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "AdminTest\\": "module/Admin/test/",
-      "BlogTest\\": "module/Blog/test/",
-      "CoreTest\\": "module/Core/test/",
-      "UserTest\\": "module/User/test/"
+      "UthandoTest\\": "test"
     }
   },
   "scripts": {

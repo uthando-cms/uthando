@@ -1,72 +1,75 @@
 <?php declare(strict_types=1);
 
-use Core\Doctine\Types\W3cDateTimeType;
-use Ramsey\Uuid\Doctrine\UuidType;
+use Zend\Session\Storage\SessionArrayStorage;
+use Zend\Session\Validator\HttpUserAgent;
+use Zend\Session\Validator\RemoteAddr;
 
 return [
-    'doctrine' => [
-        'migrations_configuration' => [
-            'orm_default' => [
-                'directory' => 'data/Migrations',
-                'name'      => 'Doctrine Database Migrations',
-                'namespace' => 'Migrations',
-                'table'     => 'migrations',
-            ],
-        ],
-        'configuration' => [
-            'orm_default' => [
-                'types' => [
-                    UuidType::NAME          => UuidType::class,
-                    W3cDateTimeType::NAME   => W3cDateTimeType::class,
-                ],
-            ],
-        ],
+    // Session configuration.
+    'session_config' => [
+        // Session cookie will expire in 1 hour.
+        'cookie_lifetime'   => 60*60*1,
+        // Session data will be stored on server maximum for 30 days.
+        'gc_maxlifetime'    => 60*60*24*30,
+        'save_path'         => './data/sessions'
+    ],
+    // Session manager configuration.
+    'session_manager' => [
+        // Session validators (used for security).
+        'validators' => [
+            RemoteAddr::class,
+            HttpUserAgent::class,
+        ]
+    ],
+    // Session storage configuration.
+    'session_storage' => [
+        'type' => SessionArrayStorage::class
     ],
     'controllers' => [
         'factories' => [
-            \Core\Controller\CaptchaController::class => \Core\Controller\Factory\CaptchaControllerFactory::class,
+            \Uthando\Core\Controller\CaptchaController::class => \Uthando\Core\Controller\Factory\CaptchaControllerFactory::class,
         ],
     ],
     'service_manager' => [
         'factories' => [
-            'doctrine.cache.filesystem' => \Core\Doctine\Cache\FilesystemFactory::class,
-            \DoctrineORMModule\Form\Annotation\AnnotationBuilder::class => \Core\Doctine\Annotation\FormAnnotationBuilderFactory::class
+            'doctrine.cache.filesystem' => \Uthando\Core\Doctine\Cache\FilesystemFactory::class,
+            \DoctrineORMModule\Form\Annotation\AnnotationBuilder::class => \Uthando\Core\Doctine\Annotation\FormAnnotationBuilderFactory::class,
         ],
     ],
     'form_elements' => [
         'aliases' => [
-            'CoreCaptcha' => \Core\Form\Element\Captcha::class,
-            'corecaptcha' => \Core\Form\Element\Captcha::class,
+            'CoreCaptcha' => \Uthando\Core\Form\Element\Captcha::class,
+            'corecaptcha' => \Uthando\Core\Form\Element\Captcha::class,
         ],
         'factories' => [
-            \Core\Form\Element\Captcha::class   => \Core\Form\Element\Factory\CaptchaFactory::class,
+            \Uthando\Core\Form\Element\Captcha::class   => \Uthando\Core\Form\Element\Factory\CaptchaFactory::class,
         ],
     ],
     'filters' => [
         'aliases' => [
-            'Seo' => \Core\Filter\Seo::class,
-            'seo' => \Core\Filter\Seo::class,
+            'Seo' => \Uthando\Core\Filter\Seo::class,
+            'seo' => \Uthando\Core\Filter\Seo::class,
         ],
         'factories' => [
-            \Core\Filter\Seo::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
+            \Uthando\Core\Filter\Seo::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
         ],
     ],
     'validators' => [
         'aliases' => [
-            'CoreNoObjectExists' => \Core\Validator\NoObjectExists::class,
+            'CoreNoObjectExists' => \Uthando\Core\Validator\NoObjectExists::class,
         ],
         'factories' => [
-            \Core\Validator\NoObjectExists::class => \Core\Validator\Factory\NoObjectExistsFactory::class,
+            \Uthando\Core\Validator\NoObjectExists::class => \Uthando\Core\Validator\Factory\NoObjectExistsFactory::class,
         ],
     ],
     'view_helpers' => [
         'aliases' => [
-            'navigation'    => \Core\View\Helper\Navigation::class,
-            'Navigation'    => \Core\View\Helper\Navigation::class,
+            'navigation'    => \Uthando\Core\View\Helper\Navigation::class,
+            'Navigation'    => \Uthando\Core\View\Helper\Navigation::class,
         ],
         'factories' => [
-            \Core\View\Helper\Navigation::class => \Core\View\NavigationHelperFactory::class,
-            'zendviewhelpernavigation'          => \Core\View\NavigationHelperFactory::class,
+            \Uthando\Core\View\Helper\Navigation::class => \Uthando\Core\View\NavigationHelperFactory::class,
+            'zendviewhelpernavigation'          => \Uthando\Core\View\NavigationHelperFactory::class,
         ],
     ],
     'view_manager' => [
@@ -76,12 +79,12 @@ return [
         'not_found_template'        => 'error/404',
         'exception_template'        => 'error/post',
         'template_map' => [
-            'layout/layout' => './module/Core/view/layout/layout.phtml',
-            'error/404'     => './module/Core/view/error/404.phtml',
-            'error/post'    => './module/Core/view/error/index.phtml',
+            'layout/layout' => './module/Uthando/view/layout/layout.phtml',
+            'error/404'     => './module/Uthando/view/error/404.phtml',
+            'error/post'    => './module/Uthando/view/error/index.phtml',
         ],
         'template_path_stack' => [
-            './module/Core/view',
+            './module/Uthando/view',
         ],
     ],
     'router' => [
@@ -91,7 +94,7 @@ return [
                 'options' => [
                     'route' => '/captcha/[:id]',
                     'defaults' => [
-                        'controller'    => \Core\Controller\CaptchaController::class,
+                        'controller'    => \Uthando\Core\Controller\CaptchaController::class,
                         'action'        => 'generate',
                     ],
                 ],

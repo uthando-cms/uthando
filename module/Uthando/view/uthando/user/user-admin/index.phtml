@@ -1,0 +1,95 @@
+
+<ol class="breadcrumb">
+    <!-- Breadcrumbs -->
+    <?= $this->navigation(Uthando\Admin\Service\Factory\NavigationFactory::class)
+        ->breadcrumbs()
+        ->setSeparator(' / '); ?>
+</ol>
+
+<h1>Manage Users</h1>
+
+<p>
+    <a class="btn btn-default" href="
+    <?= $this->url('admin/user-admin', ['action'=>'add']); ?>">
+        New User
+    </a>
+</p>
+
+<table class="table table-striped">
+
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Full Name</th>
+        <th>Date Created</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    <?php /** @var \User\Entity\UserEntity $user */
+    foreach ($this->users as $user): ?>
+        <tr>
+            <td><?= $this->escapeHtml($user->id); ?></td>
+            <td>
+                <a href="<?= $this->url('user', ['action'=>'view', 'id'=>$this->escapeHtml($user->id)]); ?>">
+                    <?= $this->escapeHtml($user->email); ?>
+                </a>
+            </td>
+            <td><?= $this->escapeHtml($user->toFullName()); ?></td>
+            <td><?= $this->escapeHtml($user->dateCreated->format('d/m/Y')); ?></td>
+            <td><?= $this->escapeHtml($user->status()); ?></td>
+            <td>
+                <a class="btn btn-info" href="<?= $this->url('admin/user-admin',
+                    ['action'=>'edit', 'id'=>$user->id]); ?>">
+                    <span class="fa fa-pencil" ></span> Edit
+                </a>
+                <!-- Button to trigger modal -->
+                <a href="#confirm-delete-<?=$this->escapeHtml($user->id);?>" class="btn btn-danger" title="<?=$this->translate('Delete');?>" data-toggle="modal" data-target="#confirm-delete-<?=$this->escapeHtml($user->id);?>">
+                    <i class="fa fa-trash"></i>
+                    Delete
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="confirm-delete-<?=$this->escapeHtml($user->id);?>">
+
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h3 id="confirm-<?=$this->escapeHtml($user->id);?>Label"><?=$this->translate('Warning');?></h3>
+                            </div>
+
+                            <form class="form-horizontal"  method="post" action="<?= $this->url('admin/user-admin', [
+                                'action' => 'delete',
+                                'id' => $this->escapeHtml($user->id),
+                            ]); ?>">
+                                <div class="modal-body">
+                                    <p><?=$this->translate('Are you sure you want to delete user:');?> <?=$this->escapeHtml($user->email); ?>.</p>
+                                    <h4 class="text-danger"><?=$this->translate('This action cannot be undone');?></h4>
+                                </div>
+                                <input type="hidden" name="id" value="<?=$this->escapeHtml($user->id);?>">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                        <?=$this->translate("No Don't Do It");?>
+                                    </button>
+                                    <button type="submit" name="submit" class="btn btn-danger" value="delete">
+                                        <?=$this->translate('Yes Delete It');?>
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    <?php endforeach; ?>
+
+</table>
+
+<?= $this->paginationControl($this->users,
+    'Sliding',
+    'partial/paginator',
+    ['route' => 'admin/user-admin']); ?>
+

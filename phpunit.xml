@@ -4,19 +4,13 @@
 >
     <testsuites>
         <testsuite name="Uthando CMS Test Suite">
-            <directory>./module/Admin/test</directory>
-            <directory>./module/Blog/test</directory>
-            <directory>./module/Core/test</directory>
-            <directory>./module/User/test</directory>
+            <directory>./test</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true"> <!-- addUncoveredFilesFromWhitelist / processUncoveredFilesFromWhitelist  -->
-            <directory>./module/Admin/src</directory>
-            <directory>./module/Blog/src</directory>
-            <directory>./module/Core/src</directory>
-            <directory>./module/User/src</directory>
+            <directory>./module/Uthando/src</directory>
         </whitelist>
     </filter>
 
