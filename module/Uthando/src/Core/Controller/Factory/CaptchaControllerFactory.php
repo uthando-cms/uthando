@@ -26,7 +26,7 @@ class CaptchaControllerFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): CaptchaController
     {
         $config     = $container->get('config');
-        $options    = $config['uthando_core']['captcha'];
+        $options    = $config['uthando']['uthando_core']['captcha'];
 
         return new CaptchaController($options);
 

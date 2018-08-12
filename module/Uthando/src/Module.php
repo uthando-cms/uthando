@@ -33,13 +33,6 @@ class Module
     public function getConfig() : array
     {
         $provider = new ConfigProvider();
-        return [
-            'controllers'       => $provider->getControllerConfig(),
-            'doctrine'          => $provider->getDoctrineConfig(),
-            'navigation'        => $provider->getNavigationConfig(),
-            'router'            => $provider->getRouteConfig(),
-            'service_manager'   => $provider->getDependencyConfig(),
-            'view_helpers'      => $provider->getViewHelperConfig(),
-        ];
+        return $provider();
     }
 }

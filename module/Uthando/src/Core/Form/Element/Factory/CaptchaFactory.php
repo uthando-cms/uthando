@@ -37,7 +37,7 @@ final class CaptchaFactory implements FactoryInterface
 
         $plugins                = $container->get('ViewHelperManager');
         $options['url_helper']  = $plugins->get('url');
-        $options['config']      = $container->get('config')['uthando_core']['captcha'];
+        $options['config']      = $container->get('config')['uthando']['uthando_core']['captcha'];
 
         return new Captcha($name, $options);
     }

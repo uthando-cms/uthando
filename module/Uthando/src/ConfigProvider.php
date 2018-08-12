@@ -13,57 +13,45 @@ namespace Uthando;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
 use Ramsey\Uuid\Doctrine\UuidType;
-use Uthando\Admin\Controller\AdminController;
-use Uthando\Admin\Service\Factory\NavigationDashboardFactory;
-use Uthando\Admin\Service\Factory\NavigationFactory;
-use Uthando\Blog\Controller\Factory\PostAdminControllerFactory;
-use Uthando\Blog\Controller\Factory\PostControllerFactory;
-use Uthando\Blog\Controller\PostAdminController;
-use Uthando\Blog\Controller\PostController;
-use Uthando\Blog\Service\Factory\PostManagerFactory;
-use Uthando\Blog\Service\PostManager;
-use Uthando\Blog\View\Helper\CommentCount;
-use Uthando\Blog\View\Helper\TagHelper;
-use Uthando\Core\Doctine\Types\W3cDateTimeType;
-use Uthando\User\Controller\AuthController;
-use Uthando\User\Controller\Factory\AuthControllerFactory;
-use Uthando\User\Controller\Factory\UserAdminControllerFactory;
-use Uthando\User\Controller\Factory\UserControllerFactory;
-use Uthando\User\Controller\UserAdminController;
-use Uthando\User\Controller\UserController;
-use Uthando\User\Entity\UserEntity;
-use Uthando\User\Service\AuthenticationManager;
-use Uthando\User\Service\Factory\AuthenticationManagerFactory;
-use Uthando\User\Service\Factory\UserManagerFactory;
-use Uthando\User\Service\Factory\UserNavigationFactory;
-use Uthando\User\Service\UserManager;
 use Zend\Authentication\AuthenticationService;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
+use Zend\Session\Storage\SessionArrayStorage;
+use Zend\Session\Validator\HttpUserAgent;
+use Zend\Session\Validator\RemoteAddr;
 
 class ConfigProvider
 {
-    public function __invoke()
+    public function __invoke(): array
     {
         return [
-            'controllers'  => $this->getControllerConfig(),
-            'dependencies' => $this->getDependencyConfig(),
-            'doctrine'     => $this->getDoctrineConfig(),
-            'navigation'   => $this->getNavigationConfig(),
-            'router'       => $this->getRouteConfig(),
-            'view_helpers' => $this->getViewHelperConfig(),
+            'controllers'       => $this->getControllerConfig(),
+            'doctrine'          => $this->getDoctrineConfig(),
+            'filters'           => $this->getFilterConfig(),
+            'form_elements'     => $this->getFormElementConfig(),
+            'navigation'        => $this->getNavigationConfig(),
+            'router'            => $this->getRouteConfig(),
+            'service_manager'   => $this->getServiceManagerConfig(),
+            'session_config'    => $this->getSessionConfig(),
+            'session_manager'   => $this->getSessionManagerConfig(),
+            'session_storage'   => $this->getSessionStorageConfig(),
+            'validators'        => $this->getValidatorConfig(),
+            'view_helpers'      => $this->getViewHelperConfig(),
+            'view_manager'      => $this->getViewManagerConfig(),
+            'uthando'           => $this->getUthandoConfig(),
         ];
     }
 
-    public function getDoctrineConfig()
+    public function getDoctrineConfig(): array
     {
         return [
             'authentication' => [
                 'orm_default' => [
                     'object_manager'        => EntityManager::class,
-                    'identity_class'        => UserEntity::class,
+                    'identity_class'        => User\Entity\UserEntity::class,
                     'identity_property'     => 'email',
                     'credential_property'   => 'password',
                     'credential_callable'   => 'Uthando\User\Service\UserManager::verifyCredential',
@@ -71,16 +59,31 @@ class ConfigProvider
             ],
             'configuration' => [
                 'orm_default' => [
+                    'query_cache'       => 'filesystem',
+                    'result_cache'      => 'filesystem',
+                    'metadata_cache'    => 'filesystem',
+                    'hydration_cache'   => 'filesystem',
+                    'second_level_cache' => [
+                        'enabled'               => true,
+                        'default_lifetime'      => 0,
+                        'default_lock_lifetime' => 0,
+                        'file_lock_region_directory' => './data/cache/doctrine',
+                        'regions' => [
+                            'uthando' => [
+                                'lifetime'      => 0,
+                                'lock_lifetime' => 0,
+                            ],
+                        ],
+                    ],
                     'types' => [
-                        UuidType::NAME          => UuidType::class,
-                        W3cDateTimeType::NAME   => W3cDateTimeType::class,
+                        Core\Doctine\Types\W3cDateTimeType::NAME    => Core\Doctine\Types\W3cDateTimeType::class,
+                        UuidType::NAME                              => UuidType::class
                     ],
                 ],
             ],
             'driver' => [
                 __NAMESPACE__ . '_driver' => [
                     'class' => AnnotationDriver::class,
-                    'cache' => 'array',
                     'paths' => [
                         __DIR__ . '/Blog/Entity',
                         __DIR__ . '/User/Entity',
@@ -104,38 +107,146 @@ class ConfigProvider
         ];
     }
 
-    public function getControllerConfig()
+    public function getControllerConfig(): array
     {
         return [
             'factories' => [
-                AdminController::class      => InvokableFactory::class,
-                AuthController::class       => AuthControllerFactory::class,
-                PostController::class       => PostControllerFactory::class,
-                PostAdminController::class  => PostAdminControllerFactory::class,
-                UserAdminController::class  => UserAdminControllerFactory::class,
-                UserController::class       => UserControllerFactory::class,
+                Admin\Controller\AdminController::class     => InvokableFactory::class,
+                Blog\Controller\PostAdminController::class  => Blog\Controller\Factory\PostAdminControllerFactory::class,
+                Blog\Controller\PostController::class       => Blog\Controller\Factory\PostControllerFactory::class,
+                Core\Controller\CaptchaController::class    => Core\Controller\Factory\CaptchaControllerFactory::class,
+                User\Controller\UserAdminController::class  => User\Controller\Factory\UserAdminControllerFactory::class,
+                User\Controller\AuthController::class       => User\Controller\Factory\AuthControllerFactory::class,
+                User\Controller\UserController::class       => User\Controller\Factory\UserControllerFactory::class,
             ],
         ];
     }
 
-    public function getDependencyConfig()
+    public function getSessionConfig(): array
+    {
+        return [
+            // Session cookie will expire in 1 hour.
+            'cookie_lifetime'   => 60*60*1,
+            // Session data will be stored on server maximum for 30 days.
+            'gc_maxlifetime'    => 60*60*24*30,
+            'save_path'         => './data/sessions',
+        ];
+    }
+
+    public function getSessionManagerConfig(): array
+    {
+        return [
+            'validators' => [
+                RemoteAddr::class,
+                HttpUserAgent::class,
+            ],
+        ];
+    }
+
+    public function getSessionStorageConfig(): array
+    {
+        return [
+            'type' => SessionArrayStorage::class,
+        ];
+    }
+
+    public function getServiceManagerConfig(): array
     {
         return [
             'aliases' => [
-                AuthenticationService::class => 'doctrine.authenticationservice.orm_default',
+                AuthenticationService::class    => 'doctrine.authenticationservice.orm_default',
+                'doctrine.cache.filesystem'     => Core\Doctine\Cache\FilesystemFactory::class,
             ],
             'factories' => [
-                AuthenticationManagerFactory::class => AuthenticationManager::class,
-                NavigationFactory::class            => NavigationFactory::class,
-                NavigationDashboardFactory::class   => NavigationDashboardFactory::class,
-                PostManager::class                  => PostManagerFactory::class,
-                UserManager::class                  => UserManagerFactory::class,
-                UserNavigationFactory::class        => UserNavigationFactory::class,
+                AnnotationBuilder::class                                => Core\Doctine\Annotation\FormAnnotationBuilderFactory::class,
+                Admin\Service\Factory\NavigationFactory::class          => Admin\Service\Factory\NavigationFactory::class,
+                Admin\Service\Factory\NavigationDashboardFactory::class => Admin\Service\Factory\NavigationDashboardFactory::class,
+                Core\Doctine\Cache\FilesystemFactory::class             => Core\Doctine\Cache\FilesystemFactory::class,
+                Blog\Service\PostManager::class                         => Blog\Service\Factory\PostManagerFactory::class,
+                User\Service\AuthenticationManager::class               => User\Service\Factory\AuthenticationManagerFactory::class,
+                User\Service\UserManager::class                         => User\Service\Factory\UserManagerFactory::class,
+                User\Service\Factory\UserNavigationFactory::class       => User\Service\Factory\UserNavigationFactory::class,
             ],
         ];
     }
 
-    public function getNavigationConfig()
+    public function getFormElementConfig(): array
+    {
+        return [
+            'aliases' => [
+                'CoreCaptcha' => Core\Form\Element\Captcha::class,
+                'corecaptcha' => Core\Form\Element\Captcha::class,
+            ],
+            'factories' => [
+                Core\Form\Element\Captcha::class   => Core\Form\Element\Factory\CaptchaFactory::class,
+            ],
+        ];
+    }
+
+    public function getFilterConfig(): array
+    {
+        return [
+            'aliases' => [
+                'Seo' => Core\Filter\Seo::class,
+                'seo' => Core\Filter\Seo::class,
+            ],
+            'factories' => [
+                Core\Filter\Seo::class => InvokableFactory::class,
+            ],
+        ];
+    }
+
+    public function getValidatorConfig(): array
+    {
+        return [
+            'aliases' => [
+                'CoreNoObjectExists' => Core\Validator\NoObjectExists::class,
+            ],
+            'factories' => [
+                Core\Validator\NoObjectExists::class => Core\Validator\Factory\NoObjectExistsFactory::class,
+            ],
+        ];
+    }
+
+    public function getViewHelperConfig():array
+    {
+        return [
+            'aliases' => [
+                'commentCount'              => Blog\View\Helper\CommentCount::class,
+                'navigation'                => Core\View\Helper\Navigation::class,
+                'Navigation'                => Core\View\Helper\Navigation::class,
+                'tagHelper'                 => Blog\View\Helper\TagHelper::class,
+                'zendviewhelpernavigation'  => Core\View\NavigationHelperFactory::class,
+            ],
+            'factories' => [
+                Blog\View\Helper\CommentCount::class        => InvokableFactory::class,
+                Blog\View\Helper\TagHelper::class           => InvokableFactory::class,
+                Core\View\Helper\Navigation::class          => Core\View\NavigationHelperFactory::class,
+                Core\View\NavigationHelperFactory::class    => Core\View\NavigationHelperFactory::class,
+            ],
+        ];
+    }
+
+    public function getViewManagerConfig(): array
+    {
+        return [
+            'display_not_found_reason'  => false,
+            'display_exceptions'        => false,
+            'doctype'                   => 'HTML5',
+            'not_found_template'        => 'error/404',
+            'exception_template'        => 'error/post',
+            'template_map' => [
+                'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+                'error/404'     => __DIR__ . '/../view/error/404.phtml',
+                'error/post'    => __DIR__ . '/../view/error/index.phtml',
+            ],
+            'template_path_stack' => [
+                __DIR__ . '/../view',
+            ],
+        ];
+    }
+
+    public function getNavigationConfig(): array
     {
         return [
             'default' => [
@@ -273,7 +384,7 @@ class ConfigProvider
         ];
     }
 
-    public function getRouteConfig()
+    public function getRouteConfig(): array
     {
         return [
             'routes' => [
@@ -282,7 +393,7 @@ class ConfigProvider
                     'options' => [
                         'route' => '/',
                         'defaults' => [
-                            'controller' => PostController::class,
+                            'controller' => Blog\Controller\PostController::class,
                             'action' => 'index',
                         ],
                     ],
@@ -292,7 +403,7 @@ class ConfigProvider
                     'options' => [
                         'route' => '/blog',
                         'defaults' => [
-                            'controller' => PostController::class,
+                            'controller' => Blog\Controller\PostController::class,
                             'action' => 'index',
                         ],
                     ],
@@ -307,7 +418,7 @@ class ConfigProvider
                                     'tag'   => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 ],
                                 'defaults' => [
-                                    'controller' => PostController::class,
+                                    'controller' => Blog\Controller\PostController::class,
                                     'action' => 'index',
                                     'tag'   => '',
                                     'page' => 1,
@@ -322,10 +433,20 @@ class ConfigProvider
                                     'id' => '[a-z0-9][a-z0-9-]*'
                                 ],
                                 'defaults' => [
-                                    'controller' => PostController::class,
+                                    'controller' => Blog\Controller\PostController::class,
                                     'action' => 'view',
                                 ],
                             ],
+                        ],
+                    ],
+                ],
+                'captcha-form-generate' => [
+                    'type' => Segment::class,
+                    'options' => [
+                        'route' => '/captcha/[:id]',
+                        'defaults' => [
+                            'controller'    => Core\Controller\CaptchaController::class,
+                            'action'        => 'generate',
                         ],
                     ],
                 ],
@@ -334,7 +455,7 @@ class ConfigProvider
                     'options' => [
                         'route'    => '/reset-password',
                         'defaults' => [
-                            'controller' => UserController::class,
+                            'controller' => User\Controller\UserController::class,
                             'action'     => 'reset-password',
                         ],
                     ],
@@ -344,7 +465,7 @@ class ConfigProvider
                     'options' => [
                         'route'    => '/login',
                         'defaults' => [
-                            'controller' => AuthController::class,
+                            'controller' => User\Controller\AuthController::class,
                             'action'     => 'login',
                         ],
                     ],
@@ -354,7 +475,7 @@ class ConfigProvider
                     'options' => [
                         'route'    => '/logout',
                         'defaults' => [
-                            'controller' => AuthController::class,
+                            'controller' => User\Controller\AuthController::class,
                             'action'     => 'logout',
                         ],
                     ],
@@ -364,7 +485,7 @@ class ConfigProvider
                     'options' => [
                         'route' => '/user',
                         'defaults' => [
-                            'controller' => UserController::class,
+                            'controller' => User\Controller\UserController::class,
                             'action' => 'index',
                         ],
                     ],
@@ -375,7 +496,7 @@ class ConfigProvider
                             'options' => [
                                 'route'    => '/view',
                                 'defaults' => [
-                                    'controller' => UserController::class,
+                                    'controller' => User\Controller\UserController::class,
                                     'action'     => 'index',
                                 ],
                             ],
@@ -385,7 +506,7 @@ class ConfigProvider
                             'options' => [
                                 'route'    => '/set-password',
                                 'defaults' => [
-                                    'controller' => UserController::class,
+                                    'controller' => User\Controller\UserController::class,
                                     'action'     => 'set-password',
                                 ],
                             ],
@@ -397,7 +518,7 @@ class ConfigProvider
                     'options' => [
                         'route' => '/admin',
                         'defaults' => [
-                            'controller'    => AdminController::class,
+                            'controller'    => Admin\Controller\AdminController::class,
                             'action'        => 'index',
                         ],
                     ],
@@ -413,7 +534,7 @@ class ConfigProvider
                                     'page' => '\d+',
                                 ],
                                 'defaults' => [
-                                    'controller'    => PostAdminController::class,
+                                    'controller'    => Blog\Controller\PostAdminController::class,
                                     'action'        => 'index',
                                     'page'          => 1,
                                 ],
@@ -429,7 +550,7 @@ class ConfigProvider
                                     'page' => '\d+',
                                 ],
                                 'defaults' => [
-                                    'controller'    => UserAdminController::class,
+                                    'controller'    => User\Controller\UserAdminController::class,
                                     'action'        => 'index',
                                     'page'          => 1,
                                 ],
@@ -441,16 +562,26 @@ class ConfigProvider
         ];
     }
 
-    public function getViewHelperConfig()
+    public function getUthandoConfig(): array
     {
         return [
-            'aliases' => [
-                'commentCount'  => CommentCount::class,
-                'tagHelper'     => TagHelper::class,
-            ],
-            'factories' => [
-                CommentCount::class => InvokableFactory::class,
-                TagHelper::class    => InvokableFactory::class
+            'uthando_core' => [
+                'captcha' => [
+                    'class' => 'Image',
+                    'options' => [
+                        'imgDir' => './data/captcha',
+                        'fontDir' => './data/fonts',
+                        'font' => 'thorne_shaded.ttf',
+                        'imgAlt' => 'CAPTCHA Image',
+                        'suffix' => '.png',
+                        'fsize' => 24,
+                        'width' => 350,
+                        'height' => 100,
+                        'expiration' => 600,
+                        'dotNoiseLevel' => 40,
+                        'lineNoiseLevel' => 3
+                    ],
+                ],
             ],
         ];
     }
