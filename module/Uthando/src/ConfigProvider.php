@@ -511,6 +511,16 @@ class ConfigProvider
                     ],
                     'may_terminate' => true,
                     'child_routes' => [
+                        'update-details' => [
+                            'type' => Literal::class,
+                            'options' => [
+                                'route'    => '/update-details',
+                                'defaults' => [
+                                    'controller' => User\Controller\UserController::class,
+                                    'action'     => 'update-details',
+                                ],
+                            ],
+                        ],
                         'view' => [
                             'type' => Literal::class,
                             'options' => [

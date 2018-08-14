@@ -14,7 +14,10 @@ namespace Uthando\User\Service;
 use Doctrine\ORM\EntityManager;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use Uthando\User\Entity\DTO\AddUser;
+use Uthando\User\Entity\DTO\ChangePassword;
+use Uthando\User\Entity\DTO\EditProfile;
 use Uthando\User\Entity\DTO\EditUser;
+use Uthando\User\Entity\DTO\EditUserInterface;
 use Uthando\User\Entity\UserEntity;
 
 final class UserManager
@@ -69,7 +72,7 @@ final class UserManager
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function updateUser(UserEntity $user, EditUser $dto): void
+    public function updateUser(UserEntity $user, EditUserInterface $dto): void
     {
         $hydrator = new DoctrineObject($this->entityManager, false);
         $hydrator->hydrate($dto->getArrayCopy(), $user);
@@ -91,5 +94,33 @@ final class UserManager
 
         $this->entityManager->flush();
         $this->clearCache();
+    }
+
+    /**
+     * @param UserEntity $user
+     * @param ChangePassword $dto
+     * @return bool
+     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function changePassword(UserEntity $user, ChangePassword $dto): bool
+    {
+        $oldPassword = $dto->oldPassword;
+
+        if (!AuthenticationManager::verifyCredential($user, $oldPassword)) {
+            return false;
+        }
+
+        $passwordHash   = password_hash($dto->newPassword, PASSWORD_DEFAULT);
+        $hydrator       = new DoctrineObject($this->entityManager, false);
+
+        $hydrator->hydrate(['password' => $passwordHash], $user);
+
+        // Apply changes to database.
+        $this->entityManager->flush();
+        $this->clearCache();
+
+        return true;
     }
 }

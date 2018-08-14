@@ -1,0 +1,20 @@
+<?php $this->headTitle('Update Details') ?>
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <?=$this->translate('Update Details for ');?>
+                    <?=$this->escapeHtml($this->user->email);?>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <?=$this->form($this->form);?>
+                <button type="submit" form="edit-profile-form" data-toggle="tooltip" title="<?=$this->translate('Make Changes');?>" class="btn btn-primary">
+                    <?=$this->translate('Make Changes');?>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,41 @@
-<h1>User Settings</h1>
+<?php $this->headTitle('View Profile');?>
+
+<h1>Profile for <?= $this->escapeHtml($this->user->email); ?></h1>
+
+
+<?= $this->flashMessenger()->render('error', ['alert', 'alert-warning']); ?>
+<?= $this->flashMessenger()->render('success', ['alert', 'alert-success']); ?>
+<?= $this->flashMessenger()->render('info', ['alert', 'alert-info']); ?>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            <a class="btn btn-default" href="
+    <?= $this->url('user/update-details'); ?>">
+                Update Details
+            </a>
+        </p>
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>ID:</th>
+                <td><?= $this->escapeHtml($this->user->id); ?></td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td><?= $this->escapeHtml($this->user->email); ?></td>
+            </tr>
+            <tr>
+                <th>Full Name:</th>
+                <td><?= $this->escapeHtml($this->user->toFullName()) ?></td>
+            </tr>
+            <tr>
+                <th>Date Created:</th>
+                <td><?= $this->escapeHtml($this->user->dateCreated->format('d/m/Y')) ?></td>
+            </tr>
+            <tr>
+                <th>Status:</th>
+                <td><?= $this->escapeHtml($this->user->status()) ?></td>
+            </tr>
+        </table>
+    </div>
+</div>

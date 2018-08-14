@@ -17,6 +17,7 @@ use Zend\EventManager\ListenerAggregateInterface;
 use Zend\EventManager\ListenerAggregateTrait;
 use Zend\Http\Request;
 use Zend\Http\Response;
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\MvcEvent;
 
 class OnDispatchListener implements ListenerAggregateInterface
@@ -35,10 +36,13 @@ class OnDispatchListener implements ListenerAggregateInterface
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
-        $this->listeners[] = $events->attach(
+        $sharedManager = $events->getSharedManager();
+        
+        $this->listeners[] = $sharedManager->attach(
+            AbstractActionController::class,
             MvcEvent::EVENT_DISPATCH,
             [$this, 'accessFilter'],
-            100000
+            100
         );
     }
 

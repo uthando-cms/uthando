@@ -33,7 +33,7 @@ class AuthControllerFactory implements FactoryInterface
         $authenticationManager  = $container->get(AuthenticationManager::class);
         $builder                = $container->get(AnnotationBuilder::class);
         $sessionContainer       = $container->get('UthandoDefault');
-        $config                 = $container->get('config')['uthando']['uthando_core']['access_filter'];
-        return new AuthController($authenticationManager, $builder, $sessionContainer, $config);
+
+        return new AuthController($authenticationManager, $builder, $sessionContainer);
     }
 }

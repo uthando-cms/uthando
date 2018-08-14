@@ -19,7 +19,6 @@ use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Http\Response as HttpResponse;
-use Zend\Log\Writer\ChromePhp;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\Plugin\Prg\PostRedirectGet;
 use Zend\Session\Container;
@@ -45,7 +44,7 @@ class AuthController extends AbstractActionController
     protected $formBuilder;
 
     /**
-     * @var Container
+     * @var Container|\stdClass
      */
     protected $sessionContainer;
 

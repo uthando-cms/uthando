@@ -27,7 +27,7 @@ class OnRouteListener implements ListenerAggregateInterface
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_ROUTE,
             [$this, 'startSession'],
-            100000
+            100
         );
     }
 

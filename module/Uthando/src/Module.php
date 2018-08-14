@@ -21,13 +21,12 @@ class Module
 {
     public function onBootstrap(MvcEvent $event)
     {
-        $application    = $event->getApplication();
-        $eventManager   = $application->getEventManager();
-
-        $onRouteListener = new OnRouteListener();
-        $onRouteListener->attach($eventManager);
-
+        $application        = $event->getApplication();
+        $eventManager       = $application->getEventManager();
+        $onRouteListener    = new OnRouteListener();
         $onDispatchListener = new OnDispatchListener();
+
+        $onRouteListener->attach($eventManager);
         $onDispatchListener->attach($eventManager);
 
         $eventManager->getSharedManager()
