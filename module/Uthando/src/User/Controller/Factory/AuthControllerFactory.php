@@ -12,7 +12,9 @@ namespace Uthando\User\Controller\Factory;
 
 
 use Interop\Container\ContainerInterface;
-use Zend\Authentication\AuthenticationService;
+use Uthando\User\Controller\AuthController;
+use Uthando\User\Service\AuthenticationManager;
+use Zend\Form\Annotation\AnnotationBuilder;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 class AuthControllerFactory implements FactoryInterface
@@ -28,7 +30,10 @@ class AuthControllerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $authenticationService = $container->get(AuthenticationService::class);
-        return new $requestedName($authenticationService);
+        $authenticationManager  = $container->get(AuthenticationManager::class);
+        $builder                = $container->get(AnnotationBuilder::class);
+        $sessionContainer       = $container->get('UthandoDefault');
+        $config                 = $container->get('config')['uthando']['uthando_core']['access_filter'];
+        return new AuthController($authenticationManager, $builder, $sessionContainer, $config);
     }
 }

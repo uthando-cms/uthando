@@ -30,22 +30,6 @@ final class UserManager
     }
 
     /**
-     * @param UserEntity $user
-     * @param $inputPassword
-     * @return bool
-     */
-    public static function verifyCredential(UserEntity $user, $inputPassword): bool
-    {
-        $verified = password_verify($inputPassword, $user->password);
-
-        if (true === $verified && password_needs_rehash($user->password, PASSWORD_DEFAULT)) {
-            // rehash password.
-        }
-
-        return $verified;
-    }
-
-    /**
      * Clears the cache
      *
      * @throws \Doctrine\Common\Persistence\Mapping\MappingException

@@ -11,19 +11,31 @@
 
 namespace Uthando;
 
+use Uthando\Event\AclListener;
+use Uthando\Event\OnDispatchListener;
+use Uthando\Event\OnRouteListener;
 use Zend\Mvc\MvcEvent;
-use Zend\Session\SessionManager;
+use Zend\View\Helper\Navigation\AbstractHelper as NavigationHelper;
 
 class Module
 {
     public function onBootstrap(MvcEvent $event)
     {
-        $application = $event->getApplication();
-        $serviceManager = $application->getServiceManager();
+        $application    = $event->getApplication();
+        $eventManager   = $application->getEventManager();
 
-        // The following line instantiates the SessionManager and automatically
-        // makes the SessionManager the 'default' one.
-        $sessionManager = $serviceManager->get(SessionManager::class);
+        $onRouteListener = new OnRouteListener();
+        $onRouteListener->attach($eventManager);
+
+        $onDispatchListener = new OnDispatchListener();
+        $onDispatchListener->attach($eventManager);
+
+        $eventManager->getSharedManager()
+            ->attach(
+                NavigationHelper::class,
+                'isAllowed',
+                [AclListener::class, 'accept']
+            );
     }
 
     /**

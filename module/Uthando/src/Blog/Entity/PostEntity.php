@@ -76,7 +76,7 @@ class PostEntity extends AbstractEntity
     /**
      * @ORM\Cache("NONSTRICT_READ_WRITE", region="uthando")
      * @ORM\OneToMany(targetEntity="Uthando\Blog\Entity\CommentEntity", mappedBy="post", cascade={"persist"})
-     * @ORM\OrderBy({"dateCreated" = "DESC"})
+     * @ORM\OrderBy({"lft" = "ASC"})
      */
     protected $comments;
 

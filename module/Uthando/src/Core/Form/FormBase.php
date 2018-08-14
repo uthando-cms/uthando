@@ -11,10 +11,17 @@
 namespace Uthando\Core\Form;
 
 
+use Uthando\Core\Entity\AbstractDto;
 use Zend\Form\Element\Csrf;
 use Zend\Form\Form;
+use Zend\Form\FormInterface;
 use Zend\Hydrator\ClassMethods;
 
+/**
+ * Class FormBase
+ * @package Uthando\Core\Form
+ * @method AbstractDto getData($flag = FormInterface::VALUES_NORMALIZED)
+ */
 class FormBase extends Form
 {
     public function __construct($name = null, array $options = [])

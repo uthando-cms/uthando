@@ -14,6 +14,7 @@ namespace Uthando;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
+use Gedmo\Tree\TreeListener;
 use Ramsey\Uuid\Doctrine\UuidType;
 use Zend\Authentication\AuthenticationService;
 use Zend\Router\Http\Literal;
@@ -28,20 +29,21 @@ class ConfigProvider
     public function __invoke(): array
     {
         return [
-            'controllers'       => $this->getControllerConfig(),
-            'doctrine'          => $this->getDoctrineConfig(),
-            'filters'           => $this->getFilterConfig(),
-            'form_elements'     => $this->getFormElementConfig(),
-            'navigation'        => $this->getNavigationConfig(),
-            'router'            => $this->getRouteConfig(),
-            'service_manager'   => $this->getServiceManagerConfig(),
-            'session_config'    => $this->getSessionConfig(),
-            'session_manager'   => $this->getSessionManagerConfig(),
-            'session_storage'   => $this->getSessionStorageConfig(),
-            'validators'        => $this->getValidatorConfig(),
-            'view_helpers'      => $this->getViewHelperConfig(),
-            'view_manager'      => $this->getViewManagerConfig(),
-            'uthando'           => $this->getUthandoConfig(),
+            'controllers'           => $this->getControllerConfig(),
+            'doctrine'              => $this->getDoctrineConfig(),
+            'filters'               => $this->getFilterConfig(),
+            'form_elements'         => $this->getFormElementConfig(),
+            'navigation'            => $this->getNavigationConfig(),
+            'router'                => $this->getRouteConfig(),
+            'service_manager'       => $this->getServiceManagerConfig(),
+            'session_config'        => $this->getSessionConfig(),
+            'session_containers'    => $this->getSessionContainerConfig(),
+            'session_manager'       => $this->getSessionManagerConfig(),
+            'session_storage'       => $this->getSessionStorageConfig(),
+            'validators'            => $this->getValidatorConfig(),
+            'view_helpers'          => $this->getViewHelperConfig(),
+            'view_manager'          => $this->getViewManagerConfig(),
+            'uthando'               => $this->getUthandoConfig(),
         ];
     }
 
@@ -54,7 +56,7 @@ class ConfigProvider
                     'identity_class'        => User\Entity\UserEntity::class,
                     'identity_property'     => 'email',
                     'credential_property'   => 'password',
-                    'credential_callable'   => 'Uthando\User\Service\UserManager::verifyCredential',
+                    'credential_callable'   => 'Uthando\User\Service\AuthenticationManager::verifyCredential',
                 ],
             ],
             'configuration' => [
@@ -93,6 +95,13 @@ class ConfigProvider
                     'drivers' => [
                         __NAMESPACE__ . '\Blog\Entity' => __NAMESPACE__ . '_driver',
                         __NAMESPACE__ . '\User\Entity' => __NAMESPACE__ . '_driver',
+                    ],
+                ],
+            ],
+            'eventmanager' => [
+                'orm_default' => [
+                    'subscribers' => [
+                        TreeListener::class,
                     ],
                 ],
             ],
@@ -147,6 +156,13 @@ class ConfigProvider
     {
         return [
             'type' => SessionArrayStorage::class,
+        ];
+    }
+
+    public function getSessionContainerConfig(): array
+    {
+        return [
+            'UthandoDefault',
         ];
     }
 
@@ -378,6 +394,10 @@ class ConfigProvider
                             'label' => 'Change Password',
                             'route' => 'user/set-password',
                         ],
+                        'logout' => [
+                            'label' => 'Logout',
+                            'route' => 'logout',
+                        ],
                     ],
                 ],
             ],
@@ -580,6 +600,46 @@ class ConfigProvider
                         'expiration' => 600,
                         'dotNoiseLevel' => 40,
                         'lineNoiseLevel' => 3
+                    ],
+                ],
+                // The 'access_filter' key is used by the User module to restrict or permit
+                // access to certain controller actions for unauthenticated visitors.
+                'access_filter' => [
+                    'options' => [
+                        // The access filter can work in 'restrictive' (recommended) or 'permissive'
+                        // mode. In restrictive mode all controller actions must be explicitly listed
+                        // under the 'access_filter' config key, and access is denied to any not listed
+                        // action for users not logged in. In permissive mode, if an action is not listed
+                        // under the 'access_filter' key, access to it is permitted to anyone (even for
+                        // users not logged in. Restrictive mode is more secure and recommended.
+                        'mode' => 'restrictive'
+                    ],
+                    'controllers' => [
+                        Admin\Controller\AdminController::class => [
+                            // Allow authenticated users to visit "index" action
+                            ['actions' => ['index'], 'allow' => '@']
+                        ],
+                        Blog\Controller\PostAdminController::class => [
+                            ['actions' => ['index', 'add', 'edit', 'delete'], 'allow' => '@'],
+                        ],
+                        Blog\Controller\PostController::class => [
+                            // Allow anyone to visit "index" and "view" actions
+                            ['actions' => ['index', 'view'], 'allow' => '*'],
+                        ],
+                        Core\Controller\CaptchaController::class => [
+                            ['actions' => ['generate'], 'allow' => '*'],
+                        ],
+                        User\Controller\AuthController::class => [
+                            ['actions' => ['login'], 'allow' => '*'],
+                            ['actions' => ['logout'], 'allow' => '@'],
+                        ],
+                        User\Controller\UserAdminController::class => [
+                            ['actions' => ['index', 'add', 'edit', 'delete'], 'allow' => '@'],
+                        ],
+                        User\Controller\UserController::class => [
+                            ['actions' => ['reset-password'], 'allow' => '*'],
+                            ['actions' => ['index', 'set-password'], 'allow' => '@'],
+                        ],
                     ],
                 ],
             ],

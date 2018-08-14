@@ -12,13 +12,23 @@ namespace Uthando\User\Controller;
 
 
 use Doctrine\ORM\EntityRepository;
+use Uthando\Core\Form\FormBase;
 use Uthando\User\Entity\DTO\ChangePassword;
 use Uthando\User\Entity\DTO\PasswordReset;
+use Uthando\User\Entity\UserEntity;
 use Uthando\User\Service\UserManager;
 use Zend\Form\Annotation\AnnotationBuilder;
+use Zend\Http\Response;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\Plugin\Prg\PostRedirectGet;
 use Zend\View\Model\ViewModel;
 
+/**
+ * Class UserController
+ * @package Uthando\User\Controller
+ * @method PostRedirectGet prg()
+ * @method UserEntity|null identity()
+ */
 final class UserController extends AbstractActionController
 {
     /**
@@ -43,9 +53,31 @@ final class UserController extends AbstractActionController
         $this->userManager      = $userManager;
     }
 
+    public function indexAction()
+    {
+        return new ViewModel([]);
+    }
+
     public function resetPasswordAction()
     {
-        $form = $this->formBuilder->createForm(PasswordReset::class);
+        /** @var FormBase $form */
+        $form   = $this->formBuilder->createForm(PasswordReset::class);
+        $prg    = $this->prg();
+
+        if ($prg instanceof Response) {
+            return $prg;
+        } elseif (false === $prg) {
+            return new ViewModel([
+                'form' => $form,
+            ]);
+        }
+
+        $form->bind(new PasswordReset());
+        $form->setData((array) $prg);
+
+        if ($form->isValid()) {
+
+        }
 
         return new ViewModel([
             'form' => $form,
@@ -54,7 +86,27 @@ final class UserController extends AbstractActionController
 
     public function setPasswordAction()
     {
-        $form = $this->formBuilder->createForm(ChangePassword::class);
+        $user = $this->identity();
+
+        /** @var FormBase $form */
+        $form   = $this->formBuilder->createForm(ChangePassword::class);
+        $prg    = $this->prg();
+
+        if ($prg instanceof Response) {
+            return $prg;
+        } elseif (false === $prg) {
+            return new ViewModel([
+                'form' => $form,
+            ]);
+        }
+
+        $form->bind(new PasswordReset());
+        $form->setData((array) $prg);
+
+        if ($form->isValid()) {
+
+        }
+
         return new ViewModel([
             'form' => $form,
         ]);

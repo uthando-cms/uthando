@@ -1,19 +1,23 @@
-<h1><?=$status;?></h1>
+<?php $this->headTitle('Login') ?>
 
-<?php
-ob_start();
-phpinfo(INFO_MODULES);
-$phpInfo = ob_get_contents();
-ob_end_clean();
-
-preg_match_all('#<body[^>]*>(.*)</body>#siU', $phpInfo, $output);
-
-$output = (count($output[1]) > 0) ? $output[1][0] : $phpInfo;
-$output = preg_replace('#<table#', '<table class="table table-bordered"', $output);
-$output = preg_replace('#(\w),(\w)#', '\1, \2', $output);
-$output = preg_replace('#border="0" cellpadding="3" width="600"#', '', $output);
-$output = preg_replace('#<hr />#', '', $output);
-$output = str_replace('<div class="center">', '', $output);
-$output = str_replace('</div>', '', $output);
-?>
-<?=$output;?>
+<div class="row">
+    <div class="col-md-offset-4 col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?=$this->translate('Please Sign In');?></h3>
+            </div>
+            <div class="panel-body">
+                <?php if ($this->isLoginError): ?>
+                    <div class="alert alert-warning" role="alert">
+                        Incorrect login and/or password.<br>
+                        <a href="<?= $this->url('reset-password') ?>">Forgot password?</a>
+                    </div>
+                <?php endif; ?>
+                <?=$this->form($this->form);?>
+                <button type="submit" form="login-form" data-toggle="tooltip" title="<?=$this->translate('Sign In');?>" class="btn btn-lg btn-primary btn-block">
+                    <?=$this->translate('Sign In');?>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

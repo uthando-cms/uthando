@@ -46,5 +46,10 @@ class AddComment extends AbstractDto
     /**
      * @Form\Exclude()
      */
+    public $parent;
+
+    /**
+     * @Form\Exclude()
+     */
     public $post;
 }

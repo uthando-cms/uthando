@@ -30,7 +30,11 @@
     "neilime/zf2-twb-bundle": "^3.2",
     "rwoverdijk/assetmanager": "^1.7",
     "zendframework/zend-tag": "^2.7",
-    "zendframework/zend-captcha": "^2.8"
+    "zendframework/zend-captcha": "^2.8",
+    "gedmo/doctrine-extensions": "^3",
+    "zendframework/zend-mvc-plugin-prg": "^1.1",
+    "zendframework/zend-mvc-plugin-identity": "^1.1",
+    "zendframework/zend-mail": "^2.10"
   },
   "autoload": {
     "psr-4": {
