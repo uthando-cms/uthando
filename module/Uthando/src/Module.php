@@ -3,7 +3,7 @@
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
- * @package   ${NAMESPACE}
+ * @package   Uthando
  * @author    Shaun Freeman <shaun@shaunfreeman.co.uk>
  * @copyright Copyright (c) 2018 Shaun Freeman. (http://www.shaunfreeman.co.uk)
  * @license   see LICENSE

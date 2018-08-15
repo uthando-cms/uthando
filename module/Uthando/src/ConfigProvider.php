@@ -252,12 +252,12 @@ class ConfigProvider
             'not_found_template'        => 'error/404',
             'exception_template'        => 'error/post',
             'template_map' => [
-                'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
-                'error/404'     => __DIR__ . '/../view/error/404.phtml',
-                'error/post'    => __DIR__ . '/../view/error/index.phtml',
+                'layout/layout' => './themes/uthando/view/layout/layout.phtml',
+                'error/404'     => './themes/uthando/view/error/404.phtml',
+                'error/post'    => './themes/uthando/view/error/index.phtml',
             ],
             'template_path_stack' => [
-                __DIR__ . '/../view',
+                './themes/uthando/view',
             ],
         ];
     }
@@ -648,7 +648,7 @@ class ConfigProvider
                         ],
                         User\Controller\UserController::class => [
                             ['actions' => ['reset-password'], 'allow' => '*'],
-                            ['actions' => ['index', 'set-password'], 'allow' => '@'],
+                            ['actions' => ['index', 'set-password', 'update-details'], 'allow' => '@'],
                         ],
                     ],
                 ],

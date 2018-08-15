@@ -10,7 +10,11 @@
 
 namespace Uthando\User\Entity\DTO;
 
-
+/**
+ * Interface EditUserInterface
+ * @package Uthando\User\Entity\DTO
+ * @method array getArrayCopy()
+ */
 interface EditUserInterface
 {
 

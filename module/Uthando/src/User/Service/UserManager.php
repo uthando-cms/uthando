@@ -15,8 +15,6 @@ use Doctrine\ORM\EntityManager;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use Uthando\User\Entity\DTO\AddUser;
 use Uthando\User\Entity\DTO\ChangePassword;
-use Uthando\User\Entity\DTO\EditProfile;
-use Uthando\User\Entity\DTO\EditUser;
 use Uthando\User\Entity\DTO\EditUserInterface;
 use Uthando\User\Entity\UserEntity;
 
@@ -67,7 +65,7 @@ final class UserManager
 
     /**
      * @param UserEntity $user
-     * @param EditUser $dto
+     * @param EditUserInterface $dto
      * @throws \Doctrine\Common\Persistence\Mapping\MappingException
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
