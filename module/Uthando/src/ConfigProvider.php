@@ -11,6 +11,7 @@
 namespace Uthando;
 
 
+use AssetManager\Cache\FilePathCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
@@ -29,6 +30,7 @@ class ConfigProvider
     public function __invoke(): array
     {
         return [
+            'asset_manager'         => $this->assetManagerConfig(),
             'controllers'           => $this->getControllerConfig(),
             'doctrine'              => $this->getDoctrineConfig(),
             'filters'               => $this->getFilterConfig(),
@@ -651,6 +653,40 @@ class ConfigProvider
                             ['actions' => ['index', 'set-password', 'update-details'], 'allow' => '@'],
                         ],
                     ],
+                ],
+            ],
+        ];
+    }
+
+    public function assetManagerConfig(): array
+    {
+        return [
+            /*'caching' => [
+                'default' => [
+                    'cache' => FilePathCache::class,
+                    'options' => [
+                        'dir' => './public',
+                    ],
+                ],
+            ],*/
+            'resolver_configs' => [
+                'collections' => [
+                    'js/uthando.js' => [
+                        'js/prettify.js',
+                        'js/site.js',
+                    ],
+                    'css/uthando.css' => [
+                        'css/prettify.css',
+                        'css/uthando-styles.css',
+                        'css/print.css',
+                    ],
+                ],
+                'map' => [
+                    'css/prettify.css' => 'https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.css',
+                    'js/prettify.js' => 'https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js',
+                ],
+                'paths' => [
+                    './themes/uthando/assets',
                 ],
             ],
         ];
