@@ -10,3 +10,9 @@ data/sessions/*
 composer.phar
 .idea
 .phpunit.result.cache
+/public/css/*
+/public/fonts/*
+/public/img/*
+/public/js/*
+/public/userfiles/*
+!/public/userfiles/.gitkeep
