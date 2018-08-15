@@ -280,6 +280,7 @@ class ConfigProvider
                 'admin' => [
                     'label' => 'Admin',
                     'uri' => '#',
+                    'permission' => '@',
                     'pages' => [
                         'admin' => [
                             'label' => 'Dashboard',
@@ -307,6 +308,7 @@ class ConfigProvider
                     'label' => 'Admin',
                     'route' => 'admin',
                     'action' => 'index',
+                    'permission' => '@',
                     'pages' => [
                         'dashboard' => [
                             'label' => 'Dashboard',
@@ -353,6 +355,7 @@ class ConfigProvider
                 'post-admin' => [
                     'label' => 'Manage Posts',
                     'route' => 'admin/post-admin',
+                    'permission' => '@',
                     'pages' => [
                         'list-post-admin' => [
                             'label' => 'List Posts',
@@ -369,6 +372,7 @@ class ConfigProvider
                 'user-admin' => [
                     'label' => 'Manage Users',
                     'route' => 'admin/user-admin',
+                    'permission' => '@',
                     'pages' => [
                         'list-user-admin' => [
                             'label' => 'List Users',
@@ -384,9 +388,16 @@ class ConfigProvider
                 ],
             ],
             'user' => [
+                'user-login' => [
+                    'label' => 'Sign In',
+                    'route' => 'login',
+                    'permission' => '*',
+                ],
                 'user-setiings' => [
                     'label' => 'Settings',
                     'route' => 'user',
+                    'permission' => '@',
+                    'icon'  => 'fa fa-user',
                     'pages' => [
                         'view-profile' => [
                             'label' => 'Profile',
