@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit colors="true"
-         beStrictAboutTestsThatDoNotTestAnything="true"
+<phpunit
+        colors="true"
+        beStrictAboutTestsThatDoNotTestAnything="true"
 >
     <testsuites>
         <testsuite name="Uthando CMS Test Suite">
-            <directory>./test</directory>
+            <directory>./test/Uthando</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true"> <!-- addUncoveredFilesFromWhitelist / processUncoveredFilesFromWhitelist  -->
-            <directory>./module/Uthando/src</directory>
+            <directory>./module/Uthando</directory>
         </whitelist>
     </filter>
 

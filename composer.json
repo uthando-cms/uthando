@@ -39,12 +39,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Uthando\\": "module/Uthando/src"
+      "Uthando\\": "module/Uthando"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "UthandoTest\\": "test"
+      "UthandoTest\\": "test/Uthando"
     }
   },
   "scripts": {
