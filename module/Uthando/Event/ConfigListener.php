@@ -18,7 +18,7 @@ use Zend\Stdlib\ArrayUtils;
 
 class ConfigListener
 {
-    public function onMergeConfig(ModuleEvent $event): bool
+    public static function onMergeConfig(ModuleEvent $event): bool
     {
         $configListener     = $event->getConfigListener();
         $config             = $configListener->getMergedConfig(false);
