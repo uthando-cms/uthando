@@ -17,7 +17,6 @@ class AdminControllerTest extends HttpControllerTestCase
 {
     public function testAdminCanAccessIndexAction()
     {
-        ob_start();
         $this->login();
         $this->dispatch('/admin');
         $this->assertResponseStatusCode(200);
@@ -26,7 +25,6 @@ class AdminControllerTest extends HttpControllerTestCase
         $this->assertControllerName(AdminController::class);
         $this->assertControllerClass('AdminController');
         $this->assertMatchedRouteName('admin');
-        ob_end_flush();
     }
 
     public function testGuestRedirectsToLogin()
