@@ -10,6 +10,8 @@
 
 namespace UthandoTest\Framework;
 
+use Uthando\User\Entity\DTO\Login;
+use Uthando\User\Service\AuthenticationManager;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class HttpControllerTestCase extends AbstractHttpControllerTestCase
@@ -22,5 +24,17 @@ class HttpControllerTestCase extends AbstractHttpControllerTestCase
             include __DIR__ . '/../../config/application.config.php'
         );
         parent::setUp();
+    }
+
+    protected function login()
+    {
+        /** @var AuthenticationManager $auth */
+        $auth           = $this->getApplicationServiceLocator()->get(AuthenticationManager::class);
+        $dto            = new Login();
+        $dto->email     = 'admin@example.com';
+        $dto->password  = 'password';
+        $result         = $auth->doAuthentication($dto);
+
+        return $result;
     }
 }

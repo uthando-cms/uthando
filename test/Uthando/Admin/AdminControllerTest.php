@@ -11,8 +11,6 @@
 namespace UthandoTest\Admin;
 
 use Uthando\Admin\Controller\AdminController;
-use Uthando\User\Entity\DTO\Login;
-use Uthando\User\Service\AuthenticationManager;
 use UthandoTest\Framework\HttpControllerTestCase;
 
 class AdminControllerTest extends HttpControllerTestCase
@@ -20,17 +18,7 @@ class AdminControllerTest extends HttpControllerTestCase
     public function testAdminCanAccessIndexAction()
     {
         ob_start();
-        ini_set('memory_limit', '256M');
-        /** @var AuthenticationManager $auth */
-        $auth = $this->getApplicationServiceLocator()
-            ->get(AuthenticationManager::class);
-
-        $dto = new Login();
-        $dto->email = 'admin@example.com';
-        $dto->password = 'password';
-
-        $result = $auth->doAuthentication($dto);
-
+        $this->login();
         $this->dispatch('/admin');
         $this->assertResponseStatusCode(200);
 
