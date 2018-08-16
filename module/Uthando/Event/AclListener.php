@@ -20,7 +20,7 @@ class AclListener
      * @param Event $event
      * @return bool
      */
-    public function accept(Event $event)
+    public static function accept(Event $event)
     {
         $event->stopPropagation();
 
