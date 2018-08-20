@@ -35,8 +35,10 @@ class HttpControllerTestCase extends AbstractHttpControllerTestCase
 
     protected function setUp()
     {
+        $config  = include __DIR__ . '/../../config/application.config.php';
+
         $this->setApplicationConfig(
-            include __DIR__ . '/../../config/application.config.php'
+            $config
         );
         parent::setUp();
 
@@ -74,7 +76,7 @@ class HttpControllerTestCase extends AbstractHttpControllerTestCase
         $dto                = new Login();
         $dto->email         = 'admin@example.com';
         $dto->password      = 'password';
-        $dto->rememberMe    = true;
+        if (phpversion() < 7.2) $dto->rememberMe    = true;
         $result             = $auth->doAuthentication($dto);
 
         return $result;

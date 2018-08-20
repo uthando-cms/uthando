@@ -37,7 +37,6 @@ class ConfigProvider
             'navigation'            => $this->getNavigationConfig(),
             'router'                => $this->getRouteConfig(),
             'service_manager'       => $this->getServiceManagerConfig(),
-            'session_config'        => $this->getSessionConfig(),
             'session_containers'    => $this->getSessionContainerConfig(),
             'session_manager'       => $this->getSessionManagerConfig(),
             'session_storage'       => $this->getSessionStorageConfig(),
@@ -141,18 +140,6 @@ class ConfigProvider
             ],
         ];
     }
-
-    public function getSessionConfig(): array
-    {
-        return [
-            // Session cookie will expire in 1 hour.
-            'cookie_lifetime'   => 60*60*1,
-            // Session data will be stored on server maximum for 30 days.
-            'gc_maxlifetime'    => 60*60*24*30,
-            'save_path'         => './data/sessions',
-        ];
-    }
-
 
     public function getSessionStorageConfig(): array
     {
