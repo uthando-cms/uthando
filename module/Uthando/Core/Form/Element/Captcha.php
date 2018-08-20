@@ -28,23 +28,20 @@ final class Captcha extends ZendCaptcha
     {
         $spec = $this->getOption('config');
 
-        if ('Image' === $spec['class']) {
+        $font = $spec['options']['font'];
 
-            $font = $spec['options']['font'];
-
-            if (is_array($font)) {
-                $rand = array_rand($font);
-                $randFont = $font[$rand];
-                $font = $randFont;
-            }
-
-            $spec['options']['font'] = join('/', [
-                $spec['options']['fontDir'],
-                $font
-            ]);
-
-            $spec['options']['imgUrl'] = $this->getOption('url_helper')('captcha-form-generate');
+        if (is_array($font)) {
+            $rand = array_rand($font);
+            $randFont = $font[$rand];
+            $font = $randFont;
         }
+
+        $spec['options']['font'] = join('/', [
+            $spec['options']['fontDir'],
+            $font
+        ]);
+
+        $spec['options']['imgUrl'] = $this->getOption('url_helper')('captcha-form-generate');
 
         $this->setCaptcha($spec);
     }

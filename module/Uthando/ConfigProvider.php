@@ -14,7 +14,6 @@ namespace Uthando;
 use AssetManager\Cache\FilePathCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
-use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
 use Gedmo\Tree\TreeListener;
 use Ramsey\Uuid\Doctrine\UuidType;
 use Zend\Authentication\AuthenticationService;
@@ -38,6 +37,7 @@ class ConfigProvider
             'navigation'            => $this->getNavigationConfig(),
             'router'                => $this->getRouteConfig(),
             'service_manager'       => $this->getServiceManagerConfig(),
+            'session_config'        => $this->getSessionConfig(),
             'session_containers'    => $this->getSessionContainerConfig(),
             'session_manager'       => $this->getSessionManagerConfig(),
             'session_storage'       => $this->getSessionStorageConfig(),
@@ -142,6 +142,18 @@ class ConfigProvider
         ];
     }
 
+    public function getSessionConfig(): array
+    {
+        return [
+            // Session cookie will expire in 1 hour.
+            'cookie_lifetime'   => 60*60*1,
+            // Session data will be stored on server maximum for 30 days.
+            'gc_maxlifetime'    => 60*60*24*30,
+            'save_path'         => './data/sessions',
+        ];
+    }
+
+
     public function getSessionStorageConfig(): array
     {
         return [
@@ -164,11 +176,9 @@ class ConfigProvider
                 'doctrine.cache.filesystem'     => Core\Doctine\Cache\FilesystemFactory::class,
             ],
             'factories' => [
-                AnnotationBuilder::class                                => Core\Doctine\Annotation\FormAnnotationBuilderFactory::class,
                 Admin\Service\Factory\NavigationFactory::class          => Admin\Service\Factory\NavigationFactory::class,
                 Admin\Service\Factory\NavigationDashboardFactory::class => Admin\Service\Factory\NavigationDashboardFactory::class,
                 Core\Doctine\Cache\FilesystemFactory::class             => Core\Doctine\Cache\FilesystemFactory::class,
-                Blog\Service\PostManager::class                         => Blog\Service\Factory\PostManagerFactory::class,
                 User\Service\AuthenticationManager::class               => User\Service\Factory\AuthenticationManagerFactory::class,
                 User\Service\UserManager::class                         => User\Service\Factory\UserManagerFactory::class,
                 User\Service\Factory\UserNavigationFactory::class       => User\Service\Factory\UserNavigationFactory::class,
@@ -449,9 +459,9 @@ class ConfigProvider
                         'post' => [
                             'type' => Segment::class,
                             'options' => [
-                                'route' => '/:id',
+                                'route' => '/:seo',
                                 'constraints' => [
-                                    'id' => '[a-z0-9][a-z0-9-]*'
+                                    'seo' => '[a-z0-9][a-z0-9-]*'
                                 ],
                                 'defaults' => [
                                     'controller' => Blog\Controller\PostController::class,
@@ -613,44 +623,29 @@ class ConfigProvider
                     'lineNoiseLevel' => 3
                 ],
             ],
-            // The 'access_filter' key is used by the User module to restrict or permit
-            // access to certain controller actions for unauthenticated visitors.
             'access_filter' => [
-                'options' => [
-                    // The access filter can work in 'restrictive' (recommended) or 'permissive'
-                    // mode. In restrictive mode all controller actions must be explicitly listed
-                    // under the 'access_filter' config key, and access is denied to any not listed
-                    // action for users not logged in. In permissive mode, if an action is not listed
-                    // under the 'access_filter' key, access to it is permitted to anyone (even for
-                    // users not logged in. Restrictive mode is more secure and recommended.
-                    'mode' => 'restrictive'
+                Admin\Controller\AdminController::class => [
+                    ['actions' => ['index'], 'allow' => '@']
                 ],
-                'controllers' => [
-                    Admin\Controller\AdminController::class => [
-                        // Allow authenticated users to visit "index" action
-                        ['actions' => ['index'], 'allow' => '@']
-                    ],
-                    Blog\Controller\PostAdminController::class => [
-                        ['actions' => ['index', 'add', 'edit', 'delete'], 'allow' => '@'],
-                    ],
-                    Blog\Controller\PostController::class => [
-                        // Allow anyone to visit "index" and "view" actions
-                        ['actions' => ['index', 'view'], 'allow' => '*'],
-                    ],
-                    Core\Controller\CaptchaController::class => [
-                        ['actions' => ['generate'], 'allow' => '*'],
-                    ],
-                    User\Controller\AuthController::class => [
-                        ['actions' => ['login'], 'allow' => '*'],
-                        ['actions' => ['logout'], 'allow' => '@'],
-                    ],
-                    User\Controller\UserAdminController::class => [
-                        ['actions' => ['index', 'add', 'edit', 'delete'], 'allow' => '@'],
-                    ],
-                    User\Controller\UserController::class => [
-                        ['actions' => ['reset-password'], 'allow' => '*'],
-                        ['actions' => ['index', 'set-password', 'update-details'], 'allow' => '@'],
-                    ],
+                Blog\Controller\PostAdminController::class => [
+                    ['actions' => ['index', 'add', 'edit', 'delete'], 'allow' => '@'],
+                ],
+                Blog\Controller\PostController::class => [
+                    ['actions' => ['index', 'view'], 'allow' => '*'],
+                ],
+                Core\Controller\CaptchaController::class => [
+                    ['actions' => ['generate'], 'allow' => '*'],
+                ],
+                User\Controller\AuthController::class => [
+                    ['actions' => ['login'], 'allow' => '*'],
+                    ['actions' => ['logout'], 'allow' => '@'],
+                ],
+                User\Controller\UserAdminController::class => [
+                    ['actions' => ['index', 'add', 'edit', 'delete'], 'allow' => '@'],
+                ],
+                User\Controller\UserController::class => [
+                    ['actions' => ['reset-password'], 'allow' => '*'],
+                    ['actions' => ['index', 'set-password', 'update-details'], 'allow' => '@'],
                 ],
             ],
         ];

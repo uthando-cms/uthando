@@ -6,7 +6,7 @@
     <h3>
         <a href="<?=$this->url('blog/post', [
             'action' => 'view',
-            'id'     => $post->id->toString()
+            'seo'    => $this->escapeHtml($post->seo)
         ]);?>">
             <?= $this->escapeHtml($post->title); ?>
         </a>

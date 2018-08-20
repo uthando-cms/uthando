@@ -52,7 +52,7 @@ final class PostController extends AbstractActionController
     {
         $this->postRepository   = $postRepository;
         $this->postManager      = $postManager;
-        $this->formBuilder             = $formBuilder;
+        $this->formBuilder      = $formBuilder;
     }
 
     /**
@@ -91,19 +91,18 @@ final class PostController extends AbstractActionController
     }
 
     /**
-     * @return bool|ViewModel|Response
+     * @return ViewModel|Response
      * @throws \Doctrine\ORM\ORMException
-     * @throws \Exception
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function viewAction(): ViewModel
+    public function viewAction()
     {
-        $id = $this->params()->fromRoute('id');
+        $seo = $this->params()->fromRoute('seo');
 
-        $post = $this->postRepository->findOneBy(['id' => $id]);
+        $post = $this->postRepository->findOneBy(['seo' => $seo]);
 
         if ($post == null) {
             $this->getResponse()->setStatusCode(404);
-            return false;
         }
 
         $form = $this->formBuilder->createForm(AddComment::class);
@@ -124,7 +123,7 @@ final class PostController extends AbstractActionController
                 $this->postManager->addCommentToPost($post, $form->getData());
 
                 // Redirect the user again to "view" page.
-                return $this->redirect()->toRoute('blog/post', ['id' => $id]);
+                return $this->redirect()->toRoute('blog/post', ['seo' => $seo]);
             }
         }
 

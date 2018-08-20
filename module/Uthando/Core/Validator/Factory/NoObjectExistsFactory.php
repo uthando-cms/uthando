@@ -17,7 +17,6 @@ use Interop\Container\ContainerInterface;
 
 final class NoObjectExistsFactory extends AbstractValidatorFactory
 {
-
     /**
      * Create an no object exists validator object
      * @param ContainerInterface $container

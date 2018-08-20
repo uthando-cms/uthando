@@ -29,7 +29,7 @@ class CaptchaController extends AbstractActionController
      */
     protected $options;
 
-    public function __construct($options)
+    public function __construct(array $options)
     {
         $this->options = $options;
     }

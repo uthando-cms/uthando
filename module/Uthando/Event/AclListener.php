@@ -24,11 +24,9 @@ class AclListener
     {
         $event->stopPropagation();
 
-        /*$rbacService = new RbacService();
-        $rbac = $rbacService->getRbac();*/
-
         /** @var PhpRenderer $view */
-        $view       = $event->getTarget()->getView();
+        $viewHelper = $event->getTarget();
+        $view       = $viewHelper->getView();
         $identity   = $view->identity();
         $params     = $event->getParams();
         $page       = $params['page'];
@@ -36,12 +34,10 @@ class AclListener
         $accepted   = true;
 
         if ('@' === $permission && !$identity) {
-            //$accepted = $rbac->isGranted('member', $permission);
             $accepted = false;
         }
 
         if ('*' === $permission && $identity) {
-            //$accepted = $rbac->isGranted('member', $permission);
             $accepted = false;
         }
 

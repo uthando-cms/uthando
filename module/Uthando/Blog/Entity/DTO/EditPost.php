@@ -71,6 +71,7 @@ class EditPost extends AbstractDto implements PostDTOInterface
 
     /**
      * @Form\AllowEmpty()
+     * @Form\Name("new_tags")
      * @Form\Type("Text")
      * @Form\Filter({"name":"StringTrim"})
      * @Form\Filter({"name":"StripTags"})

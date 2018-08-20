@@ -17,7 +17,6 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 
 final class FilesystemFactory implements FactoryInterface
 {
-
     /**
      * Create an object
      *

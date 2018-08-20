@@ -19,22 +19,9 @@ final class CaptchaFactory implements FactoryInterface
 {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        if ($options === null) {
-            $options = [];
-        }
-
-        if (isset($options['name'])) {
-            $name = $options['name'];
-        } else {
-            // 'Zend\Form\Element' -> 'element'
-            $parts = explode('\\', $requestedName);
-            $name = strtolower(array_pop($parts));
-        }
-
-        if (isset($options['options'])) {
-            $options = $options['options'];
-        }
-
+        $options                = [];
+        $parts                  = explode('\\', $requestedName);
+        $name                   = strtolower(array_pop($parts));
         $plugins                = $container->get('ViewHelperManager');
         $options['url_helper']  = $plugins->get('url');
         $options['config']      = $container->get('config')['uthando']['captcha'];

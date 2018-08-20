@@ -63,8 +63,9 @@ final class NoObjectExists extends DoctrineNoObjectExists
             $cleanedValue['exclude'] = $excludeValue;
         }
 
-        $queryBuilder->where($and)
-            ->setParameters($cleanedValue);
+        $queryBuilder->where($and);
+
+        $queryBuilder->setParameters($cleanedValue);
 
         $match = $queryBuilder->getQuery()->getOneOrNullResult();
 

@@ -70,7 +70,8 @@
     "ccampbell/chromephp": "^4.0",
     "studio-42/elfinder": "^2.0",
     "ezyang/htmlpurifier": "^4.9",
-    "szmnmichalowski/doctrine-cache-toolbar": "dev-master"
+    "szmnmichalowski/doctrine-cache-toolbar": "dev-master",
+    "phpunit/dbunit": "^4.0"
   },
   "repositories": [
     {

@@ -136,16 +136,6 @@ class PostEntity extends AbstractEntity
     }
 
     /**
-     * @param ArrayCollection|array $comments
-     */
-    public function addComments($comments): void
-    {
-        foreach ($comments as $comment) {
-            $this->comments->add($comment);
-        }
-    }
-
-    /**
      * @return ArrayCollection|PersistentCollection
      */
     public function getTags()

@@ -12,7 +12,6 @@ namespace Uthando\Core\View;
 
 
 use Interop\Container\ContainerInterface;
-use ReflectionProperty;
 use Uthando\Core\View\Helper\Navigation as NavigationHelper;
 
 final class NavigationHelperFactory extends \Zend\Navigation\View\NavigationHelperFactory
@@ -20,20 +19,7 @@ final class NavigationHelperFactory extends \Zend\Navigation\View\NavigationHelp
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $helper = new NavigationHelper();
-        $helper->setServiceLocator($this->getApplicationServicesFromContainer($container));
+        $helper->setServiceLocator($container);
         return $helper;
-    }
-
-    private function getApplicationServicesFromContainer(ContainerInterface $container)
-    {
-        // v3
-        if (method_exists($container, 'configure')) {
-            $r = new ReflectionProperty($container, 'creationContext');
-            $r->setAccessible(true);
-            return $r->getValue($container) ?: $container;
-        }
-
-        // v2
-        return $container->getServiceLocator() ?: $container;
     }
 }
