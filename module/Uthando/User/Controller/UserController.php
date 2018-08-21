@@ -92,17 +92,11 @@ final class UserController extends AbstractActionController
         if ($form->isValid()) {
             $user   = $this->identity();
 
-            try {
-                $this->userManager->updateUser($user, $form->getData());
+            $this->userManager->updateUser($user, $form->getData());
 
-                $this->flashMessenger()->addSuccessMessage(
-                    'Changes were made successfully.'
-                );
-            } catch (\Exception $e) {
-                $this->flashMessenger()->addErrorMessage(
-                    'Sorry, could not make the changes.'
-                );
-            }
+            $this->flashMessenger()->addSuccessMessage(
+                'Changes were made successfully.'
+            );
 
             // Redirect to "view" page
             return $this->redirect()->toRoute('user/view');

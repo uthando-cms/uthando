@@ -58,9 +58,7 @@ class OnDispatchListener implements ListenerAggregateInterface
      */
     public function accessFilter(MvcEvent $event)
     {
-        if (!$event->getRequest() instanceof Request) {
-            return true;
-        }
+        if (!$event->getRequest() instanceof Request) return true;
 
         // Get controller and action to which the HTTP request was dispatched.
         $application    = $event->getApplication();

@@ -62,6 +62,7 @@ class AddPost extends AbstractDto implements PostDTOInterface
 
 
     /**
+     * @Form\AllowEmpty()
      * @Form\Type("DoctrineModule\Form\Element\ObjectSelect")
      * @Form\Options({"label":"Tags: ", "target_class": "Uthando\Blog\Entity\TagEntity", "property": "name",
      *     "column-size":"sm-10", "label_attributes":{"class":"col-sm-2"}})

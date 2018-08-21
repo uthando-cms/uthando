@@ -17,7 +17,7 @@ class AdminControllerTest extends HttpControllerTestCase
 {
     public function testAdminCanAccessIndexAction()
     {
-        $this->login();
+        $this->AdminLogin();
         $this->dispatch('/admin');
         $this->assertResponseStatusCode(200);
 

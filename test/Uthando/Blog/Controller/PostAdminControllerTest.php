@@ -18,17 +18,32 @@ use UthandoTest\Framework\HttpControllerTestCase;
 
 class PostAdminControllerTest extends HttpControllerTestCase
 {
-    public function testGuestCannotAccessAdminRoute()
+    /**
+     * @dataProvider postRouteProvider
+     * @param string $url
+     * @throws \Exception
+     */
+    public function testGuestCannotAccessPostActions(string $url)
     {
-        $this->dispatch('/admin/posts');
+        $this->dispatch($url);
 
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/login');
     }
 
+    public function postRouteProvider(): array
+    {
+        return [
+            'Index Action'  => ['/admin/posts'],
+            'Add Action'    => ['/admin/posts/add'],
+            'Edit Action'   => ['/admin/posts/edit'],
+            'Delete Action' => ['/admin/posts/delete'],
+        ];
+    }
+
     public function testAdminCanAccessPostsList()
     {
-        $this->login();
+        $this->AdminLogin();
 
         $this->dispatch('/admin/posts');
 
@@ -39,22 +54,9 @@ class PostAdminControllerTest extends HttpControllerTestCase
         $this->assertActionName('index');
     }
 
-    public function testCanAccessAddPostAction()
-    {
-        $this->login();
-
-        $this->dispatch('/admin/posts/add');
-
-        $this->assertModuleName('Uthando');
-        $this->assertControllerName(PostAdminController::class);
-        $this->assertControllerClass('PostAdminController');
-        $this->assertMatchedRouteName('admin/post-admin');
-        $this->assertActionName('add');
-    }
-
     public function testCanAddNewPost()
     {
-        $this->login();
+        $this->AdminLogin();
 
         $postData = [
             'status'    => '0',
@@ -62,8 +64,8 @@ class PostAdminControllerTest extends HttpControllerTestCase
             'seo'       => '',
             'content'   => 'If you have forms where you allow users to submit HTML content you will want to filter that so you can be sure that no malicious code gets through, some WYSIWYG editors do this but not all but still as we are paranoid backend developers we don\'t trust any input submitted by users.',
             'tags'      => [
-                '2b748225-218d-458c-b2a1-a0dc20f41d5b',
-                '57fc7ae9-6565-47cb-aeb3-ab9446f6f217',
+                'aa4fa2c7-506a-4889-9810-af14f36b2b87',
+                '3f17611e-13de-4439-929d-1396943d3c4e',
                 ],
             'new_tags'  => 'Html Purifier',
             'csrf'      => $this->getCsrfValue('/admin/posts/add'),
@@ -101,14 +103,14 @@ class PostAdminControllerTest extends HttpControllerTestCase
      */
     public function testCanEditPost(array $postData, int $expectedPosts, int $expectedTags)
     {
-        $this->login();
+        $this->AdminLogin();
 
         $postCount = $this->getConnection()->getRowCount('posts');
         $tagCount = $this->getConnection()->getRowCount('tags');
 
-        $postData['csrf'] = $this->getCsrfValue('/admin/posts/edit/4ef5bf8a-fbac-4518-afe9-3a59deb6f726');
+        $postData['csrf'] = $this->getCsrfValue('/admin/posts/edit/5af686fb-5ba5-4157-8115-cf075a43c2d3');
 
-        $this->dispatch('/admin/posts/edit/4ef5bf8a-fbac-4518-afe9-3a59deb6f726', 'POST', $postData);
+        $this->dispatch('/admin/posts/edit/5af686fb-5ba5-4157-8115-cf075a43c2d3', 'POST', $postData);
 
         $this->assertSame(
             $expectedPosts,
@@ -131,6 +133,37 @@ class PostAdminControllerTest extends HttpControllerTestCase
         $this->assertRedirectTo('/admin/posts');
     }
 
+    public function editUpdateProvider(): array
+    {
+        return [
+            'update modified date' => [[
+                'id' => '5af686fb-5ba5-4157-8115-cf075a43c2d3',
+                'status' => '0',
+                'title' => 'How to Install MySQL or MariaDB on CentOS 7',
+                'seo' => 'how-to-install-mysql-or-mariadb-on-centos-7',
+                'content' => 'As of CentOS 7 the default database is MariaDB and a drop in replacement for MySQL and should be fine for most people but if you need MySQL, there are some features in MySQL and not in MariaDB and vice versa.',
+                'date_created' => '2018-08-20T19:18:50+00:00',
+                'date_modified' => '2018-08-20T19:18:50+00:00',
+                'tags'      => [],
+                'new_tags'  => 'CSS, PHP',
+                'old_seo'   => 'how-to-install-mysql-or-mariadb-on-centos-7',
+            ], 3, 9],
+            'update all dates' => [[
+                'id' => '5af686fb-5ba5-4157-8115-cf075a43c2d3',
+                'status' => '1',
+                'title' => 'How to Install MySQL or MariaDB on CentOS 7',
+                'seo' => 'how-to-install-mysql-or-mariadb-on-centos-7',
+                'content' => 'As of CentOS 7 the default database is MariaDB and a drop in replacement for MySQL and should be fine for most people but if you need MySQL, there are some features in MySQL and not in MariaDB and vice versa.',
+                'tags'      => [
+                    'aa4fa2c7-506a-4889-9810-af14f36b2b87',
+                ],
+                'new_tags'  => 'Html Purifier',
+                'old_seo'   => 'how-to-install-mysql-or-mariadb-on-centos-7',
+            ], 3, 9],
+
+        ];
+    }
+
     /**
      * @dataProvider notExistingIdProvider
      * @param $action
@@ -139,7 +172,7 @@ class PostAdminControllerTest extends HttpControllerTestCase
      */
     public function testNonExistingPostReturns404(string $action, string $id)
     {
-        $this->login();
+        $this->AdminLogin();
 
         $postData = [
             'id' => $id,
@@ -147,6 +180,14 @@ class PostAdminControllerTest extends HttpControllerTestCase
 
         $this->dispatch('/admin/posts/' . $action . '/' . $id, 'POST', $postData);
         $this->assertResponseStatusCode(404);
+    }
+
+    public function notExistingIdProvider(): array
+    {
+        return [
+            'edit action'   => ['edit', 'c4d11f76-3afb-4733-ad03-8a053df794a2'],
+            'delete action' => ['delete', 'c4d11f76-3afb-4733-ad03-8a053df794d2'],
+        ];
     }
 
     /**
@@ -157,7 +198,7 @@ class PostAdminControllerTest extends HttpControllerTestCase
      */
     public function testInvalidIdThrowsException(string $action, string $id)
     {
-        $this->login();
+        $this->AdminLogin();
 
         $postData = [
             'id' => $id,
@@ -167,6 +208,15 @@ class PostAdminControllerTest extends HttpControllerTestCase
         $this->assertResponseStatusCode(500);
     }
 
+    public function invalidIdProvider(): array
+    {
+        return [
+            'edit action'   => ['edit', 'c4d11f76-3afb-4733-8a053df794c1'],
+            'delete action' => ['delete', '776ceb09-f300-48bc-b400'],
+        ];
+
+    }
+
     /**
      * @dataProvider idProvider
      * @param $id
@@ -174,7 +224,7 @@ class PostAdminControllerTest extends HttpControllerTestCase
      */
     public function testAdminCanDeletePost(string $id)
     {
-        $this->login();
+        $this->AdminLogin();
 
         $noOfPosts = $this->getConnection()->getRowCount('posts');
 
@@ -199,59 +249,12 @@ class PostAdminControllerTest extends HttpControllerTestCase
         $this->assertRedirectTo('/admin/posts');
     }
 
-    public function editUpdateProvider(): array
-    {
-        return [
-            'update all dates' => [[
-                'status' => '1',
-                'title' => 'Twitter Bootstrap - Making a Professional Looking Site',
-                'seo' => 'twitter-bootstrap-making-a-professional-looking-site',
-                'content' => 'Twitter Bootstrap (shortly, Bootstrap) is a popular CSS framework allowing to make your website professionally looking and visually appealing, even if you don\'t have advanced designer skills.',
-                'tags'      => [
-                    '2b748225-218d-458c-b2a1-a0dc20f41d5b',
-                    '57fc7ae9-6565-47cb-aeb3-ab9446f6f217',
-                ],
-                'new_tags'  => 'Html Purifier',
-                'old_seo'   => 'twitter-bootstrap-making-a-professional-looking-site',
-            ], 3, 9],
-            'update modified date' => [[
-                'status' => '0',
-                'title' => 'Twitter Bootstrap - Making a Professional Looking Site',
-                'seo' => 'twitter-bootstrap-making-a-professional-looking-site',
-                'content' => 'Twitter Bootstrap (shortly, Bootstrap) is a popular CSS framework allowing to make your website professionally looking and visually appealing, even if you don\'t have advanced designer skills.',
-                'tags'      => [
-                    '2b748225-218d-458c-b2a1-a0dc20f41d5b',
-                    '57fc7ae9-6565-47cb-aeb3-ab9446f6f217',
-                ],
-                'new_tags'  => 'CSS',
-                'old_seo'   => 'twitter-bootstrap-making-a-professional-looking-site',
-            ], 3, 8],
-        ];
-    }
-
-    public function notExistingIdProvider(): array
-    {
-        return [
-            'edit action'   => ['edit', 'c4d11f76-3afb-4733-ad03-8a053df794a2'],
-            'delete action' => ['delete', 'c4d11f76-3afb-4733-ad03-8a053df794d2'],
-        ];
-    }
-
-    public function invalidIdProvider(): array
-    {
-        return [
-            'edit action'   => ['edit', 'c4d11f76-3afb-4733-8a053df794c1'],
-            'delete action' => ['delete', '776ceb09-f300-48bc-b400'],
-        ];
-
-    }
-
     public function idProvider(): array
     {
         return [
-            'ID 1' => ['c4d11f76-3afb-4733-ad03-8a053df794c1'],
-            'ID 2' => ['4ef5bf8a-fbac-4518-afe9-3a59deb6f726'],
-            'ID 3' => ['776ceb09-f300-48bc-b400-0fd524532e6d'],
+            'ID 1' => ['5af686fb-5ba5-4157-8115-cf075a43c2d3'],
+            'ID 2' => ['6ffbdc8e-546d-4da2-8e78-43bde918c864'],
+            'ID 3' => ['e610d563-a408-42b4-8445-1db708ef714e'],
         ];
 
     }

@@ -69,16 +69,28 @@ class HttpControllerTestCase extends AbstractHttpControllerTestCase
         return $csrf;
     }
 
-    protected function login()
+    protected function AdminLogin()
     {
         /** @var AuthenticationManager $auth */
         $auth               = $this->getApplicationServiceLocator()->get(AuthenticationManager::class);
         $dto                = new Login();
         $dto->email         = 'admin@example.com';
         $dto->password      = 'password';
-        if (phpversion() < 7.2) $dto->rememberMe    = true;
+        if (phpversion() < 7.2) $dto->rememberMe = true;
         $result             = $auth->doAuthentication($dto);
 
+        return $result;
+    }
+
+    protected function userLogin()
+    {
+        /** @var AuthenticationManager $auth */
+        $auth               = $this->getApplicationServiceLocator()->get(AuthenticationManager::class);
+        $dto                = new Login();
+        $dto->email         = 'user@example.com';
+        $dto->password      = 'password';
+        if (phpversion() < 7.2) $dto->rememberMe = true;
+        $result             = $auth->doAuthentication($dto);
         return $result;
     }
 
@@ -89,10 +101,10 @@ class HttpControllerTestCase extends AbstractHttpControllerTestCase
      */
     protected function getConnection()
     {
-        if ($this->conn === null) {
+        if (null === $this->conn) {
             $schema = __DIR__ . '/../../assets/uthando-cms.sqlite';
 
-            if (self::$pdo == null) {
+            if (null === self::$pdo) {
                 self::$pdo = new PDO('sqlite:' . $schema);
             }
 

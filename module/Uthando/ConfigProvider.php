@@ -167,7 +167,6 @@ class ConfigProvider
                 Admin\Service\Factory\NavigationDashboardFactory::class => Admin\Service\Factory\NavigationDashboardFactory::class,
                 Core\Doctine\Cache\FilesystemFactory::class             => Core\Doctine\Cache\FilesystemFactory::class,
                 User\Service\AuthenticationManager::class               => User\Service\Factory\AuthenticationManagerFactory::class,
-                User\Service\UserManager::class                         => User\Service\Factory\UserManagerFactory::class,
                 User\Service\Factory\UserNavigationFactory::class       => User\Service\Factory\UserNavigationFactory::class,
             ],
         ];

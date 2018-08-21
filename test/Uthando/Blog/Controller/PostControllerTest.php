@@ -77,9 +77,13 @@ class PostControllerTest extends HttpControllerTestCase
         $this->assertActionName('index');
     }
 
-    public function testCanAccessPostViewBySeo()
+    /**
+     * @dataProvider seoProvider
+     * @throws \Exception
+     */
+    public function testCanAccessPostViewBySeo(string $seo)
     {
-        $this->dispatch('/blog/getting-started-with-magento-extension-development-book-review');
+        $this->dispatch('/blog/' . $seo);
         $this->assertResponseStatusCode(200);
 
         $this->assertModuleName('Uthando');
@@ -103,16 +107,18 @@ class PostControllerTest extends HttpControllerTestCase
 
     public function testCanAddCommentToBlogPost()
     {
+        $numRows =  $this->getConnection()->getRowCount('comments');
+
         $postData = [
             'author'  => 'Jane Biggles',
             'content' => 'Excellent Post Bro!',
-            'csrf'    => $this->getCsrfValue('/blog/a-free-book-about-zend-framework'),
+            'csrf'    => $this->getCsrfValue('/blog/nginx-using-regex-to-configure-dynamic-location-blocks'),
         ];
 
-        $this->dispatch('/blog/a-free-book-about-zend-framework', 'POST', $postData);
+        $this->dispatch('/blog/nginx-using-regex-to-configure-dynamic-location-blocks', 'POST', $postData);
 
         $this->assertSame(
-            2,
+            ($numRows +1),
             $this->getConnection()->getRowCount('comments'),
             "Inserting failed"
         );
@@ -124,5 +130,15 @@ class PostControllerTest extends HttpControllerTestCase
         $this->assertControllerClass('PostController');
         $this->assertMatchedRouteName('blog/post');
         $this->assertActionName('view');
+    }
+
+    public function seoProvider(): array
+    {
+        return [
+            'SEO 1' => ['how-to-install-mysql-or-mariadb-on-centos-7'],
+            'SEO 2' => ['nginx-using-regex-to-configure-dynamic-location-blocks'],
+            'SEO 3' => ['gigabyte-brix-bxbt-1900-not-booting-without-monitor-on-ubuntu-minimal-16-04'],
+        ];
+
     }
 }

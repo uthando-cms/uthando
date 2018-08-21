@@ -38,18 +38,14 @@ class OnRouteListener implements ListenerAggregateInterface
 
     public function onStartSession(MvcEvent $mvcEvent): void
     {
-        if (!$mvcEvent->getRequest() instanceof Request) {
-            return;
-        }
+        if (!$mvcEvent->getRequest() instanceof Request) return;
 
         $serviceManager = $mvcEvent->getApplication()
             ->getServiceManager();
 
         $sessionManager = $serviceManager->get(SessionManager::class);
 
-        if (!$sessionManager->isValid()) {
-            $sessionManager->destroy();
-        }
+        if (!$sessionManager->isValid()) $sessionManager->destroy();
 
         $sessionManager->start();
     }

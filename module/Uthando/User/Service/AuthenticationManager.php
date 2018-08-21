@@ -88,7 +88,6 @@ class AuthenticationManager
         // Remove identity from session.
         $this->authService->clearIdentity();
         $this->sessionManager->forgetMe();
-        $this->sessionManager->destroy();
     }
 
     /**
