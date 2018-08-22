@@ -75,7 +75,7 @@ class PostAdminControllerTest extends HttpControllerTestCase
         $this->dispatch('/admin/posts/add', 'POST', $postData);
 
         $this->assertSame(
-            4,
+            5,
             $this->getConnection()->getRowCount('posts'),
             "Inserting failed"
         );
@@ -109,9 +109,9 @@ class PostAdminControllerTest extends HttpControllerTestCase
         $postCount = $this->getConnection()->getRowCount('posts');
         $tagCount = $this->getConnection()->getRowCount('tags');
 
-        $postData['csrf'] = $this->getCsrfValue('/admin/posts/edit/5af686fb-5ba5-4157-8115-cf075a43c2d3');
+        $postData['csrf'] = $this->getCsrfValue('/admin/posts/edit/1402254b-030c-4d93-9015-c0cebe5355ac');
 
-        $this->dispatch('/admin/posts/edit/5af686fb-5ba5-4157-8115-cf075a43c2d3', 'POST', $postData);
+        $this->dispatch('/admin/posts/edit/1402254b-030c-4d93-9015-c0cebe5355ac', 'POST', $postData);
 
         $this->assertSame(
             $expectedPosts,
@@ -138,29 +138,27 @@ class PostAdminControllerTest extends HttpControllerTestCase
     {
         return [
             'update modified date' => [[
-                'id' => '5af686fb-5ba5-4157-8115-cf075a43c2d3',
+                'id' => '1402254b-030c-4d93-9015-c0cebe5355ac',
                 'status' => '0',
-                'title' => 'How to Install MySQL or MariaDB on CentOS 7',
-                'seo' => 'how-to-install-mysql-or-mariadb-on-centos-7',
-                'content' => 'As of CentOS 7 the default database is MariaDB and a drop in replacement for MySQL and should be fine for most people but if you need MySQL, there are some features in MySQL and not in MariaDB and vice versa.',
-                'date_created' => '2018-08-20T19:18:50+00:00',
-                'date_modified' => '2018-08-20T19:18:50+00:00',
+                'title' => 'Disable IPv6 in Ubuntu',
+                'seo' => 'disable-ipv6-in-ubuntu',
+                'content' => 'IPv6 is the next internet protocol, but most equipment is not ready for this yet. So running a small server on my intranet I have no use for it and frankly it started causing me some problems.',
                 'tags'      => [],
                 'new_tags'  => 'CSS, PHP',
-                'old_seo'   => 'how-to-install-mysql-or-mariadb-on-centos-7',
-            ], 3, 9],
+                'old_seo'   => 'disable-ipv6-in-ubuntu',
+            ], 4, 9],
             'update all dates' => [[
-                'id' => '5af686fb-5ba5-4157-8115-cf075a43c2d3',
+                'id' => '1402254b-030c-4d93-9015-c0cebe5355ac',
                 'status' => '1',
-                'title' => 'How to Install MySQL or MariaDB on CentOS 7',
-                'seo' => 'how-to-install-mysql-or-mariadb-on-centos-7',
-                'content' => 'As of CentOS 7 the default database is MariaDB and a drop in replacement for MySQL and should be fine for most people but if you need MySQL, there are some features in MySQL and not in MariaDB and vice versa.',
+                'title' => 'Disable IPv6 in Ubuntu',
+                'seo' => 'disable-ipv6-in-ubuntu',
+                'content' => 'IPv6 is the next internet protocol, but most equipment is not ready for this yet. So running a small server on my intranet I have no use for it and frankly it started causing me some problems.',
                 'tags'      => [
                     'aa4fa2c7-506a-4889-9810-af14f36b2b87',
                 ],
                 'new_tags'  => 'Html Purifier',
-                'old_seo'   => 'how-to-install-mysql-or-mariadb-on-centos-7',
-            ], 3, 9],
+                'old_seo'   => 'disable-ipv6-in-ubuntu',
+            ], 4, 9],
 
         ];
     }

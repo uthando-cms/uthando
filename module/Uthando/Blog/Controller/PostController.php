@@ -99,7 +99,10 @@ final class PostController extends AbstractActionController
     {
         $seo = $this->params()->fromRoute('seo');
 
-        $post = $this->postRepository->findOneBy(['seo' => $seo]);
+        $post = $this->postRepository->findOneBy([
+            'seo' => $seo,
+            'status' => PostEntity::STATUS_PUBLISHED
+        ]);
 
         if ($post == null) {
             $this->getResponse()->setStatusCode(404);

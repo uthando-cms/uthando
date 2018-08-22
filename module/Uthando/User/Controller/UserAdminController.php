@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -7,6 +7,8 @@
  * @copyright Copyright (c) 2018 Shaun Freeman. (http://www.shaunfreeman.co.uk)
  * @license   see LICENSE
  */
+
+declare(strict_types=1);
 
 namespace Uthando\User\Controller;
 
@@ -162,18 +164,23 @@ final class UserAdminController extends AbstractActionController
      */
     public function deleteAction()
     {
-        $id = $this->params()->fromPost('id');
+        $id   = $this->params()->fromPost('id');
+        $user = $this->identity();
 
         if (!Uuid::isValid($id)) {
             throw new \Exception(sprintf('Not a valid UUID: %s', $id));
+        }
+
+        if ($id === $user->id->toString()) {
+            $this->getResponse()->setStatusCode(302);
+            return $this->redirect()->toRoute('admin/user-admin');
         }
 
         /** @var UserEntity $post */
         $user = $this->userRepository->findOneBy(['id' => $id]);
 
         if ($user == null) {
-            $this->getResponse()->setStatusCode(404);
-            return false;
+            return $this->getResponse()->setStatusCode(404);
         }
 
         $this->userManager->removeUser($user);
