@@ -3,6 +3,7 @@ language: php
 php:
   - 7.1
   - 7.2
+  - 7.3
 
 before_script:
   - composer install
@@ -11,7 +12,15 @@ script:
   - composer test
 
 after_script:
-  - php vendor/bin/test-reporter --coverage-report=build/clover.xml
+  - if [[ $TEST_COVERAGE == 'true' ]]; then php vendor/bin/test-reporter --coverage-report=build/clover.xml ; fi
 
 before_install:
   - composer self-update
+
+matrix:
+  include:
+    - php: 7.1
+      env:
+        - TEST_COVERAGE=true
+  allow_failures:
+    - php: 7.3

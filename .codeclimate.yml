@@ -8,6 +8,7 @@ exclude_paths:
   - data/*
   - public/*
   - test/*
+  - unittest/*
   - themes/*
   - vendor/*
   - view/*
