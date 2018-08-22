@@ -41,14 +41,6 @@ abstract class AbstractEntity
     }
 
     /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->id->toString();
-    }
-
-    /**
      * @param string $name
      * @return mixed
      * @throws InvalidPropertyException
@@ -58,12 +50,6 @@ abstract class AbstractEntity
         if (property_exists($this, $name)) {
             return $this->$name;
         }
-
-        throw new InvalidPropertyException(sprintf(
-            '"%s" property does not exist in %s.',
-            $name,
-            get_class($this)
-        ));
     }
 
     /**

@@ -20,12 +20,4 @@ final class W3cDateTime extends \DateTime
     {
         return $this->format(DATE_W3C);
     }
-
-    /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->toString();
-    }
 }

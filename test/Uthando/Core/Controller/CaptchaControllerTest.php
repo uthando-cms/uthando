@@ -37,7 +37,6 @@ class CaptchaControllerTest extends HttpControllerTestCase
 
     public function testCanDisplayImage()
     {
-        ini_set('memory_limit', '512M');
         $config     = $this->getApplication()->getServiceManager()->get('config');
         $options    = $config['uthando']['captcha']['options'];
         $font       =  $options['fontDir'] . '/' . $options['font'];
@@ -53,7 +52,6 @@ class CaptchaControllerTest extends HttpControllerTestCase
 
     public function testCaptchaImageFileIsDeleted()
     {
-        ini_set('memory_limit', '512M');
         $config     = $this->getApplication()->getServiceManager()->get('config');
         $options    = $config['uthando']['captcha']['options'];
         $font       =  $options['fontDir'] . '/' . $options['font'];

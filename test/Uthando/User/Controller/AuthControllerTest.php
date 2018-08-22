@@ -41,7 +41,7 @@ class AuthControllerTest extends HttpControllerTestCase
 
     public function testAuthenticatedUserCanLogout()
     {
-        $this->AdminLogin();
+        $this->adminLogin();
         /** @var AuthenticationService $auth */
         $auth = $this->getApplicationServiceLocator()->get(AuthenticationService::class);
         $this->assertTrue($auth->hasIdentity(), 'Pre logout state failed.');

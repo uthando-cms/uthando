@@ -43,10 +43,11 @@ class PostAdminControllerTest extends HttpControllerTestCase
 
     public function testAdminCanAccessPostsList()
     {
-        $this->AdminLogin();
+        $this->adminLogin();
 
         $this->dispatch('/admin/posts');
 
+        $this->assertResponseStatusCode(200);
         $this->assertModuleName('Uthando');
         $this->assertControllerName(PostAdminController::class);
         $this->assertControllerClass('PostAdminController');
@@ -56,7 +57,7 @@ class PostAdminControllerTest extends HttpControllerTestCase
 
     public function testCanAddNewPost()
     {
-        $this->AdminLogin();
+        $this->adminLogin();
 
         $postData = [
             'status'    => '0',
@@ -103,7 +104,7 @@ class PostAdminControllerTest extends HttpControllerTestCase
      */
     public function testCanEditPost(array $postData, int $expectedPosts, int $expectedTags)
     {
-        $this->AdminLogin();
+        $this->adminLogin();
 
         $postCount = $this->getConnection()->getRowCount('posts');
         $tagCount = $this->getConnection()->getRowCount('tags');
@@ -172,7 +173,7 @@ class PostAdminControllerTest extends HttpControllerTestCase
      */
     public function testNonExistingPostReturns404(string $action, string $id)
     {
-        $this->AdminLogin();
+        $this->adminLogin();
 
         $postData = [
             'id' => $id,
@@ -198,7 +199,7 @@ class PostAdminControllerTest extends HttpControllerTestCase
      */
     public function testInvalidIdThrowsException(string $action, string $id)
     {
-        $this->AdminLogin();
+        $this->adminLogin();
 
         $postData = [
             'id' => $id,
@@ -224,7 +225,7 @@ class PostAdminControllerTest extends HttpControllerTestCase
      */
     public function testAdminCanDeletePost(string $id)
     {
-        $this->AdminLogin();
+        $this->adminLogin();
 
         $noOfPosts = $this->getConnection()->getRowCount('posts');
 

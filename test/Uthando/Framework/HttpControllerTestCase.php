@@ -16,9 +16,12 @@ use PHPUnit\DbUnit\Database\Connection;
 use PHPUnit\DbUnit\DataSet\IDataSet;
 use PHPUnit\DbUnit\TestCaseTrait;
 use Uthando\User\Entity\DTO\Login;
+use Uthando\User\Entity\UserEntity;
 use Uthando\User\Service\AuthenticationManager;
+use Zend\Authentication\Result;
 use Zend\Dom\Document;
 use Zend\Dom\Document\Query;
+use Zend\Mvc\Plugin\Identity\Identity;
 use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class HttpControllerTestCase extends AbstractHttpControllerTestCase
@@ -53,7 +56,12 @@ class HttpControllerTestCase extends AbstractHttpControllerTestCase
         parent::tearDown();
     }
 
-    protected function getCsrfValue($url)
+    /**
+     * @param string $url
+     * @return string
+     * @throws \Exception
+     */
+    protected function getCsrfValue(string $url): string
     {
         $this->dispatch($url);
 
@@ -69,7 +77,11 @@ class HttpControllerTestCase extends AbstractHttpControllerTestCase
         return $csrf;
     }
 
-    protected function AdminLogin()
+    /**
+     * @return Result
+     * @throws \Exception
+     */
+    protected function adminLogin(): Result
     {
         /** @var AuthenticationManager $auth */
         $auth               = $this->getApplicationServiceLocator()->get(AuthenticationManager::class);
@@ -82,7 +94,11 @@ class HttpControllerTestCase extends AbstractHttpControllerTestCase
         return $result;
     }
 
-    protected function userLogin()
+    /**
+     * @return Result
+     * @throws \Exception
+     */
+    protected function userLogin(): Result
     {
         /** @var AuthenticationManager $auth */
         $auth               = $this->getApplicationServiceLocator()->get(AuthenticationManager::class);
@@ -92,6 +108,18 @@ class HttpControllerTestCase extends AbstractHttpControllerTestCase
         if (phpversion() < 7.2) $dto->rememberMe = true;
         $result             = $auth->doAuthentication($dto);
         return $result;
+    }
+
+    /**
+     * @return null|UserEntity
+     */
+    protected function getSessionUser(): ?UserEntity
+    {
+        /** @var AuthenticationManager $auth */
+        $plugin = $this->getApplicationServiceLocator()
+            ->get('ControllerPluginManager')
+            ->get(Identity::class);
+        return $plugin();
     }
 
     /**

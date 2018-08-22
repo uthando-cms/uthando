@@ -30,11 +30,7 @@ abstract class AbstractDto
     {
         $var = lcfirst(substr($name, 3));
 
-        if (strncasecmp($name, "get", 3) === 0) {
-            return $this->$var;
-        }
-
-        if (strncasecmp($name, "set", 3) === 0) {
+        if (0 === strncasecmp($name, "set", 3)) {
             $this->$var = $arguments[0];
         }
     }

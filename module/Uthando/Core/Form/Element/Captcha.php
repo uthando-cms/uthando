@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -8,6 +8,8 @@
  * @copyright Copyright (c) 2014 Shaun Freeman. (http://www.shaunfreeman.co.uk)
  * @license   see LICENSE.txt
  */
+
+declare(strict_types=1);
 
 namespace Uthando\Core\Form\Element;
 
@@ -29,12 +31,6 @@ final class Captcha extends ZendCaptcha
         $spec = $this->getOption('config');
 
         $font = $spec['options']['font'];
-
-        if (is_array($font)) {
-            $rand = array_rand($font);
-            $randFont = $font[$rand];
-            $font = $randFont;
-        }
 
         $spec['options']['font'] = join('/', [
             $spec['options']['fontDir'],
