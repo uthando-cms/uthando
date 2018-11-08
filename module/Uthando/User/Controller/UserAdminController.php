@@ -32,6 +32,7 @@ use Zend\View\Model\ViewModel;
  * @package Uthando\User\Controller
  * @method Request getRequest()
  * @method Response getResponse()
+ * @method UserEntity identity()
  */
 final class UserAdminController extends AbstractActionController
 {
@@ -97,8 +98,9 @@ final class UserAdminController extends AbstractActionController
             $form->bind(new AddUser());
 
             if ($form->isValid()) {
-
-                $this->userManager->addUser($form->getData());
+                /** @var AddUser $dto */
+                $dto = $form->getData();
+                $this->userManager->addUser($dto);
                 // Redirect the user to "post" page.
                 return $this->redirect()->toRoute('admin/user-admin');
             }
@@ -123,7 +125,7 @@ final class UserAdminController extends AbstractActionController
 
         $user = $this->userRepository->findOneBy(['id' => $id]);
 
-        if ($user == null) {
+        if (null === $user) {
             $this->getResponse()->setStatusCode(404);
             return false;
         }
@@ -142,9 +144,16 @@ final class UserAdminController extends AbstractActionController
             $form->setData($data);
 
             if ($form->isValid()) {
+                /** @var EditUser $dto */
+                $dto = $form->getData();
+
+                // sanity check: current user cannot make themselves inactive.
+                if (UserEntity::STATUS_INACTIVE === $dto->status && $user === $this->identity()) {
+                    $dto->status = UserEntity::STATUS_ACTIVE;
+                }
 
                 // Use post manager service to add new post-admin to database.
-                $this->userManager->updateUser($user, $form->getData());
+                $this->userManager->updateUser($user, $dto);
 
                 // Redirect the user to "admin" page.
                 return $this->redirect()->toRoute('admin/user-admin');
@@ -171,15 +180,16 @@ final class UserAdminController extends AbstractActionController
             throw new \Exception(sprintf('Not a valid UUID: %s', $id));
         }
 
+        // cannot delete yourself
         if ($id === $user->id->toString()) {
             $this->getResponse()->setStatusCode(302);
             return $this->redirect()->toRoute('admin/user-admin');
         }
 
-        /** @var UserEntity $post */
+        /** @var UserEntity $user */
         $user = $this->userRepository->findOneBy(['id' => $id]);
 
-        if ($user == null) {
+        if (null === $user) {
             return $this->getResponse()->setStatusCode(404);
         }
 

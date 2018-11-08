@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -7,6 +7,8 @@
  * @copyright Copyright (c) 2018 Shaun Freeman. (http://www.shaunfreeman.co.uk)
  * @license   see LICENSE
  */
+
+declare(strict_types=1);
 
 namespace Uthando\Core\Doctine\Types;
 
@@ -37,10 +39,10 @@ final class W3cDateTimeType extends Type
      * @return null|string
      * @throws ConversionException
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if (null === $value) {
-            $value = new W3cDateTime('now');
+            return $value;
         }
 
         if ($value instanceof W3cDateTime) {
@@ -53,11 +55,15 @@ final class W3cDateTimeType extends Type
     /**
      * @param W3cDateTime|null $value
      * @param AbstractPlatform $platform
-     * @return W3cDateTime|null|bool
+     * @return W3cDateTime|null
      * @throws ConversionException
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform): W3cDateTime
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?W3cDateTime
     {
+        if (null === $value) {
+            return $value;
+        }
+
         if ($value instanceof W3cDateTime) {
             return $value;
         }

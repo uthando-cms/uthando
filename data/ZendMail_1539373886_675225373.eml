@@ -1,0 +1,229 @@
+Date: Fri, 12 Oct 2018 20:51:26 +0100
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="=_204388b4fb112c2f9cd081c7f58b6894"
+To: =?UTF-8?Q?Joe=20Admin?= <admin@example.com>
+From: =?UTF-8?Q?Uthando=20Admin?= <admin@example.co.uk>
+Subject: Reset Password
+Sender: =?UTF-8?Q?Uthando=20Admin?= <admin@example.co.uk>
+
+This is a message in Mime Format.  If you see this, your mail reader does not support this format.
+
+--=_204388b4fb112c2f9cd081c7f58b6894
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+=C2=A0=0A        =0A            =0A=0A                =0A              =20=
+ This is preheader text. Some clients will show this text as a preview.=
+=0A                =0A=0A                    =0A                    =0A=20=
+                       =0A                            =0A              =20=
+                 =0A                                    =0A            =20=
+                           Hi there,=0A                                =20=
+       Please click the button below to reset your password.=0A        =20=
+                               =0A                                     =20=
+      =0A                                            =0A               =20=
+                                =0A                                    =20=
+               =0A                                                     =20=
+  =0A                                                        =0A       =20=
+                                                     Reset Password Now=20=
+=0A                                                        =0A         =20=
+                                              =0A                      =20=
+                             =0A                                       =20=
+        =0A                                            =0A             =20=
+                              =0A                                      =20=
+ =0A                                        If you haven't asked to rese=
+t your password, please ignore this message.=0A                        =20=
+               If you have problems, copy this link to your browser http=
+://localhost/user/set-password/admin@example.com/biwzkeztf2wetdc8b4igi4m=
+6nv98ckyd=0A                                        Good luck! Hope it w=
+orks.=0A                                    =0A                        =20=
+       =0A                            =0A                        =0A   =20=
+                =0A=0A                    =0A                =0A=0A    =20=
+           =0A                =0A                    =0A               =20=
+        =0A                            =0A                             =20=
+  Company Inc, 3 Abbey Road, San Francisco CA 94102=0A                 =20=
+               Don't like these emails? Unsubscribe.=0A                =20=
+           =0A                        =0A                        =0A   =20=
+                        =0A                                Powered by HT=
+MLemail.=0A                            =0A                        =0A  =20=
+                 =0A                =0A                =0A=0A          =20=
+     =0A            =0A        =0A        =C2=A0
+--=_204388b4fb112c2f9cd081c7f58b6894
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+=0A<!doctype html>=0A<html>=0A<head>=0A    <meta name=3D"viewport" conte=
+nt=3D"width=3Ddevice-width" />=0A    <meta http-equiv=3D"Content-Type" c=
+ontent=3D"text/html; charset=3DUTF-8" />=0A    <title>Password Reset Ema=
+il</title>=0A    <style>=0A        /* ----------------------------------=
+---=0A            GLOBAL RESETS=0A        ------------------------------=
+------- */=0A        img {=0A            border: none;=0A            -ms=
+-interpolation-mode: bicubic;=0A            max-width: 100%; }=0A      =20=
+ body {=0A            background-color: #f6f6f6;=0A            font-fami=
+ly: sans-serif;=0A            -webkit-font-smoothing: antialiased;=0A  =20=
+         font-size: 14px;=0A            line-height: 1.4;=0A           =20=
+margin: 0;=0A            padding: 0;=0A            -ms-text-size-adjust:=
+ 100%;=0A            -webkit-text-size-adjust: 100%; }=0A        table {=
+=0A            border-collapse: separate;=0A            mso-table-lspace=
+: 0pt;=0A            mso-table-rspace: 0pt;=0A            width: 100%; }=
+=0A        table td {=0A            font-family: sans-serif;=0A        =20=
+   font-size: 14px;=0A            vertical-align: top; }=0A        /* --=
+-----------------------------------=0A            BODY & CONTAINER=0A  =20=
+     ------------------------------------- */=0A        .body {=0A     =20=
+      background-color: #f6f6f6;=0A            width: 100%; }=0A       =20=
+/* Set a max-width, and make it display as block so it will automaticall=
+y stretch to that width, but will also shrink down on a phone or somethi=
+ng */=0A        .container {=0A            display: block;=0A          =20=
+ Margin: 0 auto !important;=0A            /* makes it centered */=0A   =20=
+        max-width: 580px;=0A            padding: 10px;=0A            wid=
+th: 580px; }=0A        /* This should also be a block element, so that i=
+t will fill 100% of the .container */=0A        .content {=0A          =20=
+ box-sizing: border-box;=0A            display: block;=0A            Mar=
+gin: 0 auto;=0A            max-width: 580px;=0A            padding: 10px=
+; }=0A        /* -------------------------------------=0A            HEA=
+DER, FOOTER, MAIN=0A        ------------------------------------- */=0A=20=
+       .main {=0A            background: #ffffff;=0A            border-r=
+adius: 3px;=0A            width: 100%; }=0A        .wrapper {=0A       =20=
+    box-sizing: border-box;=0A            padding: 20px; }=0A        .co=
+ntent-block {=0A            padding-bottom: 10px;=0A            padding-=
+top: 10px;=0A        }=0A        .footer {=0A            clear: both;=0A=
+            Margin-top: 10px;=0A            text-align: center;=0A     =20=
+      width: 100%; }=0A        .footer td,=0A        .footer p,=0A     =20=
+  .footer span,=0A        .footer a {=0A            color: #999999;=0A =20=
+          font-size: 12px;=0A            text-align: center; }=0A      =20=
+ /* -------------------------------------=0A            TYPOGRAPHY=0A  =20=
+     ------------------------------------- */=0A        h1,=0A        h2=
+,=0A        h3,=0A        h4 {=0A            color: #000000;=0A        =20=
+   font-family: sans-serif;=0A            font-weight: 400;=0A         =20=
+  line-height: 1.4;=0A            margin: 0;=0A            Margin-bottom=
+: 30px; }=0A        h1 {=0A            font-size: 35px;=0A            fo=
+nt-weight: 300;=0A            text-align: center;=0A            text-tra=
+nsform: capitalize; }=0A        p,=0A        ul,=0A        ol {=0A     =20=
+      font-family: sans-serif;=0A            font-size: 14px;=0A       =20=
+    font-weight: normal;=0A            margin: 0;=0A            Margin-b=
+ottom: 15px; }=0A        p li,=0A        ul li,=0A        ol li {=0A   =20=
+        list-style-position: inside;=0A            margin-left: 5px; }=
+=0A        a {=0A            color: #3498db;=0A            text-decorati=
+on: underline; }=0A        /* -------------------------------------=0A =20=
+          BUTTONS=0A        ------------------------------------- */=0A=20=
+       .btn {=0A            box-sizing: border-box;=0A            width:=
+ 100%; }=0A        .btn > tbody > tr > td {=0A            padding-bottom=
+: 15px; }=0A        .btn table {=0A            width: auto; }=0A       =20=
+=2Ebtn table td {=0A            background-color: #ffffff;=0A            b=
+order-radius: 5px;=0A            text-align: center; }=0A        .btn a=20=
+{=0A            background-color: #ffffff;=0A            border: solid 1=
+px #3498db;=0A            border-radius: 5px;=0A            box-sizing:=20=
+border-box;=0A            color: #3498db;=0A            cursor: pointer;=
+=0A            display: inline-block;=0A            font-size: 14px;=0A=20=
+           font-weight: bold;=0A            margin: 0;=0A            pad=
+ding: 12px 25px;=0A            text-decoration: none;=0A            text=
+-transform: capitalize; }=0A        .btn-primary table td {=0A         =20=
+  background-color: #3498db; }=0A        .btn-primary a {=0A           =20=
+background-color: #3498db;=0A            border-color: #3498db;=0A     =20=
+      color: #ffffff; }=0A        /* -----------------------------------=
+--=0A            OTHER STYLES THAT MIGHT BE USEFUL=0A        -----------=
+-------------------------- */=0A        .last {=0A            margin-bot=
+tom: 0; }=0A        .first {=0A            margin-top: 0; }=0A        .a=
+lign-center {=0A            text-align: center; }=0A        .align-right=
+ {=0A            text-align: right; }=0A        .align-left {=0A       =20=
+    text-align: left; }=0A        .clear {=0A            clear: both; }=
+=0A        .mt0 {=0A            margin-top: 0; }=0A        .mb0 {=0A   =20=
+        margin-bottom: 0; }=0A        .preheader {=0A            color:=20=
+transparent;=0A            display: none;=0A            height: 0;=0A  =20=
+         max-height: 0;=0A            max-width: 0;=0A            opacit=
+y: 0;=0A            overflow: hidden;=0A            mso-hide: all;=0A  =20=
+         visibility: hidden;=0A            width: 0; }=0A        .powere=
+d-by a {=0A            text-decoration: none; }=0A        hr {=0A      =20=
+     border: 0;=0A            border-bottom: 1px solid #f6f6f6;=0A     =20=
+      Margin: 20px 0; }=0A        /* -----------------------------------=
+--=0A            RESPONSIVE AND MOBILE FRIENDLY STYLES=0A        -------=
+------------------------------ */=0A        @media only screen and (max-=
+width: 620px) {=0A            table[class=3Dbody] h1 {=0A              =20=
+ font-size: 28px !important;=0A                margin-bottom: 10px !impo=
+rtant; }=0A            table[class=3Dbody] p,=0A            table[class=
+=3Dbody] ul,=0A            table[class=3Dbody] ol,=0A            table[c=
+lass=3Dbody] td,=0A            table[class=3Dbody] span,=0A            t=
+able[class=3Dbody] a {=0A                font-size: 16px !important; }=
+=0A            table[class=3Dbody] .wrapper,=0A            table[class=
+=3Dbody] .article {=0A                padding: 10px !important; }=0A   =20=
+        table[class=3Dbody] .content {=0A                padding: 0 !imp=
+ortant; }=0A            table[class=3Dbody] .container {=0A            =20=
+   padding: 0 !important;=0A                width: 100% !important; }=0A=
+            table[class=3Dbody] .main {=0A                border-left-wi=
+dth: 0 !important;=0A                border-radius: 0 !important;=0A   =20=
+            border-right-width: 0 !important; }=0A            table[clas=
+s=3Dbody] .btn table {=0A                width: 100% !important; }=0A  =20=
+         table[class=3Dbody] .btn a {=0A                width: 100% !imp=
+ortant; }=0A            table[class=3Dbody] .img-responsive {=0A       =20=
+        height: auto !important;=0A                max-width: 100% !impo=
+rtant;=0A                width: auto !important; }}=0A        /* -------=
+------------------------------=0A            PRESERVE THESE STYLES IN TH=
+E HEAD=0A        ------------------------------------- */=0A        @med=
+ia all {=0A            .ExternalClass {=0A                width: 100%; }=
+=0A            .ExternalClass,=0A            .ExternalClass p,=0A      =20=
+     .ExternalClass span,=0A            .ExternalClass font,=0A        =20=
+   .ExternalClass td,=0A            .ExternalClass div {=0A            =20=
+   line-height: 100%; }=0A            .apple-link a {=0A               =20=
+color: inherit !important;=0A                font-family: inherit !impor=
+tant;=0A                font-size: inherit !important;=0A              =20=
+ font-weight: inherit !important;=0A                line-height: inherit=
+ !important;=0A                text-decoration: none !important; }=0A  =20=
+         .btn-primary table td:hover {=0A                background-colo=
+r: #34495e !important; }=0A            .btn-primary a:hover {=0A       =20=
+        background-color: #34495e !important;=0A                border-c=
+olor: #34495e !important; } }=0A    </style>=0A</head>=0A<body class=3D"=
+">=0A<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"bo=
+dy">=0A    <tr>=0A        <td>&nbsp;</td>=0A        <td class=3D"contain=
+er">=0A            <div class=3D"content">=0A=0A                <!-- STA=
+RT CENTERED WHITE CONTAINER -->=0A                <span class=3D"prehead=
+er">This is preheader text. Some clients will show this text as a previe=
+w.</span>=0A                <table class=3D"main">=0A=0A               =20=
+    <!-- START MAIN CONTENT AREA -->=0A                    <tr>=0A     =20=
+                  <td class=3D"wrapper">=0A                            <=
+table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">=0A             =20=
+                  <tr>=0A                                    <td>=0A   =20=
+                                    <p>Hi there,</p>=0A                =20=
+                       <p>Please click the button below to reset your pa=
+ssword.</p>=0A                                        <table border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" class=3D"btn btn-primary">=0A    =20=
+                                       <tbody>=0A                      =20=
+                     <tr>=0A                                           =20=
+    <td align=3D"left">=0A                                             =20=
+      <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0">=0A      =20=
+                                                 <tbody>=0A            =20=
+                                           <tr>=0A                     =20=
+                                      <td> <a href=3D"http://localhost/u=
+ser/set-password/admin@example.com/biwzkeztf2wetdc8b4igi4m6nv98ckyd">Res=
+et Password Now</a> </td>=0A                                           =20=
+            </tr>=0A                                                   =20=
+    </tbody>=0A                                                    </tab=
+le>=0A                                                </td>=0A         =20=
+                                  </tr>=0A                             =20=
+              </tbody>=0A                                        </table=
+>=0A                                        <p>If you haven't asked to r=
+eset your password, please ignore this message.</p>=0A                 =20=
+                      <p>If you have problems, copy this link to your br=
+owser <a href=3D"http://localhost/user/set-password/admin@example.com/bi=
+wzkeztf2wetdc8b4igi4m6nv98ckyd">http://localhost/user/set-password/admin=
+@example.com/biwzkeztf2wetdc8b4igi4m6nv98ckyd</a></p>=0A               =20=
+                        <p>Good luck! Hope it works.</p>=0A            =20=
+                       </td>=0A                                </tr>=0A=20=
+                           </table>=0A                        </td>=0A =20=
+                  </tr>=0A=0A                    <!-- END MAIN CONTENT A=
+REA -->=0A                </table>=0A=0A                <!-- START FOOTE=
+R -->=0A                <div class=3D"footer">=0A                    <ta=
+ble border=3D"0" cellpadding=3D"0" cellspacing=3D"0">=0A               =20=
+        <tr>=0A                            <td class=3D"content-block">=
+=0A                                <span class=3D"apple-link">Company In=
+c, 3 Abbey Road, San Francisco CA 94102</span>=0A                      =20=
+         <br> Don't like these emails? <a href=3D"http://i.imgur.com/CSc=
+mqnj.gif">Unsubscribe</a>.=0A                            </td>=0A      =20=
+                 </tr>=0A                        <tr>=0A               =20=
+            <td class=3D"content-block powered-by">=0A                 =20=
+              Powered by <a href=3D"http://htmlemail.io">HTMLemail</a>.=
+=0A                            </td>=0A                        </tr>=0A=20=
+                   </table>=0A                </div>=0A                <=
+!-- END FOOTER -->=0A=0A                <!-- END CENTERED WHITE CONTAINE=
+R -->=0A            </div>=0A        </td>=0A        <td>&nbsp;</td>=0A=20=
+   </tr>=0A</table>=0A</body>=0A</html>=0A
+--=_204388b4fb112c2f9cd081c7f58b6894--

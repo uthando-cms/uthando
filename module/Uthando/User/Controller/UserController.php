@@ -18,6 +18,7 @@ use Uthando\Core\Form\FormBase;
 use Uthando\User\Entity\DTO\ChangePassword;
 use Uthando\User\Entity\DTO\EditProfile;
 use Uthando\User\Entity\DTO\PasswordReset;
+use Uthando\User\Entity\DTO\SetPassword;
 use Uthando\User\Entity\UserEntity;
 use Uthando\User\Service\UserManager;
 use Zend\Form\Annotation\AnnotationBuilder;
@@ -67,6 +68,12 @@ final class UserController extends AbstractActionController
         ]);
     }
 
+    /**
+     * @return Response|PostRedirectGet|ViewModel
+     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function updateDetailsAction()
     {
         $user   = $this->identity();
@@ -93,8 +100,9 @@ final class UserController extends AbstractActionController
 
         if ($form->isValid()) {
             $user   = $this->identity();
-
-            $this->userManager->updateUser($user, $form->getData());
+            /** @var EditProfile $dto */
+            $dto    = $form->getData();
+            $this->userManager->updateUser($user, $dto);
 
             $this->flashMessenger()->addSuccessMessage(
                 'Changes were made successfully.'
@@ -110,6 +118,12 @@ final class UserController extends AbstractActionController
         ]);
     }
 
+    /**
+     * @return PostRedirectGet|ViewModel
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
+     */
     public function resetPasswordAction()
     {
         /** @var FormBase $form */
@@ -129,10 +143,92 @@ final class UserController extends AbstractActionController
 
         if ($form->isValid()) {
 
+            /** @var PasswordReset $dto */
+            $dto  = $form->getData();
+            $user = $this->userRepository->findOneBy([
+                'email'     => $dto->email,
+                'status'    => UserEntity::STATUS_ACTIVE,
+            ]);
+
+            if ($user instanceof UserEntity) {
+                $this->userManager->generatePasswordResetToken($user);
+
+                // Redirect to "message" page
+                $id = 'sent';
+            } else {
+                $id = 'invalid-email';
+            }
+
+            $view = new ViewModel([
+                'id' => $id,
+            ]);
+
+            $view->setTemplate('uthando/user/user/message');
+
+            return $view;
         }
 
         return new ViewModel([
             'form' => $form,
+        ]);
+    }
+
+    /**
+     * @return Response|ViewModel
+     * @throws \Exception
+     */
+    public function setPasswordAction()
+    {
+        $email = $this->params()->fromRoute('email', null);
+        $token = $this->params()->fromRoute('token', null);
+        $prg   = $this->prg();
+
+        // Create form
+        $form = $this->formBuilder->createForm(SetPassword::class);
+
+        if ($prg instanceof Response) {
+            return $prg;
+        } elseif (false === $prg) {
+            $form->setData([
+                'email' => $email,
+                'token' => $token,
+            ]);
+
+            return new ViewModel([
+                'form' => $form,
+            ]);
+        }
+
+        $form->bind(new SetPassword());
+        $form->setData((array) $prg);
+
+        // Validate form
+        if($form->isValid()) {
+
+            /** @var SetPassword $dto */
+            $dto = $form->getData();
+            /** @var UserEntity $user */
+            $user = $this->userRepository->findOneBy(['email' => $dto->email]);
+
+            if ($this->userManager->setNewPasswordByToken($user, $dto)) {
+                // Redirect to "message" page
+                $id = 'set';
+            } else {
+                // Redirect to "message" page
+                $id = 'failed';
+            }
+
+            $view = new ViewModel([
+                'id' => $id,
+            ]);
+
+            $view->setTemplate('uthando/user/user/message');
+
+            return $view;
+        }
+
+        return new ViewModel([
+            'form' => $form
         ]);
     }
 
@@ -142,13 +238,11 @@ final class UserController extends AbstractActionController
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function setPasswordAction()
+    public function changePasswordAction()
     {
         /** @var FormBase $form */
         $form   = $this->formBuilder->createForm(ChangePassword::class);
         $prg    = $this->prg();
-
-        $form->bind(new ChangePassword());
 
         if ($prg instanceof Response) {
             return $prg;
@@ -159,11 +253,14 @@ final class UserController extends AbstractActionController
             ]);
         }
 
+        $form->bind(new ChangePassword());
         $form->setData((array) $prg);
 
         if ($form->isValid()) {
             $user   = $this->identity();
-            $result = $this->userManager->changePassword($user, $form->getData());
+            /** @var ChangePassword $dto */
+            $dto    = $form->getData();
+            $result = $this->userManager->changePassword($user, $dto);
 
             if (true === $result) {
                 $this->flashMessenger()->addSuccessMessage(

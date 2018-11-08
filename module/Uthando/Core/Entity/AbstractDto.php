@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -8,10 +8,12 @@
  * @license   see LICENSE
  */
 
+declare(strict_types=1);
+
 namespace Uthando\Core\Entity;
 
 
-abstract class AbstractDto
+abstract class AbstractDto implements DtoInterface
 {
     /**
      * @return array

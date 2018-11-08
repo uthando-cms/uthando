@@ -44,7 +44,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "UthandoTest\\": "test/Uthando"
+      "UthandoTest\\": "test/integration/Uthando",
+      "UthandoUnitTest\\": "test/unit/Uthando"
     }
   },
   "scripts": {
@@ -57,7 +58,8 @@
       "@development-enable"
     ],
     "serve": "php -S 0.0.0.0:8080 -t public public/index.php",
-    "test": "phpdbg -qrr ./vendor/bin/phpunit -v"
+    "unit-test": "phpdbg -qrr ./vendor/bin/phpunit -v --testsuite unit",
+    "integration-test": "phpdbg -qrr ./vendor/bin/phpunit -v --testsuite integration"
   },
   "require-dev": {
     "zendframework/zend-developer-tools": "^1.1",

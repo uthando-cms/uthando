@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -8,6 +8,8 @@
  * @license   see LICENSE
  */
 
+declare(strict_types=1);
+
 namespace Uthando\User\Entity;
 
 
@@ -16,6 +18,7 @@ use Uthando\Core\Stdlib\W3cDateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
+use Zend\Math\Rand;
 
 
 /**
@@ -81,6 +84,17 @@ class UserEntity extends AbstractEntity
     protected $pwdResetTokenCreationDate;
 
     /**
+     * @param UserEntity $user
+     * @param string $inputPassword
+     * @return bool
+     */
+    public static function verifyPassword(UserEntity $user, string $inputPassword): bool
+    {
+        $verified = password_verify($inputPassword, $user->password);
+        return $verified;
+    }
+
+    /**
      * UserEntity constructor.
      * @throws \Exception
      */
@@ -104,5 +118,69 @@ class UserEntity extends AbstractEntity
     public function toFullName(): string
     {
         return $this->firstname . ' ' . $this->lastname;
+    }
+
+    public function hashPassword(string $password): void
+    {
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    /**
+     * @param string $password
+     * @return bool
+     */
+    public function checkPasswordHash(string $password): bool
+    {
+        if (password_needs_rehash($this->password, PASSWORD_DEFAULT)) {
+            $this->hashPassword($password);
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Generate password reset token and return token.
+     *
+     * @return string
+     */
+    public function generateResetToken(): string
+    {
+        $token                              = Rand::getString(32, '0123456789abcdefghijklmnopqrstuvwxyz');
+        $this->pwdResetToken                = password_hash($token, PASSWORD_DEFAULT);
+        $this->pwdResetTokenCreationDate    = new W3cDateTime('now');
+
+        return $token;
+    }
+
+    /**
+     * Validate token and check that token was created not too long ago.
+     *
+     * @param $passwordResetToken
+     * @return bool
+     */
+    public function validatePasswordResetToken($passwordResetToken): bool
+    {
+        if (!password_verify($passwordResetToken, $this->pwdResetToken)) {
+            return false; // mismatch
+        }
+
+        $tokenCreationDate  = $this->pwdResetTokenCreationDate;
+        $currentDate        = new W3cDateTime('now');
+
+        if (($currentDate->getTimestamp() - $tokenCreationDate->getTimestamp()) > 24*60*60) {
+            return false; // expired
+        }
+
+        return true;
+    }
+
+    /**
+     * Reset token and token date.
+     */
+    public function removeResetToken(): void
+    {
+        $this->pwdResetToken                = null;
+        $this->pwdResetTokenCreationDate    = null;
     }
 }

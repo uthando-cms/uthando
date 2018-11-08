@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.name/)
  *
@@ -8,6 +8,8 @@
  * @date      19/07/18
  * @license   see LICENSE
  */
+
+declare(strict_types=1);
 
 namespace Uthando\Blog\Controller;
 

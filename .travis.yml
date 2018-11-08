@@ -8,7 +8,7 @@ before_script:
   - composer install
 
 script:
-  - composer test
+  - composer unit-test
 
 after_script:
   - if [[ $TEST_COVERAGE == 'true' ]]; then php vendor/bin/test-reporter --coverage-report=build/clover.xml ; fi

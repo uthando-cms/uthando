@@ -9,6 +9,8 @@
  * @license   see LICENSE.md
  */
 
+declare(strict_types=1);
+
 namespace Uthando\Core\Controller;
 
 
@@ -59,7 +61,7 @@ class CaptchaController extends AbstractActionController
                 $response->setStatusCode(200);
                 $response->setContent($imageRead);
 
-                if (file_exists($image) == true) {
+                if (true === file_exists($image) && is_file($image)) {
                     unlink($image);
                 }
             } else {

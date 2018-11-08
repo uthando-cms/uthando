@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -8,9 +8,12 @@
  * @license   see LICENSE
  */
 
+declare(strict_types=1);
+
 namespace Uthando\User\Service;
 
 
+use Doctrine\ORM\EntityManager;
 use DoctrineModule\Authentication\Adapter\ObjectRepository;
 use Uthando\User\Entity\DTO\Login;
 use Uthando\User\Entity\UserEntity;
@@ -36,17 +39,11 @@ class AuthenticationManager
     protected $filter;
 
     /**
-     * @param UserEntity $user
-     * @param string $inputPassword
-     * @return bool
+     * AuthenticationManager constructor.
+     * @param AuthenticationService $authService
+     * @param SessionManager $sessionManager
+     * @param array $filter
      */
-    public static function verifyCredential(UserEntity $user, string $inputPassword): bool
-    {
-        $verified = password_verify($inputPassword, $user->password);
-
-        return $verified;
-    }
-
     public function __construct(AuthenticationService $authService, SessionManager $sessionManager, array $filter)
     {
         $this->authService      = $authService;
@@ -68,6 +65,17 @@ class AuthenticationManager
         $authResult = $this->authService->authenticate();
 
         if ($authResult->isValid()) {
+            /** @var UserEntity $user */
+            $user = $authResult->getIdentity();
+
+            if ($user->checkPasswordHash($login->password)) {
+                /** @var EntityManager $manager */
+                $manager = $adapter->getOptions()->getObjectManager();
+                $manager->flush();
+                $manager->clear();
+                $cacheDriver = $manager->getConfiguration()->getResultCacheImpl();
+                $cacheDriver->delete('user-tags');
+            }
 
             if (true === $login->rememberMe) {
                 $this->sessionManager->rememberMe(60*60*24*30);

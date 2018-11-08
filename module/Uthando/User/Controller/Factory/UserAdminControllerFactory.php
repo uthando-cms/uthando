@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -8,6 +8,8 @@
  * @license   see LICENSE
  */
 
+declare(strict_types=1);
+
 namespace Uthando\User\Controller\Factory;
 
 
@@ -15,6 +17,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Interop\Container\ContainerInterface;
+use Uthando\Core\Service\Mail;
 use Uthando\User\Controller\UserAdminController;
 use Uthando\User\Entity\UserEntity;
 use Uthando\User\Service\UserManager;
@@ -34,9 +37,11 @@ final class UserAdminControllerFactory implements FactoryInterface
     {
         /** @var EntityManager $entityManager */
         $entityManager      = $container->get(EntityManager::class);
-        $entityRepository   = new EntityRepository($entityManager, new ClassMetadata(UserEntity::class));
-        $userManager        = new UserManager($entityManager);
+        $mailer             = $container->get(Mail::class);
         $builder            = $container->get(AnnotationBuilder::class);
+        $entityRepository   = new EntityRepository($entityManager, new ClassMetadata(UserEntity::class));
+        $userManager        = new UserManager($entityManager, $mailer);
+
 
         return new UserAdminController($entityRepository, $userManager, $builder);
     }

@@ -1,5 +1,4 @@
-<?php declare(strict_types=1);
-
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -8,6 +7,8 @@
  * @copyright Copyright (c) 2018 Shaun Freeman. (http://www.shaunfreeman.co.uk)
  * @license   see LICENSE
  */
+
+declare(strict_types=1);
 
 namespace Uthando;
 

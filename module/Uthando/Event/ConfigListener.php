@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -7,6 +7,8 @@
  * @copyright   Copyright (c) 19/09/17 Shaun Freeman. (http://www.shaunfreeman.co.uk)
  * @license     see LICENSE
  */
+
+declare(strict_types=1);
 
 namespace Uthando\Event;
 
@@ -22,7 +24,7 @@ class ConfigListener
     {
         $configListener     = $event->getConfigListener();
         $config             = $configListener->getMergedConfig(false);
-        $options            = $config['uthando']['theme_options'] ?? [];
+        $options            = $config['uthando']['theme'] ?? [];
         $assetManager       = [];
 
         if (isset($options['cache'])) {

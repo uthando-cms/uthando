@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -8,14 +8,17 @@
  * @license   see LICENSE
  */
 
+declare(strict_types=1);
+
 namespace Uthando;
 
 
-use AssetManager\Cache\FilePathCache;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Gedmo\Tree\TreeListener;
 use Ramsey\Uuid\Doctrine\UuidType;
+use TwbBundle\Navigation\View\NavigationHelperFactory;
+use TwbBundle\View\Helper\Navigation;
 use Zend\Authentication\AuthenticationService;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
@@ -56,7 +59,7 @@ class ConfigProvider
                     'identity_class'        => User\Entity\UserEntity::class,
                     'identity_property'     => 'email',
                     'credential_property'   => 'password',
-                    'credential_callable'   => 'Uthando\User\Service\AuthenticationManager::verifyCredential',
+                    'credential_callable'   => 'Uthando\User\Entity\UserEntity::verifyPassword',
                 ],
             ],
             'configuration' => [
@@ -166,6 +169,8 @@ class ConfigProvider
                 Admin\Service\Factory\NavigationFactory::class          => Admin\Service\Factory\NavigationFactory::class,
                 Admin\Service\Factory\NavigationDashboardFactory::class => Admin\Service\Factory\NavigationDashboardFactory::class,
                 Core\Doctine\Cache\FilesystemFactory::class             => Core\Doctine\Cache\FilesystemFactory::class,
+                Core\Options\MailOptions::class                         => Core\Options\Factory\MailOptionsFactory::class,
+                Core\Service\Mail::class                                => Core\Service\Factory\MailFactory::class,
                 User\Service\AuthenticationManager::class               => User\Service\Factory\AuthenticationManagerFactory::class,
                 User\Service\Factory\UserNavigationFactory::class       => User\Service\Factory\UserNavigationFactory::class,
             ],
@@ -215,16 +220,16 @@ class ConfigProvider
         return [
             'aliases' => [
                 'commentCount'              => Blog\View\Helper\CommentCount::class,
-                'navigation'                => Core\View\Helper\Navigation::class,
-                'Navigation'                => Core\View\Helper\Navigation::class,
+                'navigation'                => Navigation::class,
+                'Navigation'                => Navigation::class,
                 'tagHelper'                 => Blog\View\Helper\TagHelper::class,
-                'zendviewhelpernavigation'  => Core\View\NavigationHelperFactory::class,
+                'zendviewhelpernavigation'  => NavigationHelperFactory::class,
             ],
             'factories' => [
-                Blog\View\Helper\CommentCount::class        => InvokableFactory::class,
-                Blog\View\Helper\TagHelper::class           => InvokableFactory::class,
-                Core\View\Helper\Navigation::class          => Core\View\NavigationHelperFactory::class,
-                Core\View\NavigationHelperFactory::class    => Core\View\NavigationHelperFactory::class,
+                Blog\View\Helper\CommentCount::class    => InvokableFactory::class,
+                Blog\View\Helper\TagHelper::class       => InvokableFactory::class,
+                Navigation::class                       => NavigationHelperFactory::class,
+                NavigationHelperFactory::class          => NavigationHelperFactory::class,
             ],
         ];
     }
@@ -387,9 +392,9 @@ class ConfigProvider
                             'label' => 'Profile',
                             'route' => 'user/view',
                         ],
-                        'set-password' => [
+                        'change-password' => [
                             'label' => 'Change Password',
-                            'route' => 'user/set-password',
+                            'route' => 'user/change-password',
                         ],
                         'logout' => [
                             'label' => 'Logout',
@@ -529,12 +534,28 @@ class ConfigProvider
                             ],
                         ],
                         'set-password' => [
-                            'type' => Literal::class,
+                            'type' => Segment::class,
                             'options' => [
-                                'route'    => '/set-password',
+                                'route'    => '/set-password[/:email[/:token]]',
+                                'constraints' => [
+                                    //'email' => '[a-zA-Z0-9@-_.]*',
+                                    'token' => '[a-z0-9]*',
+                                ],
                                 'defaults' => [
                                     'controller' => User\Controller\UserController::class,
                                     'action'     => 'set-password',
+                                    'email'      => null,
+                                    'token'      => null,
+                                ],
+                            ],
+                        ],
+                        'change-password' => [
+                            'type' => Literal::class,
+                            'options' => [
+                                'route'    => '/change-password',
+                                'defaults' => [
+                                    'controller' => User\Controller\UserController::class,
+                                    'action'     => 'change-password',
                                 ],
                             ],
                         ],
@@ -631,7 +652,7 @@ class ConfigProvider
                 ],
                 User\Controller\UserController::class => [
                     ['actions' => ['reset-password'], 'allow' => '*'],
-                    ['actions' => ['index', 'set-password', 'update-details'], 'allow' => '@'],
+                    ['actions' => ['index', 'change-password', 'update-details'], 'allow' => '@'],
                 ],
             ],
         ];
@@ -640,14 +661,6 @@ class ConfigProvider
     public function assetManagerConfig(): array
     {
         return [
-            /*'caching' => [
-                'default' => [
-                    'cache' => FilePathCache::class,
-                    'options' => [
-                        'dir' => './public',
-                    ],
-                ],
-            ],*/
             'resolver_configs' => [
                 'collections' => [
                     'js/uthando.js' => [

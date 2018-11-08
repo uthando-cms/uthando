@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Uthando CMS (http://www.shaunfreeman.co.uk/)
  *
@@ -7,6 +7,8 @@
  * @copyright Copyright (c) 2018 Shaun Freeman. (http://www.shaunfreeman.co.uk)
  * @license   see LICENSE
  */
+ 
+declare(strict_types=1);
 
 namespace Uthando\Event;
 
@@ -20,7 +22,7 @@ class AclListener
      * @param Event $event
      * @return bool
      */
-    public static function accept(Event $event)
+    public static function accept(Event $event): bool
     {
         $event->stopPropagation();
 
@@ -31,16 +33,11 @@ class AclListener
         $params     = $event->getParams();
         $page       = $params['page'];
         $permission = $page->getPermission();
-        $accepted   = true;
 
-        if ('@' === $permission && !$identity) {
-            $accepted = false;
+        if (('@' === $permission && !$identity) || ('*' === $permission && $identity)) {
+            return false;
         }
 
-        if ('*' === $permission && $identity) {
-            $accepted = false;
-        }
-
-        return $accepted;
+        return true;
     }
 }
